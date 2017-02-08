@@ -75,7 +75,7 @@ Lets modifiy our template to say.
 
 and that turned out as silly as expected.
 
-### CSS file
+## Component CSS files
 
 We can tweak the app.component.css file to add some css classes
 
@@ -152,7 +152,7 @@ Now finally, reedit the app.component.html
 
 ```html
 <h1>
-    <span [ngClass]="color" >{{title}}</span> - <span [ngClass]="color">{{title2}}</span> - <span [ngClass]="color">{{title3}}</span>
+    <span class="color1">{{title}}</span> - <span class="color2">{{title2}}</span> - <span class="color3">{{title3}}</span>
 
 	<div>
 	 <app-usa></app-usa>
@@ -160,10 +160,54 @@ Now finally, reedit the app.component.html
 </h1>
 ```
 
-![alt text](https://github.com/robstave/angular2-training/raw/master/src/common/images/app1.png "App Snap 1")
+![Application](https://github.com/robstave/angular2-training/raw/master/src/common/images/app1.png "App Snap 1")
 
-	
 
- 
+# Add other components.
+
+Create the other components
+
+```bash
+$ ng generate component usa/texas
+installing component
+  create src\app\usa\texas\texas.component.css
+  create src\app\usa\texas\texas.component.html
+  create src\app\usa\texas\texas.component.spec.ts
+  create src\app\usa\texas\texas.component.ts
+  update src\app\app.module.ts
+
+Stave@St-PC MINGW64 ~/interlegis/ang2/nghello/my-project (master)
+$ ng generate component usa/texas/dallas
+installing component
+  create src\app\usa\texas\dallas\dallas.component.css
+  create src\app\usa\texas\dallas\dallas.component.html
+  create src\app\usa\texas\dallas\dallas.component.spec.ts
+  create src\app\usa\texas\dallas\dallas.component.ts
+  update src\app\app.module.ts
+
+Stave@St-PC MINGW64 ~/interlegis/ang2/nghello/my-project (master)
+$ ng generate component usa/pennsylvania
+installing component
+  create src\app\usa\pennsylvania\pennsylvania.component.css
+  create src\app\usa\pennsylvania\pennsylvania.component.html
+  create src\app\usa\pennsylvania\pennsylvania.component.spec.ts
+  create src\app\usa\pennsylvania\pennsylvania.component.ts
+  update src\app\app.module.ts
+```
+
+## Student exercise
+
+Edit the css and and html so that.
+
+   * usa is top component
+   * usa contains Texas and Pennsylvania
+   * Texas has a red border, penn has the blue.
+   * Dallas is purple and within Texas
+   
+Your results should look like this
+
+![application](https://github.com/robstave/angular2-training/raw/master/src/common/images/app2.png "App Snap 2")
+
+
 
 

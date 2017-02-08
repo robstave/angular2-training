@@ -13,4 +13,4 @@ Into to Angular2, Angular cli, node and npm
 
 ## Add some components
 
-[Add Components](add.md)
+[Add Components](app1.md)
