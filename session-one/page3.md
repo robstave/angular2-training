@@ -24,9 +24,13 @@ The exported class AppComponent is basically what was the controller.  In Angula
 adding values to the $scope and instead use the value in the javascript object itself.  The selector is what we used to identify the
 directive in angular1.  The app component would be used by simply inserting <app-root></app-root> in you html.
 
+The component controls a part of the screen called the view. It interacts with this view through the properties
+of the @component class.  For example, the component either contains or points to a _template_.
+
+The template is the html code that will be rendered in the view.  It is somewhat special though as
+the template will be processed a bit and modified.
+
 The templateURL and and styleUrls point to files that have the template and css code. This could be used to specify inline code as well.
-
-
 
 Lets add to this. We will add two more properties to the AppComponent. This is similar to adding to the scope in angular.
 
@@ -41,8 +45,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app works!';
-  title2 = 'Go Angular';
-  title3 = 'Its your birthday';
+  title2 = 'Go Angular'; //added
+  title3 = 'Its your birthday'; //added
 }
 ```
 
@@ -62,9 +66,7 @@ The styleUrls are a list of css files.  It can also be be just _styles_ and be a
 The part with the  {{ }}  is what is called a template tag. Angular2 will use interpolation to evaluate the contents of
 the curly brackets. It will replace that name with the string value of the component property in the component.
 
-You can evaluate all kinds of things here, but for now..lets just stick to a property reference.
-
- 
+You can evaluate all kinds of things here, but for now..lets just stick to the property references.
 
 Read more:
 
@@ -72,6 +74,7 @@ Read more:
   
 
 Lets modifiy our template to say.
+What we are doing here is adding more properties to be evaluated in the template for the view.
 
 ```html
 <h1>
@@ -106,16 +109,25 @@ We can tweak the app.component.css file to add some css classes
 </h1>
 ```
 
+Here is a pretty good blog post that describes styling components in a little more detail.
+https://blog.thoughtram.io/angular/2015/06/25/styling-angular-2-components.html
+
+
 # Adding another component
 
 Lets add some components here.
-TODO - Explain the nesting
+Components can be added and embedded into the views of other components.  This is done by adding the selector of one component into the 
+template of another.
 
 Lets create four components to just demonstrate a simple organization of components.
 <app-usa></app-usa>
 <app-texas></app-texas>
 <app-dallas></app-dallas>
 <app-pennsylvania></app-pennsylvania>
+
+We would like the components to be nested into each other like so.
+
+![Modules](https://raw.githubusercontent.com/robstave/angular2-training/master/session-one/modules.svg "Modules")
 
 Pro tip!
 Take advantage of name spacing as much as you can. In this case, angular-ci is prepending app in front of the components. This is the default prefix.
@@ -240,8 +252,17 @@ edit the @Component in texas.component.ts as follows:
 })
 ```
 
+Here is a good point to introduce the Angular2 Styleguide.
 
-https://blog.thoughtram.io/angular/2015/06/25/styling-angular-2-components.html
+https://angular.io/docs/ts/latest/guide/style-guide.html
+
+
+
+## Further study
+
+
+
+
 
 
 
