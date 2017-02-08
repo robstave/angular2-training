@@ -70,6 +70,7 @@ You can evaluate all kinds of things here, but for now..lets just stick to the p
 
 Read more:
 
+  * https://angular.io/docs/ts/latest/guide/template-syntax.html
   * https://medium.com/front-end-hacking/angular-2-a-quick-intro-about-template-syntax-121f9b160a64#.ai8sqmfub
   
 
@@ -186,7 +187,9 @@ Now finally, reedit the app.component.html
 ![Application](https://github.com/robstave/angular2-training/blob/master/session-one/app1.PNG "App Snap 1")
 
 
- 
+The app-usa component is in the app-root and thte cox is created using the css in the file specified in the styleUrls list.
+
+
 
 # Add other components.
 
@@ -259,13 +262,21 @@ edit the @Component in texas.component.ts as follows:
 })
 ```
 
-Here is a good point to introduce the Angular2 Styleguide.
+Here is a good point to introduce the Angular2 Style guide.
 
 https://angular.io/docs/ts/latest/guide/style-guide.html
 
+It has hints and and guidelines for all things angular2.  For example, when do we use inline vs template urls?
+
+https://angular.io/docs/ts/latest/guide/style-guide.html#!#05-04
+
+Many of the items are guides how things are named. Luckily, the angular-cli seems to take care of most of that.
+.,
+According to the style guide, they are saying 3 lines of code is a good gauge. I think we are ok here though.
 
 
-## Further study
+[Next page](page3.md)
+
 
 
 

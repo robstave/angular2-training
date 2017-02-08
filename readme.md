@@ -7,6 +7,89 @@ This is meant for internal training to be done within a webex, but if anybody el
 
 [Session One](session-one/readme.md)
 
++ Node and NPM
+  + Installation
+  + global versus local installation
+    + Simple npm install examples
+	  + package.json
+	  + npm bin
+
+  + Install what we need for Angular
+    + Typescript install
+	+ Angular-cli install
+	
+  + Walk through hello world with angular-cli
+    + Create project
+	+ Launch server
+	+ Create a component
+	  + Embed components
+	+ Inputs
+	+ ngFor
+	
+	
+
 ## Session Two - Typescript
 
+[Session Two](session-two/readme.md)
+
++ Objectives of TS
++ Why used in Angular2
++ Syntax
+  + Type annotations
+    * any
+	* Primatives
+	* Array
+	* Enum
+  + Functions
+  + Interfaces
+  + Classes
+     + this
+  + Enum
+  + Generics
+  + Modules (?) meh
+  + Template Strings
++ ide and transpiler
+
+
+
+
+
+## Session three - Simple Web app in angular2
+
++ Angular cli overview revisit
+  + Touch on other angular-seed projects, webpack and how it all relates to each other.
+  + SystemJs
++ Overview of CSS frameworks
+  + Bootstrap, material
++ A basic To Do-like application
+  + Components high level design
+  + Build list from static data
+  + turn data into components and data models - Rows
+  + Add input to add items
+    + eventEmitters
+  + delete button to delete items
+  + Pipes
+  + Value/counter
+  + Sorting
+  + ng-style
+  + ng-class
+  + Direct injection 
+  
+## Session four - Forms
+
++ Will walk though a basic form with Regex, requires, validation
+
+## Session five - Observables, HTTP
+
+(This will more likely be a project that we just walk through)
+There is a HTTP rest service that I can fetch data from 
+
+
+## Session Six - Routing
+(This will take a bit to go through...will be an extension of the above)
+
+## Session Seven - Testing
+ 
+
+ 
 
