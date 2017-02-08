@@ -204,6 +204,7 @@ http://www.2ality.com/2016/01/locally-installed-npm-executables.html
 
 
 
+[Next page](page2.md)
 
 
 
@@ -213,16 +214,4 @@ http://www.2ality.com/2016/01/locally-installed-npm-executables.html
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-https://cli.angular.io/
+ 

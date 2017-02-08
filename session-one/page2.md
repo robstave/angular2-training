@@ -108,4 +108,6 @@ And there you have it.
 
 *App works!*
 
+-----
+[Next page](page3.md)
  

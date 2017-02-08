@@ -5,12 +5,12 @@ Into to Angular2, Angular cli, node and npm
 
 ## Node and NPM
 
-[Node and Npm](node.md)
+[Node and Npm](page1.md)
 
 ## Installing angular cli and quick start
 
-[Install](install.md)
+[Install](page2.md)
 
 ## Add some components
 
-[Add Components](app1.md)
+[Add Components](page3.md)

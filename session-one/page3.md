@@ -48,7 +48,10 @@ export class AppComponent {
 
 Once you save...check out the shell. Its compiling on the fly.
 
-The templateUrl points to the html template that belongs to this component.  It can be written inline or in a different file.
+The templateUrl points to the html template that belongs to this component.  It can be written inline or reference another file.
+
+The styleUrls are a list of css files.  It can also be be just _styles_ and be a list of css strings.  Or you can have both  :)
+
 
 ```html
 <h1>
@@ -210,6 +213,40 @@ Edit the css and and html so that.
 Your results should look like this
 
 ![application](https://raw.githubusercontent.com/robstave/angular2-training/master/session-one/app2.PNG "App Snap 2")
+
+
+
+## Inline templates and css.
+
+Lets mess with Texas.
+Rather than use the stylesUrls, we can add a styles propery to the @Component instead.  We can do this for the template as well.
+
+edit the @Component in texas.component.ts as follows:
+
+```html
+@Component({
+  selector: 'app-texas',
+  template: `
+          <p>
+             Dont mess with Texas!
+            <app-dallas></app-dallas>
+          </p>   `,
+  styles: [`
+   p {
+    border-style: solid;
+    border-color: red;
+     }
+  `]
+})
+```
+
+
+https://blog.thoughtram.io/angular/2015/06/25/styling-angular-2-components.html
+
+
+
+
+
 
 
 
