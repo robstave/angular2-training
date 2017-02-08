@@ -141,6 +141,8 @@ So to avoid this, you do want a unique prefix as well.  This is an option in the
 If your curious, take a peek in angular-cli.json. You will see the prefix entry there.
 
 
+So start out creating the usa component
+
 ```bash
 $ ng generate component usa
 installing component
