@@ -127,7 +127,7 @@ Lets create four components to just demonstrate a simple organization of compone
 
 We would like the components to be nested into each other like so.
 
-![Modules](https://raw.githubusercontent.com/robstave/angular2-training/master/session-one/modules.svg "Modules")
+![Modules](http://github.com/robstave/angular2-training/blob/master/session-one/modules.png "Modules")
 
 Pro tip!
 Take advantage of name spacing as much as you can. In this case, angular-ci is prepending app in front of the components. This is the default prefix.
@@ -178,8 +178,10 @@ Now finally, reedit the app.component.html
 </h1>
 ```
 
-![Application](https://raw.githubusercontent.com/robstave/angular2-training/master/session-one/app1.PNG "App Snap 1")
+![Application](https://github.com/robstave/angular2-training/blob/master/session-one/app1.PNG "App Snap 1")
 
+
+ 
 
 # Add other components.
 
