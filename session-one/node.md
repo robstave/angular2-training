@@ -22,8 +22,9 @@ Since angular runs on a browser, it makes sense that node is used to drive all s
 using a common language to tie it all together.
 
 Node includes NPM (NodeJS package manager). This is used to manage the packages needed to put together angular 2 projects.
-Npm uses a command line interface that is best done through bash. I have had the best success with GIT bash on windows. If you are using 
-a regular shell for your command line, and not getting anywhere, try launching Git bash as admin. 
+Npm uses a command line interface that is best done through bash. If you want, a tool like cygwin will work.
+
+I have had the best success with GIT bash on windows. If you are using a regular shell for your command line, and not getting anywhere, try launching Git bash as admin. 
 
 https://git-for-windows.github.io/
 
@@ -33,7 +34,7 @@ Lets start out with a super small npm project to demonstrate how they are create
 
 Create a directory and navigate there with your bash shell.
 
-```
+```bash
 npm init
 ```
 
@@ -75,7 +76,7 @@ Edit the scripts entry as so.
 
 now run the package command.
 
-```
+```bash
 npm run sayit
 ```
 
@@ -91,7 +92,7 @@ This is a little http server that returns hello world if you navigate to localho
 
 On the website, the project says to run: 
 
-```
+```bash
 [sudo] npm install -g hello-world-server
 ```
 
@@ -108,14 +109,14 @@ For example, if you want to lock in a particular tool version across all users o
 
 Lets install this locally.
 
-```
+```bash
 [sudo] npm install hello-world-server --save-dev
 ```
 
 The --save-dev install the software and adds it as a project dependency.
 
 
-```
+```js
 {
   "name": "hellotest",
   "version": "1.0.0",
@@ -140,13 +141,13 @@ At some point, there would be perhaps conflicts.  At best, if you had a lot of g
 So we installed the package, lets see it run.
 If you run the command:
 
-```
+```bash
 hello-world-server
 ```
 
 Nothing happens...you prob will get an error. It was not added to the global path. There is a bin there somewhere
 
-```
+```bash
 npm bin
 ```
 
@@ -154,7 +155,7 @@ This is where the bin files are.  If you search in there, you will see the cmd f
 
 Lets do one more edit to our package.json file. We will edit the scripts to add the command.
 
-```
+```js
 {
   "name": "hellotest",
   "version": "1.0.0",
@@ -173,11 +174,25 @@ Lets do one more edit to our package.json file. We will edit the scripts to add 
 
 Now run the file from the project
 
-```
+```bash
 npm run runserver
 ```
 
 And now the file runs. You will find that pointing your browser to localhost:3000 says hello world.
+
+
+Looks great.  One last trick.
+
+Delete the node_modules directory.  Gone. (keep the project.json though)
+
+now run:
+
+```bash
+npm update
+```
+
+Boom, your project is back. You should always be able recover this way. You always check in without the node_modules directory and you should be able to get back with nom update.
+
 
 
 ### Refs and links
