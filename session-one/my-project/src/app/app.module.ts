@@ -8,6 +8,7 @@ import { UsaComponent } from './usa/usa.component';
 import { TexasComponent } from './usa/texas/texas.component';
 import { DallasComponent } from './usa/texas/dallas/dallas.component';
 import { PennsylvaniaComponent } from './usa/pennsylvania/pennsylvania.component';
+import { StateComponent } from './usa/state/state.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PennsylvaniaComponent } from './usa/pennsylvania/pennsylvania.component
     UsaComponent,
     TexasComponent,
     DallasComponent,
-    PennsylvaniaComponent
+    PennsylvaniaComponent,
+    StateComponent
   ],
   imports: [
     BrowserModule,

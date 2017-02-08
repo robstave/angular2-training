@@ -2,5 +2,6 @@
   This is the USA component.
   <app-texas></app-texas>
   <app-pennsylvania></app-pennsylvania>
-
+  <app-state [name]="favorite"></app-state>
+  <app-state *ngFor="let stateName of others" [name]="stateName"></app-state>
 </p>
