@@ -120,14 +120,17 @@ Components can be added and embedded into the views of other components.  This i
 template of another.
 
 Lets create four components to just demonstrate a simple organization of components.
+
+```html
 <app-usa></app-usa>
 <app-texas></app-texas>
 <app-dallas></app-dallas>
 <app-pennsylvania></app-pennsylvania>
+```
 
 We would like the components to be nested into each other like so.
 
-![Modules](http://github.com/robstave/angular2-training/blob/master/session-one/modules.png "Modules")
+![Modules](https://github.com/robstave/angular2-training/blob/master/session-one/modules.png "Modules")
 
 Pro tip!
 Take advantage of name spacing as much as you can. In this case, angular-ci is prepending app in front of the components. This is the default prefix.
