@@ -145,8 +145,7 @@ var aColor: Color = Color.Green;
 ```
 
 for example...lets run:
-http://jsbin.com/xuyajovade/edit?js,console,output
-
+http://jsbin.com/tazufo/edit?js,console,output
 
 ```typescript
 enum Color {Red, Blue, Green, Orange, White, Purple};
@@ -171,7 +170,7 @@ if (aColor == bColor){
 
 Lets try another example.
 
-http://jsbin.com/zirokokepe/edit?js,console,output
+http://jsbin.com/nusowut/edit?js,console,output
 
 
 ```typescript
@@ -293,26 +292,58 @@ var fails us because all loop iterations share the same function-scoped i variab
 shareimprove this answer
 	
  
-
-
- 
-
 Other Links:
 * https://www.typescriptlang.org/docs/handbook/variable-declarations.html
 
 
 # Functions
 
-Functions
+
+They can be declared as named or anonymous
+
+```typescript
+// Named function
+function add(x, y) {
+    return x + y;
+}
+
+// Anonymous function
+let myAdd = function(x, y) { return x+y; };
+```
 
 function parameters can be annotated just like variables.  We saw a little of this earlier.
-
+In this case we are specifying that the input is a string and that it returns a number.
 
 ```typescript
 function  sayHello(name:string) :number{
     return 2
  }
+```
+
+You can specify void as well.
 ```typescript
+function  dontSayHello(name:string) :void{
+    //do nothing
+ }
+```
+
+If the return type is not specified, it in interpolated
+
+```typescript
+function doit (name:string, age:number) {
+    return age;
+}
+var name2:string = doit("fred",32)
+```
+
+Even though the return type is not specified, it is determined from the code.
+
+```bash
+$ tsc *.ts
+bad2.ts(7,5): error TS2322: Type 'number' is not assignable to type 'string'.
+```
+
+
 
 You can additionally use further annotations
 
@@ -330,18 +361,103 @@ function greet2(person: {name:string, age:number}) {
 greet2({name:"Bob", age:23});
 ```
 
-They can be declared as named or anonymous
+
+
+
+
+
+## Optional and default parameters
+
+Functions can have optional parameters. This is similar in a way to how javascript works.  In javascript, nothing really stopped you from adding
+more of less parameters to a function call. You just had to deal with a lot of undefined values. Its basically similar, however, the 
+signature is checked in the ide.  The optional parameters are indicated with a ? and should follow required parameters.
+
+http://jsbin.com/zalobe/edit?js,console,output
 
 ```typescript
-// Named function
-function add(x, y) {
-    return x + y;
+enum Color { Red, Blue, Green };
+function buildCar(make: string, color: Color, year: number, option1?: string, option2?: string): string {
+    let str = "You have a " + year + " " + Color[color] + " " + make;
+    if (option1) {
+        str = str + " with " + option1;
+
+    }
+    if (option2) {
+        str = str + " and " + option2;
+    }
+    return str;
 }
 
-// Anonymous function
-let myAdd = function(x, y) { return x+y; };
+```
+var s1 = buildCar("Ford", Color.Red, 1994)
+console.log(s1);
+
+var s2 = buildCar("Ford", Color.Red, 1994, "leather seats")
+console.log(s2);
+
+var s3 = buildCar("Ford", Color.Red, 1994, "leather seats", "cup holder")
+console.log(s3);
+
+```bash
+"You have a 1994 Red Ford"
+"You have a 1994 Red Ford with leather seats"
+"You have a 1994 Red Ford with leather seats and cup holder"
 ```
 
+Default parameters are optional as well in the signature.
+
+ 
+```typescript
+function orderCoffee(regular: boolean, withCream:boolean = false) {
+	return 'I want a ' + (regular ? 'regular coffee ' : 'decaf coffee ') + (withCream ? 'with cream ' : 'no cream');
+}
+console.log(orderCoffee(true))
+console.log(orderCoffee(true, true))
+```
+
+```bash
+"I want a regular coffee no cream"
+"I want a regular coffee with cream "
+```
+
+http://jsbin.com/neciwe/edit?js,console,output
+
+
+
+Typescript has rest parameters as well. These are similar to how they are used in Java
+
+You can pass as many of the same type as you would like, or none at all. 
+The compiler will build an array of the arguments passed in with the name given after the ellipsis (...).
+
+```typescript
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ");
+}
+
+let hisName = buildName("John", " Jacob", "Jingleheimer", "Schmidt");
+```
+Try parsing this with the playground
+https://www.typescriptlang.org/play/
+
+or using tsc to transpile it.
+
+```typescript
+function buildName(firstName) {
+    var restOfName = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        restOfName[_i - 1] = arguments[_i];
+    }
+    return firstName + " " + restOfName.join(" ");
+}
+var hisName = buildName("John", " Jacob", "Jingleheimer", "Schmidt");
+```
+
+
+
+Further reading:
+ * https://www.typescriptlang.org/docs/handbook/functions.html
+ 
+ 
 
 
 
