@@ -372,7 +372,7 @@ Functions can have optional parameters. This is similar in a way to how javascri
 more of less parameters to a function call. You just had to deal with a lot of undefined values. Its basically similar, however, the 
 signature is checked in the ide.  The optional parameters are indicated with a ? and should follow required parameters.
 
-http://jsbin.com/zalobe/edit?js,console,output
+
 
 ```typescript
 enum Color { Red, Blue, Green };
@@ -388,7 +388,7 @@ function buildCar(make: string, color: Color, year: number, option1?: string, op
     return str;
 }
 
-```
+
 var s1 = buildCar("Ford", Color.Red, 1994)
 console.log(s1);
 
@@ -397,12 +397,15 @@ console.log(s2);
 
 var s3 = buildCar("Ford", Color.Red, 1994, "leather seats", "cup holder")
 console.log(s3);
+```
 
 ```bash
 "You have a 1994 Red Ford"
 "You have a 1994 Red Ford with leather seats"
 "You have a 1994 Red Ford with leather seats and cup holder"
 ```
+Play with it here: http://jsbin.com/zalobe/edit?js,console,output
+
 
 Default parameters are optional as well in the signature.
 
@@ -459,53 +462,4 @@ Further reading:
  
  
 
-
-
-
-
-Here I used inline type annotations. Of course you can use interfaces etc.
-Return type annotation
-
-You can annotate the return type after the function parameter list with the same style as you use for a variable, e.g. : Foo in the below example:
-
-interface Foo {
-    foo: string;
-}
-
-// Return type annotated as `: Foo`
-function foo(sample: Foo): Foo {
-    return sample;
-}
-
-
-https://www.typescriptlang.org/docs/handbook/functions.html
-
-https://basarat.gitbooks.io/typescript/content/docs/types/functions.html
-
-
-# Interfaces
-
-	 
-# Classes
-     + this
-	 
-http://www.typescriptlang.org/docs/handbook/classes.html
-# Generics
-# Template Strings
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Excellent Links
-
-https://www.gitbook.com/book/basarat/typescript/details
+  
