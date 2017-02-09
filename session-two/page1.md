@@ -199,34 +199,183 @@ gets
 ```
 
 
+ 
+### Any
+Can be any value. Default if not specified.
 
+```typescript
+ var stuff: any = 33;
+ stuff = 'Bananas';
+``` 
 
-Enums work by naming numeric values. For instance, if we wanted to have a fixed list of roles a
-person may have we could write this:
-1 enum Role {Employee, Manager, Admin};
-2 var role: Role = Role.Employee;
-The default initial value for an enum is 0. You can tweak either the start of the range:
-1 enum Role {Employee = 3, Manager, Admin};
-2 var role: Role = Role.Employee;
-In the code above, instead of Employee being 0, Employee is 3. The value of the enum increments
-from there, which means Manager is 4 and Admin is 5, and we can even set individual values:
-1 enum Role {Employee = 3, Manager = 5, Admin = 7};
-2 var role: Role = Role.Employee;
-You can also look up the name of a given enum by using its value:
-1 enum Role {Employee, Manager, Admin};
-2 console.log('Roles: ', Role[0], ',', Role[1], 'and', Role[2]);
-Any
-any is the default type if we omit typing for a given variable. Having a variable of type any allows
-it to receive any kind of value:
-TypeScript 64
-1 var something: any = 'as string';
-2 something = 1;
-3 something = [1, 2, 3];
-Void
+### Void
 Using void means there’s no type expected. This is usually in functions with no return value:
-1 function setName(name: string): void {
-2 this.name
 
+```typescript
+ function doIt(name: string): void {
+   console.log("Doing nothing");
+  }
+```
+
+# let and const
+
+Typescript has two new varible types. _Let_ and _const_.
+
+Let gives us a block scoped variable. Javascript never had this. You might not have even known this unless you ran jslint on a large piece of code.
+
+> var Variables in JavaScript are function scoped. 
+> This is different from many other languages (C# / Java etc.) where the variables are block scoped. 
+> If you bring a block scoped mindset to JavaScript, you would expect the following to print 123, instead it will print 456:
+
+```typescript
+var foo = 123;
+if (true) {
+    var foo = 456;
+}
+console.log(foo); // 456
+```
+
+
+> This is because { does not create a new variable scope. The variable foo is the same inside the if block as it is outside the if block. This is a common source of errors in JavaScript programming. This is why TypeScript (and ES6) introduces the let keyword to allow you to define variables with true block scope. That is if you use let instead of var you get a true unique element disconnected from what you might have defined outside the scope. 
+> The same example is demonstrated with let:
+
+```typescript
+let foo = 123;
+if (true) {
+    let foo = 456;
+}
+console.log(foo); // 123
+```
+
+Taken from 
+https://basarat.gitbooks.io/typescript/content/docs/let.html
+
+You will certainly see this in Angular2.
+
+
+Const is similar to let in that its blocked.  It also prevents re-assignment to a variable.
+
+```typescript
+const x2 : number = 34;
+x2 = 44;
+```
+
+```bash
+bad2.ts(2,1): error TS2540: Cannot assign to 'x2' because it is a constant or a read-only property.
+```
+
+
+
+ 
+A Revealing Example (pulled from stack exchange)
+
+Mozilla Developer Network gives an example where var does not work as intended. 
+ 
+```typescript
+var a = [];
+(function () {
+   'use strict';
+   for (let i = 0; i < 5; ++i) { // *** `let` works as expected ***
+     a.push( function() {return i;} );
+   }
+} ());
+console.log(a.map( function(f) {return f();} ));
+// prints [0, 1, 2, 3, 4]
+
+// Start over, but change `let` to `var`.
+// prints [5, 5, 5, 5, 5]
+```
+
+http://jsbin.com/gipadom/edit?js,console
+
+
+var fails us because all loop iterations share the same function-scoped i variable, which has the value 5 after the loop finishes.
+shareimprove this answer
+	
+ 
+
+
+ 
+
+Other Links:
+* https://www.typescriptlang.org/docs/handbook/variable-declarations.html
+
+
+# Functions
+
+Functions
+
+function parameters can be annotated just like variables.  We saw a little of this earlier.
+
+
+```typescript
+function  sayHello(name:string) :number{
+    return 2
+ }
+```typescript
+
+You can additionally use further annotations
+
+```typescript
+function greet(name: string) {
+   console.log("Hello :"+name);
+}
+
+greet("Bob");
+
+function greet2(person: {name:string, age:number}) {
+   console.log("Hello :"+person.name+" age:"+person.age);
+}
+
+greet2({name:"Bob", age:23});
+```
+
+They can be declared as named or anonymous
+
+```typescript
+// Named function
+function add(x, y) {
+    return x + y;
+}
+
+// Anonymous function
+let myAdd = function(x, y) { return x+y; };
+```
+
+
+
+
+
+
+Here I used inline type annotations. Of course you can use interfaces etc.
+Return type annotation
+
+You can annotate the return type after the function parameter list with the same style as you use for a variable, e.g. : Foo in the below example:
+
+interface Foo {
+    foo: string;
+}
+
+// Return type annotated as `: Foo`
+function foo(sample: Foo): Foo {
+    return sample;
+}
+
+
+https://www.typescriptlang.org/docs/handbook/functions.html
+
+https://basarat.gitbooks.io/typescript/content/docs/types/functions.html
+
+
+# Interfaces
+
+	 
+# Classes
+     + this
+	 
+http://www.typescriptlang.org/docs/handbook/classes.html
+# Generics
+# Template Strings
 
 
 
