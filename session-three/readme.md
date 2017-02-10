@@ -17,7 +17,7 @@ Another Webapp
   + ngFor list of Items
   
   
- ## Page 2
+## Page 2
 [Page 2](page2.md) 
   
 + Component model

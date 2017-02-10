@@ -122,7 +122,7 @@ We will render the chicken as a row with three columns.
 
 And now we have this:
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop3.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop3.png "Coop")
 
 ## Adding an item 
 
@@ -205,7 +205,7 @@ The final version of the app.component.html template is:
 ```
 
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop4.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop4.png "Coop")
 
 In the app.component.ts, you can add the function.  Note that what we passed in was the variable reference
 to the input.  So the input to the function is HTMLInputElement.

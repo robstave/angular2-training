@@ -97,7 +97,7 @@ Everybody does the todo list.  We will riff off of that and do a project that is
 
 Here is a super rough sketch. There will be three components.  The main app, a list and a chicken.
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop.png "Coop")
 
 
 
@@ -106,7 +106,7 @@ We will not go too deep here into bootstrap at the moment. But since its install
 There is not a whole lot going on here with the bootstrap.  A container and two rows, one for the
 input which we will populate later and one for the list.
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop1.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop1.png "Coop")
 
 ```html
 <div class="container">
@@ -322,7 +322,7 @@ And finally, the chicken.html template.
 ```
 What we see is not too terribly different.
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop2.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop2.png "Coop")
 
 
 
