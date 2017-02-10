@@ -46,11 +46,12 @@ export class Chicken {
 
     }
 }
-
 ```
 
+We have three properties and are using the optional symbol ? in the signature as well to indicate that the value is not
+required in constructor.
 
-TODO
+
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { Chicken } from '../chicken/chicken.model';  //<--Added
@@ -62,7 +63,7 @@ import { Chicken } from '../chicken/chicken.model';  //<--Added
 })
 export class ChickenListComponent implements OnInit {
 
-  chickens: Chicken[];   //<--chiicken!!!
+  chickens: Chicken[];
 
   constructor() { 
  
@@ -79,8 +80,11 @@ export class ChickenListComponent implements OnInit {
 }
 ```
 
+When the ChickenList is created, a few chickens are created in the constructor and added to the chickens property of the
+list component.
 
-Now in the Chicken component...import the chicken model and change the propery type
+
+Now in the Chicken component, import the chicken model and change the property type
 
 ```typescript
 import { Component, OnInit, Input } from '@angular/core';
@@ -99,6 +103,8 @@ export class ChickenComponent implements OnInit {
   ngOnInit() { }
 }
 ```
+
+We will render the chicken as a row with three columns.
 
 ```html
 <div class="row">
@@ -120,7 +126,7 @@ And now we have this:
 
 ## Adding an item 
 
-Lets edit the app.component.html.  A LOT! Mostly we are adding bootstrap stuff here.  
+Lets edit the app.component.html.  Quite a bit! Mostly we are adding bootstrap stuff here.
 Lets ignore that for now and concentrate on the inputs and submit button.
 
 What we want is to be able to add a name/breed and click submit to add the item to the list.
@@ -137,14 +143,13 @@ The event name is actually the native DOM event.
 There are many events you can choose from, although, not all DOM elements have all events, and sometimes not all
 angular directives support the ones that could be there.  
 
-In this case, a click event will call addChicken with newname and newbreed.
+In this case, a click event will call addChicken with _newname_ and _newbreed_.
 
 But how did those get filled?
 
-On the input, we add _#newname_.  We use the hash # to tell Angular to assign the tag to a local variable in the view.
+On the input for name, we add _#newname_.  We use the hash # to tell Angular to assign the tag to a local variable in the view.
 Technically, this was available in Angular1 as well, in a way, but variables declared in the view were also in the
-scope.  Since controllers are a bit more of a self contained class, it is better to  let the variables be local 
-to just the view and only be referenced in methods that are bound to events.
+scope.  Since controllers are a bit more of a self contained class, it is better to keep as many variables local as possible.
 
 But we can two way bind variables to the controller if we have to.  More on that later
 
@@ -197,7 +202,7 @@ The final version of the app.component.html template is:
   <app-chicken-list></app-chicken-list>
 
 </div>
-
+```
 
 
 ![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop4.png "Coop")
@@ -213,6 +218,10 @@ to the input.  So the input to the function is HTMLInputElement.
  ```
 
  We could have easily passed in (click)="addChicken(newname.value, newbreed.value)" and just used strings.
+ 
+ If you open up the console, you can see the data being sent to the modthod when submit is clicked.
+ 
+ 
  
  
  ## ViewChild

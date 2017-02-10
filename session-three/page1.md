@@ -1,6 +1,8 @@
 # Starting the project 
-The project we are working on will be using bootstrap to start with.
-So we will start this project with angular-cli and walk through the steps to integrate boostrap as well.
+
+The project we are working on will be using angular-cli to build the project and bootstrap.
+
+So lets start this project in a similar manner with angular-cli and walk through the steps to integrate boostrap as well.
  
 So create a directory and check the angular cli version to make sure we have installed that properly.
 
@@ -27,8 +29,6 @@ ng serve
 ```
 
 ## Install ng2-bootstrap and bootstrap
-
-
 
 Angular Bootstrap is a layer used to make use of all the neat stuff that bootstrap has too offer.  Its not 
 just a CSS library. There are moving parts that require code to work. Usually Jquery is used to take avantage of
@@ -89,20 +89,20 @@ open src/app/app.component.html and add
 This is how an alert is used.
 
 
-Now open the browser to 4200 and you see the bootstrap alert
+Now open the browser to 4200 and you see the bootstrap alert.
 
 
 # Chicken coop project
 Everybody does the todo list.  We will riff off of that and do a project that is a chicken coop.
 
-Here is a super rough sketch. There will be the main app, a list and a chicken eventually.
+Here is a super rough sketch. There will be three components.  The main app, a list and a chicken.
 
 ![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop.png "Coop")
 
 
+
 ## Bootstrap skeleton
-We will not go too deep here into bootstrap at the moment. But since we have gotten it installed, lets
-use it.
+We will not go too deep here into bootstrap at the moment. But since its installed, lets use it.
 There is not a whole lot going on here with the bootstrap.  A container and two rows, one for the
 input which we will populate later and one for the list.
 
@@ -142,21 +142,15 @@ input which we will populate later and one for the list.
   
 </div>
 ```
-
-
-
- 
+This is just a static html page to kinda get an idea of what we are looking at.
  
 
-## Chicken list.
+## Chicken list component
 
-
-
-create a list 
+The chicken list will contain the list of chickens.  For now, the data will reside in this component.  Its a simple list.
 
 Either kill your ng-serve or use another bash for adding components.
-
-	 
+ 
 $ ng generate component chicken-list
 installing component
   create src\app\chicken-list\chicken-list.component.css
@@ -166,7 +160,7 @@ installing component
   update src\app\app.module.ts
 
   
-Cut the listing html from the app template into chicken-list.component.html
+Cut the list template code from the app template and paste into the chicken-list.component.html
 
 ```html
     <div class="row">
@@ -179,7 +173,7 @@ Cut the listing html from the app template into chicken-list.component.html
           <label>Chicken2</label>
         </li>
         <li>
-          <label>Chicken2</label>
+          <label>Chicken3</label>
         </li>
       </ul>
     </div>
@@ -208,9 +202,13 @@ Cut the listing html from the app template into chicken-list.component.html
 </div>
 ```
 
+So all we did here was replace the html with the app-chicken-list component.
 
 Make sure your ng serve is running and you should see the same page as you did before.
 
+Looks the same.
+
+## Chicken component
 
 Lets move the chickens into the component as data.
 In the chicken-list.component.ts, lets create a _chickens_ property and fill it with some names.
@@ -235,12 +233,11 @@ export class ChickenListComponent implements OnInit {
   }
 
 }
+```
 
-Use the ngFor directive that we had used earlier to loop through the chickens and
+We will use the ngFor directive that we had used earlier to loop through the chickens and
 add that to the chicken-list template.
-The value is "let chicken of chickens".  We see the let first, thats like the
-var but local, and in a loop. It references each item in the property chickens as a local variable.
-It is scoped as well and you will not be able to reference chicken outside that directive.
+
 
 ```html 
   <div class="row">
@@ -254,8 +251,12 @@ It is scoped as well and you will not be able to reference chicken outside that 
   </div>
 ``` 
 
+The value of the _*ngFor_ is "let chicken of chickens".  We see the _let_ first. Recall that is like the
+_var_ but local, and in a loop. It references each item in the property chickens as a local variable.
+It is scoped as well and you will not be able to reference chicken outside that directive.
 
-## Creating the chicken
+
+## Chicken Component
 
 So lets scaffold out the last component here...the chicken itself.
 
@@ -269,11 +270,15 @@ installing component
   update src\app\app.module.ts
 ```
 
-Now lets add an input to the chicken component. This is really the same steps that we took in session one.
+We would like to pass in the value of the chicken into the chicken component so that each item can be rendered in the list.
+
+Now lets add an @input annotation to the chicken component. This is really the same steps that we took in session one.
 Import the input annotation so we can use the @input functionality.
 
 ```typescript
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, 
+         Input  //<----Added
+	} from '@angular/core';
 
 @Component({
   selector: 'app-chicken',
@@ -282,16 +287,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChickenComponent implements OnInit {
 
-
   @Input() chicken: string; // <-- added Input annotation
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }
 ```
+
+Each time the Chicken component is created, the name property is set with the value that was passed in the directive.
+
+
 
 Modify the chicken-list template to use the new component directive _app-chicken_.
 We are using the square brackets again to note that we are passing in a reference to the chicken variable.
@@ -306,9 +313,10 @@ We are using the square brackets again to note that we are passing in a referenc
       </ul>
     </div>
   </div>
- ``` 
+``` 
   
 And finally, the chicken.html template.
+
 ```
 <label>{{chicken}}</label>
 ```
