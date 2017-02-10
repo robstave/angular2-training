@@ -34,22 +34,20 @@ This is meant for internal training to be done within a webex, but if anybody el
 
 + Objectives of TS
 + Why used in Angular2
-+ Syntax
-  + Type annotations
-    * any
-	* Primatives
-	* Array
-	* Enum
-  + Functions
-  + Interfaces
-  + Classes
-     + this
-  + Enum
-  + Generics
-  + Modules (?) meh
-  + Template Strings
-+ ide and transpiler
-
++ Type annotations
+  * Primatives
+  * Array 
+  * Enum
+  * any
++ Let and Const
++ Functions
++ Classes
++ Interfaces
++ Generics
++ Template Strings
++ Decorators
++ Modules 
+  
 
 
 

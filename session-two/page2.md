@@ -209,17 +209,19 @@ Hopefully this is something that we will not be using much in your everyday Type
 
 # Modules
 
-Angular2 uses the import and export statements a lot.  
-They are used to import functions, objects and other primitives
-that have been exported by other modules.
+Angular2 makes extensive use of the import and export statements.  
+They are used to import functions, objects and other primitives that have been exported by other modules.
 
 Applications are a collection of modules. Each module containing a cohesive collection of functionality.
 
-Angular2 builds on top of that with @NgModule annotation to specify specific behaviors that relate to angular on top of that.
+Angular2 builds on top of that with @NgModule annotation to specify specific behaviours that relate to angular on top of that.
+
+A general link is here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 
 
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
+Here is a small example:
+In it..we will export a function and a constant.
 
 So we have chong.js
 ```typescript
@@ -227,7 +229,7 @@ function knock() {
   return "Its Dave!  I got the stuff";
 }
 
-const dave = "Dave is not here";
+const dave = "Dave is not here.";
 export { knock, dave };
 ```
 
@@ -239,21 +241,18 @@ console.log(knock());
 console.log(dave);   
 ```
 
+Now lets compile and run it.
+
 ```bash
+$ tsc *.ts
 $ node cheech.js
 Its Dave!  I got the stuff
-Dave is not here
+Dave is not here.
 ```
 
 
 
+Excellent Link
 
-
-
-
-Excellent Links
-
-https://www.gitbook.com/book/basarat/typescript/details
-
-
-http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/
+* https://www.gitbook.com/book/basarat/typescript/details
+* http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/
