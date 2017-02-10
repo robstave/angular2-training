@@ -275,7 +275,7 @@ Many of the items are guides how things are named. Luckily, the angular-cli seem
 According to the style guide, they are saying 3 lines of code is a good gauge. I think we are ok here though.
 
 
-[Next page](page3.md)
+[Next page](page4.md)
 
 
 
