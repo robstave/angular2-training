@@ -312,7 +312,9 @@ And finally, the chicken.html template.
 ```
 <label>{{chicken}}</label>
 ```
+What we see is not too terribly different.
 
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/coop2.png "Coop")
 
 
 
