@@ -26,25 +26,28 @@ Another Webapp
 + Binding to events
 + Lifecyle Hooks
 + ViewChild
++ snapshot
+  
+## Page 3
+  
++ Action submit (add eggs)
++ Delete (event emitter)
++ Simple sorting
++ ng-style
++ ng-class
 
+(total eggs on ngchange?)
+(collect eggs?)
+(compont output?)
+(event mitter to app for egg timestamp)
+
+
+## Page 4
+
++ Pipe
++ Angular cli Enum
++ Angular bootstrap component "Dropdown"
   
   
-  
-  
-  
-  
-  
-  
-  
-  + turn data into components and data models - Rows
-  + Add input to add items
-    + eventEmitters
-  + delete button to delete items
-  + Pipes
-  + Value/counter
-  + Sorting
-  + ng-style
-  + ng-class
-  + Direct injection 
-  
+ 
   
