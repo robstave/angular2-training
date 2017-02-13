@@ -163,8 +163,7 @@ But we can two way bind variables to the controller if we have to.  More on that
 
 ```html
 <input type="text" class="form-control" id="name_id" 
-                     name="name_id"
-                     #newname>
+       name="name_id"  #newname>
 ```					 
 
 The final version of the app.component.html template is:
