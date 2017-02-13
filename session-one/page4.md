@@ -114,7 +114,16 @@ and now we see California
 
 ## ngFor
 
-One last change.  We will address the built in directives later. But lets just throw one in to close this out.
+One last change.  We will use the built in directive ngFor to loop over the values.
+This allows us to add elements to the dom on the fly based on data in an array.
+
+The syntax is :
+
+```typescript
+The syntax is *ngFor="let item of items".
+```
+Let _item_ defines the variable that we are using hold the value we are indexed to and _items_ is the property in the controller
+that we are referencing.
 
 We changed our usa component to have an _others_ property. This was a list of state names.
 We can update our template to render this list of state components. To do this, we will use *ngFor, which

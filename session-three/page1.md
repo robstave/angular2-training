@@ -113,7 +113,7 @@ to scaffold out the project a bit.
 There is not a whole lot going on here with the bootstrap.  A container and two rows, one for the
 input which we will populate later and one for the list.
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop1.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop1snap.png "Coop")
 
 ```html
 <div class="container">
@@ -330,7 +330,7 @@ And finally, the chicken.html template.
 ```
 What we see is not too terribly different.
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop2.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop2snap.png "Coop")
 
 
 

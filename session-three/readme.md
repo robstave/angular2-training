@@ -27,11 +27,12 @@ Another Webapp
 ## Page 3
 [Page 3](page3.md) 
 
- + Delete (event emitter)
++ Delete (event emitter)
 + Action submit (add eggs, another emitter)
 
 ## Page 4
 [Page 4](page4.md) 
+
 + Bootstrap radio button
 + Sorting in ngFor
 + Ng-If

@@ -233,11 +233,11 @@ In the Chicken list template, we can change the color based on the number of egg
 
 Here is a snapshot with a low egg count
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop5.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop5snap.png "Coop")
 
 And here is after with the three changes
 
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop6.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop6snap.png "Coop")
 
 

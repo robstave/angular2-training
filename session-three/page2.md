@@ -79,11 +79,16 @@ export class ChickenListComponent implements OnInit {
 }
 ```
 
-When the ChickenList is created, a few chickens are created in the constructor and added to the chickens property of the
-list component.
+When the Chicken-List component is created, a few chickens are created in the constructor and added to the _chickens_ property of the
+list component. Note that some of the chickens do not use all the property values.
+
+## Inputs
+So we have a list of chickens rather than just some strings. All that is needed to pass this into the component
+is to change the data types.
 
 
-Now in the Chicken component, import the chicken model and change the property type
+
+In Chicken.component.ts, import the chicken model and change the property type
 
 ```typescript
 import { Component, OnInit, Input } from '@angular/core';
@@ -103,6 +108,8 @@ export class ChickenComponent implements OnInit {
 }
 ```
 
+
+
 We will render the chicken as a row with three columns.
 
 ```html
@@ -121,14 +128,16 @@ We will render the chicken as a row with three columns.
 
 And now we have this:
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop3.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop3snap.png "Coop")
+
+ 
 
 ## Adding an item 
 
 Lets edit the app.component.html.  Quite a bit! Mostly we are adding bootstrap stuff here.
-Lets ignore that for now and concentrate on the inputs and submit button.
+We will handwave over the details for now and concentrate on the inputs and submit button.
 
-What we want is to be able to add a name/breed and click submit to add the item to the list.
+What we want to do is to be able to add a name/breed and click 'submit' to add the item to the list.
 We do this by adding an interaction event to the button element.
 
 ```html
@@ -204,7 +213,7 @@ The final version of the app.component.html template is:
 ```
 
 
-![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop4.png "Coop")
+![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop4snap.png "Coop")
 
 In the app.component.ts, you can add the function.  Note that what we passed in was the variable reference
 to the input.  So the input to the function is HTMLInputElement.
