@@ -47,7 +47,9 @@ export class ChickenListComponent implements OnInit {
    
   }
 
-  ngOnInit() {  }
+  ngOnInit() { 
+     this.eggEvent(null);
+  }
 
   public addChicken(newLilClucker:Chicken){
     this.chickens.push(newLilClucker);

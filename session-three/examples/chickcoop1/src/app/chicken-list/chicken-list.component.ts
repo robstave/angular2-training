@@ -8,7 +8,7 @@ import { Chicken } from '../chicken/chicken.model';  //<--Added
 })
 export class ChickenListComponent implements OnInit {
 
-  chickens: Chicken[];   //<--chiicken!!!
+  chickens: Chicken[];   
 
   
   constructor() { 
