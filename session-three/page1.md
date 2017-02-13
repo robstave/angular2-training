@@ -1,10 +1,11 @@
 # Starting the project 
 
-The project we are working on will be using angular-cli to build the project and bootstrap.
+We will be touching on parts of angular2 while building a simple application. The project we are working on will be using
+angular-cli to build the project and bootstrap.
 
-So lets start this project in a similar manner with angular-cli and walk through the steps to integrate boostrap as well.
+So lets start this project in a similar manner as before with angular-cli and walk through the steps to integrate boostrap as well.
  
-So create a directory and check the angular cli version to make sure we have installed that properly.
+Create a directory and check the angular cli version to make sure we have installed that properly.
 
 ```bash
 $ ng -v
@@ -20,7 +21,9 @@ node: 7.5.0
 os: win32 x64
 ```
 
-Fancy!  Beta >24 is good for now.
+Fancy!  Looks like we are running. 
+Create the new project using angular-cli and kick off the server to verify its running.
+
 
 ```bash
 ng new my-app 
@@ -30,16 +33,17 @@ ng serve
 
 ## Install ng2-bootstrap and bootstrap
 
-Angular Bootstrap is a layer used to make use of all the neat stuff that bootstrap has too offer.  Its not 
-just a CSS library. There are moving parts that require code to work. Usually Jquery is used to take avantage of
-these functions in a vanilla project.  We want to abstract out as much of that as possible and make that stuff
-work in the "Angular Way". Sometimes the "Angular Way" was to sweep the ugly code into a directive. This code 
-is written by the angular folks, so its as Angular as its gonna get.
+Angular Bootstrap is a package that helps us use the neat stuff that bootstrap has too offer.  Its not 
+just a CSS library. There are moving parts that require code to work. Usually Jquery is used to take advantage of
+these functions in a vanillaJs project.  We want to abstract out as much of that as possible and make that functionality
+work in the "Angular Way".  This package 
+is written by the angular folks, so its as Angular as its going to get.
 
 The angular-bootstrap project is here:
+
 https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/ng-cli.md
 
-install ng2-bootstrap locallly.
+install ng2-bootstrap locally.
 
 ```bash
 npm install ng2-bootstrap bootstrap --save
@@ -48,10 +52,9 @@ npm install ng2-bootstrap bootstrap --save
 So we have the bootstrap packages installed.  But there is a little work needed to have our 
 project work with it.
 
-Luckily, the project has angular-cli specific notes.
-https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/ng-cli.md
+Luckily, the [project](https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/ng-cli.md) has angular-cli specific notes.
 
-has us adding the Alert module to the application.  Ok...lets roll with that
+The example one the webpage has us adding the Alert module to the application.  Ok...lets roll with that
 
 
 open src/app/app.module.ts and add
@@ -67,9 +70,9 @@ import { AlertModule } from 'ng2-bootstrap';
 })
 ```
 
-This allows our project to import an Alert.
+So now we have imported the AlertModule and set up the configuration.
 
-open angular-cli.json and insert a new entry into the styles array
+Open angular-cli.json and insert a new entry into the styles array
 
 ```typescript
       "styles": [
@@ -79,9 +82,11 @@ open angular-cli.json and insert a new entry into the styles array
 ```
 
 
-This points to the css.
+This points our angular-cli project to the css. It is done here because part of what angular-cli does is package up and serve
+the code.  It will end up putting the css in index.html behind the scenes.
 
-open src/app/app.component.html and add
+
+Add the alert to the page. Open src/app/app.component.html and add
 
 ```html
 <alert type="success">hello</alert>
@@ -92,17 +97,19 @@ This is how an alert is used.
 Now open the browser to 4200 and you see the bootstrap alert.
 
 
+
 # Chicken coop project
 Everybody does the todo list.  We will riff off of that and do a project that is a chicken coop.
 
-Here is a super rough sketch. There will be three components.  The main app, a list and a chicken.
+Here is a super rough sketch. There will be three components.  The main app, a chicken list and a chicken.
 
 ![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop.png "Coop")
 
 
 
 ## Bootstrap skeleton
-We will not go too deep here into bootstrap at the moment. But since its installed, lets use it.
+We will not go too deep here into bootstrap at the moment. But since its installed, lets use it
+to scaffold out the project a bit.
 There is not a whole lot going on here with the bootstrap.  A container and two rows, one for the
 input which we will populate later and one for the list.
 
@@ -147,7 +154,7 @@ This is just a static html page to kinda get an idea of what we are looking at.
 
 ## Chicken list component
 
-The chicken list will contain the list of chickens.  For now, the data will reside in this component.  Its a simple list.
+The chicken list will contain the list of chickens.  For now, the data will reside in this component as a simple list.
 
 Either kill your ng-serve or use another bash for adding components.
  
@@ -210,7 +217,8 @@ Looks the same.
 
 ## Chicken component
 
-Lets move the chickens into the component as data.
+Lets move the chickens from static data into the chicken list component.
+
 In the chicken-list.component.ts, lets create a _chickens_ property and fill it with some names.
 
 ```typescript 
