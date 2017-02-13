@@ -4,7 +4,6 @@ Angular cli has the ability to create classes as well.  This does require a litt
 Classes are only created in the app directory unless the target directory exists (unlike components)
 and even though best practices seem to dictate that it should be ***.model.ts, you have to specify that.
 
-Some classes could just be classes I guess.  
 The only benefit to using angular-cli for classes that I see is that it will format the names
 well and you can add testcase scaffolding.
 
@@ -215,37 +214,41 @@ to the input.  So the input to the function is HTMLInputElement.
     console.log(`Adding Chicken name: ${name.value} breed: ${breed.value}`);
     return false;
   }
- ```
+```
 
- We could have easily passed in (click)="addChicken(newname.value, newbreed.value)" and just used strings.
- 
- If you open up the console, you can see the data being sent to the modthod when submit is clicked.
+We could have easily passed in 
  
  
+```typescript
+ (click)="addChicken(newname.value, newbreed.value)" 
+```
+and just used strings.
+ 
+If you open up the console, you can see the data being sent to the modthod when submit is clicked.
  
  
- ## ViewChild
+## ViewChild
  
- We saw earlier how we could pass data through the view with the square brackets.  We can also pass data by referencing the
- component directly.  In Angular1, sometimes, it was easier to just have all your objects in the .main controller
- and pass then down to be rendered in sub directives. If this was not the case, they were stuck using jquery (or jquery lite)
- to find what you were looking for.  
+We saw earlier how we could pass data through the view with the square brackets.  We can also pass data by referencing the
+component directly.  In Angular1, sometimes, it was easier to just have all your objects in the .main controller
+and pass then down to be rendered in sub directives. If this was not the case, they were stuck using jquery (or jquery lite)
+to find what you were looking for.  
  
- In our case, our form is in the app component and the list is actually in the list component.  The ideal solution here
- would be to have the list reside in a service outside the component list so that you could modify it from anywhere that
- has access to the service. We will do that too in a bit when we get deeper on Observables. 
- But for now, lets try something that is not used in every
- other todo list you find on the internet. It will give us a chance to talk about lifecycle hooks a bit as well.
+In our case, our form is in the app component and the list is actually in the list component.  The ideal solution here
+would be to have the list reside in a service outside the component list so that you could modify it from anywhere that
+has access to the service. We will do that too in a bit when we get deeper on Observables. 
+But for now, lets try something that is not used in every
+other todo list you find on the internet. It will give us a chance to talk about lifecycle hooks a bit as well.
  
- The view child  is really kind of a view query. It allows  us to find components that are children of a parent component.
- Since the component has a selector, its not a far stretch to consider this like using a jquery to find a child element.
- But the way this is done, it does not feel like it.
+The view child  is really kind of a view query. It allows  us to find components that are children of a parent component.
+Since the component has a selector, its not a far stretch to consider this like using a jquery to find a child element.
+But the way this is done, it does not feel like it.
  
- https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
- http://learnangular2.com/viewChild/
+* https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
+* http://learnangular2.com/viewChild/
  
  
- Edit the chicken-list.component.ts as follows.
+Edit the chicken-list.component.ts as follows:
  
  
 ```typescript
@@ -366,3 +369,9 @@ So, to overview these changes:
 
 If we did it all correct. The add will work.
 
+
+At this point, we have a snapshot of the code saved in the repo.
+You should be able to run it with just _npm update_.
+
+
+[Page 3](page3.md)

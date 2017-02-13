@@ -1,0 +1,21 @@
+<div class="row">
+
+  <div class="col-md-4">
+   <label>Coop Stats</label>
+   <div>Eggs:{{eggs}}</div>
+   <div>Collected:{{collectedEggs}}</div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-unstyled">
+      <li *ngFor="let chicken of chickens">
+        <app-chicken [chicken]="chicken" (eggEvent)="eggEvent($event)" 
+        (deleteEvent)="deleteChickenFromList($event)"></app-chicken>
+      </li>
+    </ul>
+  </div>
+</div>

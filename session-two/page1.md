@@ -362,7 +362,78 @@ greet2({name:"Bob", age:23});
 ```
 
 
+## Fat Arrow
 
+Better known as arrow functions, they are basically a shorthand for writing functions.
+
+They utilize a => token  and are used mostly in anonymous functions to make things
+more concise. They work like lambdas in other languages.
+
+In addition, fat arrows to make use of _this_ better.  Javascript has some gotchas with _this_ 
+that are managed managed better with arrows.
+
+### Examples
+```typescript
+var multiply = function(x,y) {
+  return x * y;
+}
+```
+
+can be written as
+
+```typescript
+var multiply = (x, y) => x*y;
+```
+
+
+Single parameters do not even require the parentheses
+
+```typescript
+var embiggen = x => x*2;
+```
+
+But zero parameters do;
+
+```typescript
+var highFive = () => 5;
+```
+
+
+They can be used to create Object Literals as well.
+Recall an object literal is a list of zero or more pairs of property names and associated values of an object, enclosed in curly braces {}. 
+
+```typescript
+var makeThing2 =  (id,name) => ({id:id, name:name });
+
+console.log(makeThing2(3,"abc"))
+```
+The body needs to be wrapped in a () however in this case.
+
+They come in handy with map/reduce functions and forEach situations.
+
+```typescript
+var users = [
+    { name: 'Tom', age: 43 },
+    { name: 'Dick', age: 22 },
+    { name: 'Harry', age: 31 }
+];
+
+console.log(users.map(function(user) { return user.age; }));
+//vs
+console.log(users.map( user => user.age));
+```
+
+
+(TODO: go a little deeper in _this_)
+
+Useful links:
+
+https://basarat.gitbooks.io/typescript/content/docs/arrow-functions.html
+http://javascriptplayground.com/blog/2014/04/real-life-es6-arrow-fn/
+https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/
+
+Concerning "This":
+http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/
 
 
 
