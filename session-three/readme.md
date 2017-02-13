@@ -6,16 +6,12 @@ Another Webapp
 [Page 1](page1.md)
 
 + Angular cli overview revisit
- 
 + Bootstrap framework
- 
 + A basic To Do-like application - Chicken coop
-
   + Components high level design
   + Build list from static data
   + decompose to Components
   + ngFor list of Items
-  
   
 ## Page 2
 [Page 2](page2.md) 
@@ -29,25 +25,19 @@ Another Webapp
 + snapshot
   
 ## Page 3
-  
-+ Action submit (add eggs)
-+ Delete (event emitter)
-+ Simple sorting
-+ ng-style
-+ ng-class
+[Page 3](page3.md) 
 
-(total eggs on ngchange?)
-(collect eggs?)
-(compont output?)
-(event mitter to app for egg timestamp)
-
+ + Delete (event emitter)
++ Action submit (add eggs, another emitter)
 
 ## Page 4
-
-+ Pipe
-+ Angular cli Enum
-+ Angular bootstrap component "Dropdown"
-  
+[Page 4](page4.md) 
++ Bootstrap radio button
++ Sorting in ngFor
++ Ng-If
++ Ng-Switch
++ Ng-Style
++ Ng-class
   
  
   

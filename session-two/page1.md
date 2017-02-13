@@ -423,6 +423,9 @@ console.log(users.map(function(user) { return user.age; }));
 console.log(users.map( user => user.age));
 ```
 
+Here is a JSBin to play with that has all the examples.
+https://jsbin.com/xafufay/edit?html,js,console,output
+
 
 (TODO: go a little deeper in _this_)
 
