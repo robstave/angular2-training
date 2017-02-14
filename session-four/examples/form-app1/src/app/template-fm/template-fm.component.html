@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="md-col-12">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="form">
+      <div class="form-group" [ngClass]="{ 'has-error' : (name.invalid  && !name.pristine) }">
+
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="first name" 
+               #name="ngModel" name="name" ngModel required>
+
+        <div *ngIf="name.dirty">
+          <div *ngIf="f.hasError('required', 'name')" class="help-block">Name is required</div>
+        </div>
+      </div>
+
+
+      <div class="form-group" [ngClass]="{ 'has-error' : (email.invalid  && !email.pristine) }">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" placeholder="Your email address" 
+               #email="ngModel" name="email" ngModel  
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" 
+
+               required>
+
+        <div *ngIf="email.dirty">
+          <div *ngIf="f.hasError('required', 'email')" class="help-block">Email is required</div>
+          <div *ngIf="f.hasError('pattern', 'email')" class="help-block">Email is invalid</div>
+
+        </div>
+      </div>
+
+ 
+      <div class="form-group" [ngClass]="{ 'has-error' : (phone.invalid  && !phone.pristine) }">
+        <label for="phone">Phone:</label>
+        <input type="text" class="form-control" id="phone" placeholder="(xxx) xxx-xxxx" name="phone" 
+               #phone="ngModel" ngModel 
+                pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" 
+               required>
+
+        <div *ngIf="phone.dirty">
+          <div *ngIf="f.hasError('required', 'phone')" class="help-block">Phone is required</div>
+          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Forma is requiredt</div>
+
+        </div>
+      </div>
+      
+
+      <button type="submit" class="btn btn-primary" [disabled]="!f.valid" >Sign up</button>  
+
+    </form>
+  </div>
+</div>

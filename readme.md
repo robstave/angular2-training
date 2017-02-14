@@ -75,7 +75,10 @@ This is meant for internal training to be done within a webex, but if anybody el
   
 ## Session four - Forms
 
+[Session Four](session-four/readme.md)
+
 + Will walk though a basic form with Regex, requires, validation
+
 
 ## Session five - Observables, HTTP
 
