@@ -146,8 +146,8 @@ We do this by adding an interaction event to the button element.
                       class="btn btn-primary">Submit</button>
 ```
 
-We do this by adding a ( ) around the event name and binding that event to the method we want called in the component.					  
-The event name is actually the native DOM event.
+We do this by adding a ( ) around the event name which binds that event to the method we want called in the component.					  
+The event name in this case is actually the native DOM event.
 There are many events you can choose from, although, not all DOM elements have all events, and sometimes not all
 angular directives support the ones that could be there.  
 
@@ -187,8 +187,8 @@ The final version of the app.component.html template is:
             </div>
 
             <div class="form-group">
-              <!-- Name field !-->
-              <label for="breed_id" class="control-label">Name</label>
+              <!-- Breed field !-->
+              <label for="breed_id" class="control-label">Breed</label>
               <input type="text" class="form-control" id="breed_id" 
                      name="breed_id"
                      #newbreed>
@@ -301,10 +301,12 @@ in app.component.ts
 
 
 ```typescript
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, 
+         ViewChild, AfterViewInit             //<--Added
+		 } from '@angular/core';
 
-import { ChickenListComponent } from './chicken-list/chicken-list.component'; //<--Added
-import { Chicken } from './chicken/chicken.model';  //<--Added
+import { ChickenListComponent } from './chicken-list/chicken-list.component';   //<--Added
+import { Chicken } from './chicken/chicken.model';    //<--Added
 
 @Component({
   selector: 'app-root',
@@ -313,13 +315,13 @@ import { Chicken } from './chicken/chicken.model';  //<--Added
 })
 export class AppComponent {
 
-  @ViewChild(ChickenListComponent) chickenList: ChickenListComponent 
+  @ViewChild(ChickenListComponent) chickenList: ChickenListComponent //<--Added
 
   ngAfterViewInit(){
         console.log('How many Chickens: ' + this.chickenList.chickens.length);
   }
-
-  addChicken(name: HTMLInputElement, breed: HTMLInputElement): boolean {
+ 
+  addChicken(name: HTMLInputElement, breed: HTMLInputElement): boolean {       //<--Added
     console.log(`Adding Chicken name: ${name.value} breed: ${breed.value}`);
 
     let newChicken:Chicken = new Chicken(name.value, 0, breed.value );

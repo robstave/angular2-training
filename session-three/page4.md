@@ -1,8 +1,8 @@
 #  Sorting
 
 
-We will finish off with:a bootstrap button to sort the chickens by eggs or name.  Then
-a quick look at some of the other ng directives like ng-if, ng-switch, ng-class and ng-style.
+We will finish off with a bootstrap radio button to sort the chickens by eggs or name.  Then
+we will take a quick look at some of the other ng directives like ng-if, ng-switch, ng-class and ng-style.
  
 
 in our app.module.ts, we add the ButtonsModule as an import (in two places)
@@ -110,7 +110,9 @@ We will add the radio button model to the component and use it to the return the
   }
 ...
 ```
-
+More fat arrow methods.  Note that the IDE will be very helpful in building this. Play with it if you would like.
+The sort function for the name is different than the eggs. A boolean is required and simply using the > is not 
+enough in the function.
 
 # Other Ng Directives
 
@@ -128,8 +130,8 @@ remove the element from the DOM, only hid it).
 ```html
 <div *ngIf="false"></div> <!-- never displayed -->
 <div *ngIf="a > b"></div> <!-- displayed if a is more than b -->
-<div *ngIf="str == 'yes'"></div> <!-- displayed if str holds the string "yes" -\
-<div *ngIf="showMe()"></div> <!-- displayed if fx returns true -\
+<div *ngIf="str == 'yes'"></div> <!-- displayed if str holds the string "yes" -->
+<div *ngIf="showMe()"></div> <!-- displayed if fx returns true -->
 
 ```
 

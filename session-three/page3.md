@@ -1,35 +1,14 @@
 # Event Emitter
-
-Let’s say we want to create a component that emits a custom event, like click or mousedown above.
-To create a custom output event we do three things:
-
-
-
-
-
-
-Perhaps EventEmitter is unfamiliar to you. Don’t panic! It’s not too hard.
-An EventEmitter is simply an object that helps you implement the Observer Pattern³⁰.
-That is, it’s an object that can maintain a list of subscribers and publish events to them.
-That’s it.
-Here’s a short and sweet example of how you can use EventEmitter
-1 let ee = new EventEmitter();
-2 ee.subscribe((name: string) => console.log(`Hello ${name}`));
-3 ee.emit("Nate");
-4
-5 // -> "Hello Nate"
-
-
-
+ 
 Directives and Components communicate to parent components via Emitter Events.
 These are custom events much like click or mousedown.  They are declared as outputs of the 
 child component.  They basically implement the observer patter
 
 The basic steps are:
 
-1. Specify outputs in the @Component configuration
-2. Attach an EventEmitter to the output property
-3. Emit an event from the EventEmitter, at the right time
+1. Specify outputs in the @Component configuration.
+2. Attach an EventEmitter to the output property.
+3. Emit an event from the EventEmitter, from your component.
 
 The subscribing part is all done automatically through the @Output configuration.
 
@@ -41,10 +20,11 @@ Links:
  * https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html
  * https://toddmotto.com/component-events-event-emitter-output-angular-2
 
-## Add Event Emitter to the Coop
+## Add Event Emitter to the Chicken 
 
-So lets emit an event from the chicken to delete the chicken from the list.
-The list is managed in the chicken-list component, so when a chicken is delete, we
+So lets emit an event from the chicken component to delete the chicken from the list.
+
+The list is managed in the chicken-list component, so when a chicken is deleted, we
 will emit that event up from the chicken component to the list.
 
 
@@ -135,14 +115,14 @@ The name of the chicken is in the event
   </div>
 ```
 
-* bind the "deleteChicken" method (that resides in the chicken-list )
+* Bind the "deleteChicken" method (that resides in the chicken-list ) to the deleteEvent emitted from the chicken.
 
 
 
 
 
 
-Add to chicken-list component. Lets just filter the list if found.
+Implement the deleteChickenFromList. Lets just filter the list if found.
 
 in chicken-list.component.ts
 ```typescript
@@ -155,14 +135,12 @@ in chicken-list.component.ts
   ...
 ```
 
-For the actual delete function, we are filtering the list in the chicken component.
+For the actual delete function, we are really just filtering the list in the chicken component.
 Note we are using the fat arrow function.
 
 
 
 Clicking on the button, we should see the chicken being removed.
-
-> With ng serve , sometimes you might have to restart it. If it says things are not there...try that first.
 
 
 
