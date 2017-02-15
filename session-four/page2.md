@@ -2,8 +2,8 @@
 
 From this point on we will be using the reactive-fm component to write examples.
 
-first, we need to include the reactive forms module into our project.
-You can have both, but you can only use one per form.
+First, we need to include the reactive forms module into our project.
+You can have both, but you can only use one strategy per form.
 
 In app.module.ts
 
@@ -22,23 +22,54 @@ import { ReactiveFormsModule } from '@angular/forms';
 ``` 
 
 Reactive forms do not use things like _ngModel_ or template directives like _requires_.
-There is still a FormGroup(s) and FormControls, but they are defined in the component and 
-then bound to the template rather than having the template define the form controls. 
+Instead, reactive forms module gives us the directives _formControl_ and _ngFormGroup_ which are
+a little different.
+
+There are still FormGroups and FormControls, but they are defined in the component and 
+then bound to the template via [formControl] and [formGroup] rather than having the template define the form controls. 
 
 This allows us a much higher degree of flexibility. We can even have things that are not
-in the form, or not in the form to start with for dynamic forms.   
+in the form at all to start with in the case of something like a dynamically created form.   
 
+So how exactly do you specify Template vs Reactive?
 
-The reactive forms module gives us the directives _formControl_ and _ngFormGroup_.
+if you have imported FormsModule...that is:
 
-While..gramatically we had form controls and form groups in the template form, we
-used the ngForm in the form element to tell angular to build everything behind
-the scenes for us.
+```
+import { FormsModule } from '@angular/forms';
+```
+and you use the form element with no directives
 
-In reactive forms, we build are own FormControl and FormGoups and then we bind 
-them the other way to the form via [formControl] and [formGroup].
+```html
+<form>
+```
 
+or 
+```html
+<form  #f="ngForm">
+```
 
+Its a template form.  Behind the scenes, all the little angular2 gnomes are working hard and managing that ngModel
+
+if you have imported FormsModule and ReactiveFormsModule:
+
+```
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+```
+
+Then these are still template forms
+```html
+ <form>
+ <form #f="ngForm">
+```
+ and this is a reactive form.
+```html
+ <form [formGroup]="userForm">
+ ```
+ 
+ 
 Lets start out with our base form.  Paste into reactive-fm.html
 
 
@@ -65,28 +96,15 @@ Lets start out with our base form.  Paste into reactive-fm.html
 </div>
 ```
 
-There is nothing in here yet..just a form. (although..technically, behind the scenes, since we have FormsModule included, it 
-is treating the form element as a template.  But lets ignore that for now.
-
+There is nothing in here yet..just a form. 
 Also, to confuse things, there is a "form-control" class in the bootstrap. This is really only bootstrap for now, so ignore that.
 
-Create another user interface in the reactive directory.
-We are using the same form, but might change things up later.
+ 
 
+## Form Builder
 
-```typescript
-export interface User {
-  name: string;
-  phone: string;
-  email: string;
-}
-```
-
-## Form Builder.
-One of the things we use in reactive forms is the Form builder.
-We have to build our groups ahead of time.
-
-this can be done with the Objects themselves.
+Since the Form groups and controls are not automatically generated, they are specified in the controller.
+This can be done with the objects themselves:
 
 ```typescript
 this.myGroup = new FormGroup({
@@ -99,11 +117,7 @@ this.myGroup = new FormGroup({
 Or we can use the [Form Builder](https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html)
 
 The form builder helps us build up the data structure a little easier.
-This is imported into our component and injected as needed.
-
-
-
-
+This can be imported into our component and injected as needed.
 
 Populate the reactive-fm.component.ts with the following.
 
@@ -111,9 +125,7 @@ Populate the reactive-fm.component.ts with the following.
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-
 import {User} from './user.interface'
-
 
 @Component({
   selector: 'app-reactive-fm',
