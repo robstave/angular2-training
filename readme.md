@@ -77,7 +77,14 @@ This is meant for internal training to be done within a webex, but if anybody el
 
 [Session Four](session-four/readme.md)
 
-+ Will walk though a basic form with Regex, requires, validation
++ Intro to Forms
++ Form Controls, Group Controls
+  + ngModel and ngForm
+  + Template Form
+  + Required, Pattern validators
+  + One way binding
+  + Two way binding
++ Reactive Forms
 
 
 ## Session five - Observables, HTTP
