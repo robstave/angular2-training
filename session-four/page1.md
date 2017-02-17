@@ -102,6 +102,17 @@ import { ReactiveFmComponent } from './reactive-fm/reactive-fm.component';
 export class AppModule { }
 ```
 
+Open angular-cli.json and insert a new entry into the styles array
+
+```typescript
+      "styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
+```
+
+
+
 Edit the app.component.html to use the tab directive as so.
 
 ```typescript

@@ -1,0 +1,9 @@
+<h2>Basic Request</h2>
+
+<button type="button" (click)="makeRequest(1)">Get user1</button>
+<button type="button" (click)="makeRequest(2)">Get user2</button>
+<button type="button" (click)="makeRequest()">Get All</button>
+
+
+<div *ngIf="loading">loading...</div>
+<pre *ngIf="data">{{data | json}}</pre>
