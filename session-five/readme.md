@@ -1,12 +1,13 @@
-# Session Five - Observables and Routing
+# Session Five - Observables and Http
 
-## Observables and Routing
-[Observables and Routing](page1.md)
+## Observables and Http
+[Observables and Http](page1.md)
 
 + Observables
-  + RxJS
+   + RxJS
+   + Examples
 + Http
-  + Simple Http
-  + Request Parameters
+  + Requests
+  + Query Parameters
   + Headers
-  + Extending Http
+  + Extending HTTP

@@ -16,7 +16,7 @@ sometimes just lends itself to a better way of doing things.
 
 [Promises](https://www.promisejs.org/) are good. They pretty much handle what you
 were doing with all those pesky error cases and the like. They seemed to be the new
-hotness and are used with $http in angular1.x.
+hotness and as its own package $q then wereused with $http in angular1.x.
 
 I started in angular1.2 and had used [ngResource](https://docs.angularjs.org/api/ngResource) which
 kinda implemented some of what promises provided, but were really just a wrapper with success and error callbacks. No
@@ -28,11 +28,13 @@ any kind of ajaxy-responsive coolness like lookahead text boxes.
 ## Reactive Programming
 So what is reactive programming?
 
-Read [this](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
 > Reactive programming is programming with asynchronous data streams.
 
-Everything is a stream.  Lots of map, reduce stuff.  
+Everything is a stream.  Lots of map, reduce stuff.  Think the Observer pattern, the Iterator pattern and general funcitonal programming
+all rolled into one.  
+
+A great reference is [here](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
 Most angular2 tutorials do not dive all that deeply into the details up front.  They pretty much explain how it works and
 then wrap it around some HTTP code and say "See...neat!".  Truth is, 90% of what we do will look like:
@@ -47,7 +49,7 @@ then wrap it around some HTTP code and say "See...neat!".  Truth is, 90% of what
 
 We will cover the basics, but I will try and leave as many good links as possible for you to dive deeper.
 
-The main library behind all of this is RxJS. This stands for Reactive eXetensions for JavaScript.
+The main library behind all of this is [RxJS](http://reactivex.io/). This stands for Reactive eXetensions for JavaScript.
 Specifically, RxJS version 5. So keep that in mind when looking at examples on the web as it is
 a bit of a rewrite as well.
 
@@ -60,7 +62,7 @@ a bit of a rewrite as well.
 > ReactiveX combines the Observer pattern with the Iterator pattern and functional programming with collections to fill the need for an ideal way of 
 > managing sequences of events.
 
-From the Rxjs site
+From the [RxJS](http://reactivex.io/) site.
 
  
 You can create streams (which implement Observable) and then subscribe to those streams to react to them.
@@ -84,16 +86,13 @@ var subscription = source.subscribe(
   () => console.log('onCompleted'));
 ```
  
-http://jsbin.com/yunoka/edit?html,js,console
+ see [JSBin](http://jsbin.com/yunoka/edit?html,js,console)
 
-In this example, we create the stream with the Rx.Observable.
-
-We add the operator _Interval_ which emits a number starting at 0 every 500ms.
+In this example, we create the stream with the Rx.Observable and add the operator [Interval](http://reactivex.io/documentation/operators/interval.html) which emits a number starting at 0 every 500ms.
 it just keeps going and going. 
 
-Reference to Interval is [here](http://reactivex.io/documentation/operators/interval.html)
+You can see that it does not stop.  You will not see the _onCompleted_ event.  Lets limit the stream with a stopping point.
 
-You can see that it does not stop.  You will not see the _onCompleted_ event.
 
 ```typescript
 var source = Rx.Observable.interval(500).take(10);
@@ -103,7 +102,7 @@ var subscription = source.subscribe(
   e => console.log(`onError: ${e}`),
   () => console.log('onCompleted'));
 ```
-JsBin: http://jsbin.com/tizoduy/edit?html,js,console
+see [JSBin](http://jsbin.com/tizoduy/edit?html,js,console)
 
 We have added a new operator _Take_.  This limits our stream to x items...then stops the stream
 
@@ -112,17 +111,17 @@ We have added a new operator _Take_.  This limits our stream to x items...then s
     "onNext: 0"
     "onNext: 1"
 ...
+...
     "onNext: 8"
     "onNext: 9"
     "onCompleted"
 ```
 
-Now we see the onCompleted event.
+Now we see the _onCompleted_ event.
 
+We can do a [map](http://reactivex.io/documentation/operators/map.html) as well.
 
-We can do a map as well.
-
-```
+```typescript
 const source = Rx.Observable
     .interval(500).take(6)
     .map(val => val%3? "Spam":"Beans");
@@ -144,7 +143,7 @@ We can transform the values with a map function.
 "onCompleted"
 ```
 
-http://jsbin.com/fapamuc/edit?html,js,console,output
+  See [JSBin](http://jsbin.com/fapamuc/edit?html,js,console,output)
 
 
 
@@ -152,15 +151,18 @@ Here is an excellent list of the operations you can use.
 
 https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35#file-rxjs_operators_by_example-md
 
-More examples and good links are here:
-https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/
-https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
+See Also:
+
+ * https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/
+ * https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
+ * https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html
 
 Other cool plunkers:
 
  * http://embed.plnkr.co/ZRxNQfB0DEuUNNlhlScU/preview
  
 
+## On your own
 
 If you have a few evenings to spare, its totally worth it to do this self guided workshop.
  
@@ -170,10 +172,11 @@ If you have a few evenings to spare, its totally worth it to do this self guided
 Its really a course in node and does not cover observables exactly, but it really puts the problem space into perspective
 with coding for streams. And its pretty fun with a kinda "code your adventure" style.
 
+Or just play with RxJS a bit.  Grok the flat map and perhaps tear [This Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/)
 
 # Http
 
-The Http code in angular is split out to a separate module and needs to be imported into your application. It is no
+The [Http](https://angular.io/docs/ts/latest/guide/server-communication.html) code in angular is split out to a separate module and needs to be imported into your application. It is no
 longer a part of of the core. All projects generated with angular-cli however still include it, so there is nothing
 particularly special we need to add here.
 
@@ -203,6 +206,7 @@ installing component
 ng serve
 ```
 
+We will start out just laying out the entire code in one swoop.
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -233,7 +237,7 @@ There is nothing that you need to change here, angular-cli took care of that.
 
 
 
-Point the app.component.html template to our new component.
+Point the _app.component.html_ template to our new component.
 ```typescript
 <h1>
   Simple http
@@ -243,7 +247,7 @@ Point the app.component.html template to our new component.
 
 
 
-In simple-component.component.html, we create 3 buttons and display the value of the _data_ property using
+In _simple-component.component.html_ we create 3 buttons and display the value of the _data_ property using
 the json pipe.
 
 ```html
@@ -259,7 +263,7 @@ the json pipe.
 ```
 
 
-Here is the code for simple-component.component.ts
+Here is the code for _simple-component.component.ts_
 
 
 ```typescript
@@ -327,13 +331,30 @@ We are just gonna do this all at once.  The main code points to understand are:
   * We import HTTP and Response
   * in the constructor we inject HTTP as http
   * we build the url based on if there is an id or not and use _http.request_ to create the Observable.
-  * we subscribe to it and set the response in the _data_ property
+  * we subscribe to it and convert the response to json in the _data_ property
 
 ![Form](https://github.com/robstave/angular2-training/blob/master/session-five/images/simple1.png "Simple")
 
 If you click on id 1 or 2, it retrieves the data for that particular user, otherwise its all users.
 
 When the result is done, the stream is complete.
+
+
+Note:
+You should be able do either
+
+```typescript
+ this.http.request(usersUrl).subscribe((res: Response) => { this.data = res.json() })
+```
+
+Or
+
+```typescript
+ this.http.request(usersUrl).map(response => response.json()).subscribe(result => { this.data = result })
+```
+
+Depending on if you want to subscribe to a stream of Responses that you convert or a stream of json data.
+ 
 
 ## Http.request
 
@@ -495,10 +516,31 @@ Some links that dive deeper are:
 
 # Second example
 
-A second example is included in this session examples.
+A second example is included in this session code directory.
 It demonstrates a ajax lookahead strategy using Observables and the wikipedia api.
 
 
+The takeaway code here is the service that gets the data
+
+```typescript
+  public search(term: string) {
+    var search = new URLSearchParams()
+    search.set('action', 'opensearch');
+    search.set('search', term);
+    search.set('format', 'json');
+    return this.jsonp
+                .get('http://en.wikipedia.org/w/api.php?callback=JSONP_CALLBACK', { search })
+                .map((request) => request.json()[1]);
+  }
+```
+
+```typescript
+ ngOnInit() {
+    this.items = this.term.valueChanges
+                 .debounceTime(400)
+                 .distinctUntilChanged()
+                 .switchMap(term => this.wikiService.search(term));
+```
 
 
 
@@ -508,3 +550,8 @@ Related links:
 https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
 
 https://angular.io/docs/ts/latest/guide/server-communication.html  map
+
+
+http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/
+
+https://www.learnrxjs.io/operators/transformation/switchmap.html
