@@ -72,6 +72,7 @@ You are using [pure](https://medium.com/javascript-scene/master-the-javascript-i
 functions, which means your not changing the data and there are no side effects
 (doesn't matter if you do it on a tuesday or 4 times in a row).  Just like a regular math function.
 
+Finally, they are lazy.  You can set up a stream, but nothing happens unless you subcribe.
  
 Here is a super simple example:
 (note, Im using jsBin for this)
@@ -84,6 +85,14 @@ var subscription = source.subscribe(
   x => console.log(`onNext: ${x}`),
   e => console.log(`onError: ${e}`),
   () => console.log('onCompleted'));
+```
+
+In addition, we can register a catch callback directly on the observable.
+
+```typescript
+observable.catch((error) => {
+  // handle error
+});
 ```
  
  see [JSBin](http://jsbin.com/yunoka/edit?html,js,console)
@@ -172,7 +181,10 @@ If you have a few evenings to spare, its totally worth it to do this self guided
 Its really a course in node and does not cover observables exactly, but it really puts the problem space into perspective
 with coding for streams. And its pretty fun with a kinda "code your adventure" style.
 
-Or just play with RxJS a bit.  Grok the flat map and perhaps tear [This Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/)
+Or just play with RxJS a bit.  
+
+Grok the flat map with [this good example](https://blog.thoughtram.io/rx/2016/08/01/exploring-rx-operators-flatmap.html)
+and then perhaps tear [this Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/) apart.
 
 # Http
 
@@ -363,6 +375,7 @@ npm world is browsing the source code
 
 
 Lets check out the code
+
 ```typescript
   /**
    * Performs any type of http request. First argument is required, and can either be a url or
@@ -519,8 +532,11 @@ Some links that dive deeper are:
 A second example is included in this session code directory.
 It demonstrates a ajax lookahead strategy using Observables and the wikipedia api.
 
+[Plunkr](http://embed.plnkr.co/GNi2FVAofVEzSUQ8kEYY/) 
 
-The takeaway code here is the service that gets the data
+
+The takeaway code here is the service that gets the data and the input whose
+action spurs the lookup.
 
 ```typescript
   public search(term: string) {
@@ -534,6 +550,14 @@ The takeaway code here is the service that gets the data
   }
 ```
 
+The service sets the search parms and calls the API.  The response comes back as JSONP which
+means json with padding.  Basically a way around cross domain browser checks.
+
+http://stackoverflow.com/questions/3839966/can-anyone-explain-what-jsonp-is-in-layman-terms
+
+The data returned is an array and we pull out the [1] piece of data with out search results.
+
+
 ```typescript
  ngOnInit() {
     this.items = this.term.valueChanges
@@ -543,9 +567,33 @@ The takeaway code here is the service that gets the data
 ```
 
 
+In this part, we are using the form Control and listening to changes.
+If there is a  change, we debounce 400 ms...and we ignore repeats with _distinctUntilChanged_.
+Also, switchMap cancels out old calls.  Finally we make the call.
+
+
+* What about the subscribe?*
+
+You could subcribe to the results and put the results in this.items.
+Or...Let angular handle it.
+
+Notice the async pipe. Thats doing the subscribe for you.
+
+```html
+    <div>
+      <h2>Wikipedia Search</h2>
+      <input type="text" [ngFormControl]="term"/>
+      <ul>
+        <li *ngFor="#item of items | async">{{item}}</li>
+      </ul>
+    </div>
+```
+
 
 
 Related links:
+
+https://jaxenter.com/reactive-programming-http-and-angular-2-124560.html
 
 https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
 

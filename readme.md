@@ -76,7 +76,7 @@ and if anybody on the web finds them useful, let me know.
 
 ## Session five - Observables, HTTP
 
-[Session Four](session-four/readme.md)
+[Session Five](session-five/readme.md)
 
 + Observables
    + RxJS
