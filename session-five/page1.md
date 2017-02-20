@@ -543,7 +543,8 @@ The takeaway code here is the service that gets the data
 ```
 
 
-
+todo  expain
+expain switchmap
 
 Related links:
 
