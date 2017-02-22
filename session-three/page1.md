@@ -9,19 +9,12 @@ Create a directory and check the angular cli version to make sure we have instal
 
 ```bash
 $ ng -v
-
-                             _                           _  _
-  __ _  _ __    __ _  _   _ | |  __ _  _ __         ___ | |(_)
- / _` || '_ \  / _` || | | || | / _` || '__|_____  / __|| || |
-| (_| || | | || (_| || |_| || || (_| || |  |_____|| (__ | || |
- \__,_||_| |_| \__, | \__,_||_| \__,_||_|          \___||_||_|
-               |___/
 angular-cli: 1.0.0-beta.26
 node: 7.5.0
 os: win32 x64
 ```
 
-Fancy!  Looks like we are running. 
+Looks like we are running. 
 Create the new project using angular-cli and kick off the server to verify its running.
 
 

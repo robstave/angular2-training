@@ -1,0 +1,19 @@
+<h2>Users</h2>
+
+ 
+<div *ngIf="loading">loading...</div>
+
+ 
+<table>
+  <tr>
+    <th>Name</th>
+   <th>Username</th>
+   <th>email</th>
+ </tr>
+    <tr *ngFor="let user of data">
+        <td><a [routerLink]="['/user/'+user.id]">{{user.name}}</a></td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+    </tr>
+</table>
+    
