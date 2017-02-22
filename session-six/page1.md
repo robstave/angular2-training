@@ -17,48 +17,58 @@ and subsequent states might look like
 
 ```
 http://greatness.com/index.html/#/about
-```
-
-```
+ 
+or
+ 
 http://greatness.com/index.html/#/user?id=3&view=simple
 ```
 
-Now we have state we can go to anytime.  We can enforce permissions per route if we have to
-and use built in broswer features like bookmarking and refresh.
+With this strategy, we have a url that we can direct our browser to anytime.  
+We can enforce permissions per route if we have to and use built in broswer features like bookmarking and refresh.
 
-This is how angular does it as well out of the box (there are other routers you could have used.)
+This is how the original angular1.x router did it out of the box. There were other routers that
+were developed afterwards as more complex demands were made of the framework.
 
-Older browsers did not handle the histories so wel though and requiered an http request of some kind
+Older browsers did not handle the histories so well though and requiered an http request of some kind
 to trigger a change in state.
 
 With HTML5, browsers can now manage its histories without requests.  To utilize this, you need a modern
 broswer, and a server that can support HTML5 based routing.
 
+The Router in Angular2 is very feature rich and has gone through many revisions.  It now supports a
+number of complex scenarios including parallel views and loading bundles on demand.
 
-The three main items you need for routing are:
+Some good in depth articles are:
+  * [An Introduction to the Futuristic New Router in AngularJS](https://www.sitepoint.com/introduction-futuristic-new-router-angularjs/) - Written 2015, but an excellent description of the problem space.
+  * [Angular 2 Router](https://vsavkin.com/angular-2-router-d9e30599f9ea#.5i7b9m80p) - Victor Savkin wrote it.  Great Blog.
+  * [Angular.io Router](https://angular.io/docs/ts/latest/guide/router.html) The Docs
 
- * *Routes* to map the url routes to the components (or redircts)
+# Angular 2 Router
+
+The main point of the router is to be able to bind a URL to a Component. 
+
+The three main items you need for basic routing are:
+
+ * *Routes* to map the url routes to the components (or redirects)
  * *RouterOutlet* as a component (like app-root) to render the specified component.
  * *RouterLink* directive to specify the links that will go to the router (like href)
  
+## Project
 
-Start out the project with angular-cli.
+We will create a small app to demonstrate routing that has 3 routes:  Home, about and users.
+Start out the project with _angular-cli_. 
 
 ```bash
 ng new simple-routes 
 cd simple-routes
 ```
 
-We will create a small app to demonstrate routing tha has 3 routes.  Home, about and users.
+Inspecting *app.module.ts* we see the http and forms are there...but no router. We will need to add this.
 
-Inspecting app.module.ts we see the http and forms are there...but no router. 
-In addition, router support was removed from angular-cli, so we will be doing this ourselves.
+_Router support was removed from angular-cli, so we will be doing this ourselves.
+This may change, but the router was still under so much development that they removed it for the time being_
 
-_This may change, but the router was still under so much development that they removed it for now_
-
-
-
-So, its probibly better to create our components first
+Our project will have a home, about and users so lets create those components.
 
 ```bash
 ng g component home
@@ -67,6 +77,7 @@ ng g component users
 
 ```
 
+So open *app.module.ts*  to add the routes and imports
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -103,7 +114,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes) // <-- routes
   ],
   providers: [ ],
   bootstrap: [AppComponent]
@@ -113,17 +125,24 @@ export class AppModule { }
 
 
 So we have added the route imports and a constant object that specifies our routes.
-We have added the Routes to the imports (with forRoot pointing to the root set of routes, this is done only once).
-
-The "" path will be our default path.
 
 In routes:
   * _path_ specifies the the URL substring that the route applies to
   * _component_ specifies the componet that the route maps to
-  * _redirect_ is optional. It is better to redirect to a route than map a new one 
+  * _redirect_ is optional. It is better to redirect to a route than map multiple routes to the same component.
+
+We have added the Routes to the imports with _forRoot_ pointing to the root set of routes.
+This is done only once as opposed to _forChild_ which can be done multiple times in other feature modules.
+For now, just note that this our root app and we are setting these routes as a base set of routes.
+
+For more on _forRoot_ see [here](https://angular.io/docs/ts/latest/cookbook/ngmodule-faq.html#!#q-for-root).
+In fact, the whole [ngModule Cookbook](https://angular.io/docs/ts/latest/cookbook/ngmodule-faq.html) is a 
+great read.
 
 
-Now, lets look at app.component.html
+
+
+Now, lets look at *app.component.html*
 
 ```html
 <div>
@@ -142,14 +161,12 @@ Now, lets look at app.component.html
 
 In the template we have two things that are new.
 There is a _routerLink_ directive.  Think of this as a sort of href to tell the browser what url to send to the router.
-Note that it is a list. Our link is the first item in that list.
+Note that it is a list. Our base url is the first item in that list.
 
-There is also the <router-outlet> component.  The component specified in the route will be replaced here.
+There is also the _router-outlet_ component.  The component specified in the route will be replaced here.
 
 This is how things are generally laid out in angular with a shell view handling navigation and a router-outlet
-where the view is rendered.
-
-In addition, angular2 router supports child routes, so that subroutes and sub outlets can be embedded. 
+where the view is rendered.  In addition, angular2 router supports child routes, so that subroutes and sub outlets can be embedded. 
 
 For now though, lets just _ng serve_ and see our appliation in action
 
@@ -162,10 +179,10 @@ There are three links and each routes to a different component.
 # Adding Http
 
 
-So, lets add HTTP to this. Recall the json fake api?  We will use that.
+So, lets add HTTP to this. Recall the [json fake api](https://jsonplaceholder.typicode.com/)?  We will use that.
 This one will go pretty fast.
 
-Paste this into users.component.ts
+Paste this into *users.component.ts*
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
