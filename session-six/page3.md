@@ -14,7 +14,7 @@ If you had a component that displayed the eggs laid by a chicken, you could have
 ```
 But everything is so coupled and the child component depends on the parent having that chicken around.
 
-Instead, what if we could just indicate in the url the chicken id and have routing set up so that
+Instead, what if we could just indicate the chicken id as a parameter in the url and have routing set up so that
 a certain path indicates the comoponent....any component.  Let the router figure it out and just use this over and over.
 
 ```html
@@ -293,7 +293,7 @@ export class AlbumsComponent implements OnInit {
 The pattern should be pretty repetitive at this point with the imports and the contstructor and the service.
 
 The only difference here is that if we were to get the "params" for this component...they would be empty.
-The urls is parsed as "/user/33" and "album", so how are we to know what the user id is.
+The urls is parsed as "/user/33" and "album", so how are we to know what the user id is?
 
 Luckily, the route is a tree.  We can get route.parent for the parents active route and find the parm from there.
 
@@ -302,6 +302,11 @@ Luckily, the route is a tree.  We can get route.parent for the parents active ro
       this.id = params["id"];
     });
 ```
+
+So really...we could put this component anywhere and as long as the parent has the id, we are good.  Plus, the route is a tree, so 
+we can even place this as any child below the user and find the userId eventually.
+
+
 
 The album.component.html is pretty standard.  We are just parsing the data to a table.
 
@@ -320,6 +325,6 @@ The album.component.html is pretty standard.  We are just parsing the data to a 
 </table>
 ```
 
-
+And there you have it.
 
 ![Simple6](https://github.com/robstave/angular2-training/blob/master/session-six/images/simple6.png "Simple6")

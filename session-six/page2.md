@@ -12,6 +12,9 @@ rather large.
 > 
 > Some developers skip the Routing Module (e.g., AppRoutingModule) when the configuration is simple and merge the routing configuration directly into the companion module (e.g., AppModule).
 
+So do we need to do this?  It sounds like its up to you, but if you have more that a simple app, its probibly not a bad idea.
+
+
 They do a refactor in the [Tour of Heros example](https://angular.io/docs/ts/latest/tutorial/toh-pt5.html), lets try that here.
 
 
@@ -138,7 +141,8 @@ Rather than declare that out, we will let angular figure it out.
 > The consumer of an injected service does not know how to create that service. It shouldn't care. It's the dependency injection's job to create and cache that service.
 >
 > Sometimes a service depends on other services ... which may depend on yet other services. Resolving these nested dependencies in the correct order is also the framework's job. At each step, the consumer of dependencies simply declares what it requires in its constructor and the framework takes over.
-  See: https://angular.io/docs/ts/latest/cookbook/dependency-injection.html
+ 
+  See: [Dependecy Injection Cookbook](https://angular.io/docs/ts/latest/cookbook/dependency-injection.html)
 
 So later, we can declare this in our providers and it will be created for us as Angular sees fit.
 We usually will be using the injection to use just our services, but it is also a critical 
@@ -165,11 +169,9 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class UserDataService {
 
-
   constructor(private http: Http, ) {
     this.http = http;
   }
-
 
   //Get users given a user Id
   getUser(id: string): Observable<any> {
@@ -198,7 +200,7 @@ import { AppRoutingModule }     from './app-routing.module';
  providers: [ UserDataService ],
 ```
 
-So at this point, its availible for all the components.
+So at this point, the service is availible for all the components.
 
 
 
@@ -255,6 +257,8 @@ We have cleaned this up a LOT.
 * The service is NOT availible to use in the constructor.  We can refer to it, but should not be called until _ngOnInit()_
 
 
+Lets apply the same approach to the users component.
+
 
 The *users.component.ts* is as follows.
 
@@ -301,7 +305,7 @@ export class UsersComponent implements OnInit {
 ```
 
 
-At this point, there is a snapshot as well.  simple-route3
+At this point, there is a snapshot as well.  See simple-route3 in code.
 
 
 [Page 3](page3.md)
