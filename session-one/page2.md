@@ -72,7 +72,7 @@ $ tree -F -L 1
 
 We see our old friends _package.json_ and _/node_modules_ as well as some new configuration files for Typescript, testing, and angular-cli
 
-If we go into /src, we will see the code that the project has created an _index.html_ files.
+If we go into /src, we will see the code that the project has created an _index.html_ file.
 
 ```html
 <!doctype html>
