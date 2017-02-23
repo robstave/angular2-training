@@ -90,9 +90,22 @@ and if anybody on the web finds them useful, let me know.
 
 ## Session Six - Routing
 
+ + Routing
+  + Routes and RouteLink
++ Parmeters
++ Creating a routing module
++ Http user Service
+  + Dependency Injection
+
+[Session Six](session-six/readme.md)
+
+
+
+
 ## Session Seven - Testing
  
 
- 
 
-? Pipes, @Injectable, Bootstraping
+## Other?
+
+? Pipes, Bootstraping
