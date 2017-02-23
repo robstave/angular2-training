@@ -90,6 +90,9 @@ and if anybody on the web finds them useful, let me know.
 
 ## Session Six - Routing
 
+[Session Six](session-six/readme.md)
+
+
  + Routing
   + Routes and RouteLink
 + Parmeters
@@ -97,7 +100,6 @@ and if anybody on the web finds them useful, let me know.
 + Http user Service
   + Dependency Injection
 
-[Session Six](session-six/readme.md)
 
 
 
