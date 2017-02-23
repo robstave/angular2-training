@@ -36,7 +36,7 @@ With HTML5, browsers can now manage its histories without requests.  To utilize 
 broswer, and a server that can support HTML5 based routing.
 
 The Router in Angular2 is very feature rich and has gone through many revisions.  It now supports a
-number of complex scenarios including parallel views and loading bundles on demand.
+number of complex scenarios including parallel views, route guarding services and loading bundles on demand.
 
 Some good in depth articles are:
   * [An Introduction to the Futuristic New Router in AngularJS](https://www.sitepoint.com/introduction-futuristic-new-router-angularjs/) - Written 2015, but an excellent description of the problem space.
@@ -175,6 +175,9 @@ For now though, lets just _ng serve_ and see our appliation in action
 
 There are three links and each routes to a different component.
 
+In the code directory, we have a snapshot of the code up to this point as _simple-routes_.  Just npm install it.
+
+
 
 # Adding Http
 
@@ -245,13 +248,12 @@ export class UsersComponent implements OnInit {
 }
 ```
 This is the same code basically as session 5.  We imported the HTTP module
-so we can query the users url at jsonplaceholder.typicode.com.
+so we can query the users url at [jsonplaceholder.typicode.com](https://jsonplaceholder.typicode.com/).
 
-When we init the component, we make the request (recall the old code could take 
-a user id or null to show all users.) Results are placed in data.
+When we init the component, we make the request and the results are placed in data.
 
 
- Edit users.component.html
+ Edit *users.component.html*
 
 ```html
 <h2>Users</h2>
@@ -305,7 +307,7 @@ const routes: Routes = [
 
 ```
 
-We will add the route with _:id_ to indicate that we will be passing the id in the route.
+We will add the route with _:id_ parameter to indicate that we will be passing the id in the route.
 
 
 In the *users.component.html* template, we need to add the routerLink to point to the users
@@ -319,7 +321,7 @@ component.
    <th>email</th>
  </tr>
     <tr *ngFor="let user of data">
-        <td><a [routerLink]="['/user/'+user.id]">{{user.name}}</a></td>
+        <td><a [routerLink]="['/user', user.id]">{{user.name}}</a></td>
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
     </tr>
@@ -328,7 +330,7 @@ component.
 
 Note that we are using "/user" rather than "user".  This is because if we do not specify the root (or relative path)
 it will route to something like /users/user/3. The router can be pretty flexable.
-We want the page to go to "user".
+We want the page to go to "user".  The id parameter is passed as the second item in the array.
 
 
 *user.component.ts* is pretty close to the users component. You can paste it all in.
@@ -414,9 +416,20 @@ and finally the *user.component.html* template
 ```
 
 
+Click on users to see:
 
 ![Simple3](https://github.com/robstave/angular2-training/blob/master/session-six/images/simple3.png "Simple4")
+
+
+Click on a user to see:
+
 ![Simple4](https://github.com/robstave/angular2-training/blob/master/session-six/images/simple4.png "Simple4")
+
+
+
+At this point there is a snapshot simple-routes2
+
+[page2](page2.md)
 
 
 

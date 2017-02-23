@@ -1,0 +1,12 @@
+<h2> Album list for userId:{{id}}</h2>
+<div *ngIf="loading">loading...</div>
+<table *ngIf="data">
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+  </tr>
+  <tr *ngFor="let album of data">
+    <td>{{album.id}}</td>
+    <td>{{album.title}}</td>
+  </tr>
+</table>

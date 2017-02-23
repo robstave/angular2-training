@@ -8,16 +8,25 @@
   + Routes and RouteLink
 + Parmeters
 
+## Refactoring
+
++ Creating a routing module
++ Http user Service
+  + Dependency Injection
+
+[Refactoring](page2.md)
+
+
 ## Child routes
 
-[Child Routes](page2.md)
+[Child Routes](page3.md)
 
 
 
-https://blog.thoughtram.io/angular/2016/06/14/routing-in-angular-2-revisited.html
 
-https://plnkr.co/edit/gsJxf6ukOXd4kNjLLVR3?p=preview
-
+Links to add:
+ 
+ 
 nested routing
 http://stackoverflow.com/questions/34978616/does-angular2-support-nested-states-routes
 http://plnkr.co/edit/IcnEzZ0WtiaY5Bpqrq2Y?p=preview

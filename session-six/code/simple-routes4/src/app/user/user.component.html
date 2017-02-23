@@ -1,0 +1,19 @@
+<h2> User:{{user.name}}</h2>
+
+<div>
+  <div>Username:{{user.username}}</div>
+  <div>Email:{{user.email}}</div>
+  <div>Id:{{user.id}}</div>
+  <div>Phone:{{user.phone}}</div>
+</div>
+
+<nav>
+  <a [routerLink]="['todos']">Todos</a><br />
+  <a [routerLink]="['albums']">Albums</a><br />
+  <a [routerLink]="['posts']">Posts</a><br />
+
+</nav>
+
+<div style="border: 2px solid green; padding: 1rem;">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,15 @@
+<h2>Post list for userId:{{id}}</h2>
+
+<div *ngIf="loading">loading...</div>
+<table *ngIf="data">
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Body</th>
+  </tr>
+  <tr *ngFor="let post of data">
+    <td>{{post.id}}</td>
+    <td>{{post.title}}</td>
+    <td>{{post.body}}</td>
+  </tr>
+</table>

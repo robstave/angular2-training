@@ -1,0 +1,14 @@
+<h2> Todo list for userId:{{id}}</h2>
+<div *ngIf="loading">loading...</div>
+<table *ngIf="data">
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Done</th>
+  </tr>
+  <tr *ngFor="let todo of data">
+    <td>{{todo.id}}</td>
+    <td>{{todo.title}}</td>
+    <td>{{todo.completed}}</td>
+  </tr>
+</table>
