@@ -6,7 +6,7 @@ How would we make it work with a more dynamic list of states?
 
 What we need is a state component that has a name property.
 
-Generate the state
+Generate the _state_ component.
 
 
 ```bash
@@ -19,7 +19,7 @@ installing component
   update src\app\app.module.ts
 ```
 
-Lets modify the state component to have an input
+Lets modify the _state.component.ts_ to have an input
 
 
 ```typescript
@@ -50,20 +50,18 @@ export class StateComponent implements OnInit {
 }
 ```
 
-and the corresponding template as well.
+and the corresponding _state.component.ts_ template as well.
 
 ```html
 <p>
   {{name}} works! 
 </p>
 ```
-
-(add the css
-
+ 
 ## One-time String initialization with @Input
 The input will be used as part of the directive to create a state.
 
-So..to pass it in, lets edit the USA template
+So..to pass it in, lets edit the USA template in usa.component.html
 
 ```html
 <p>
@@ -120,7 +118,7 @@ This allows us to add elements to the dom on the fly based on data in an array.
 The syntax is :
 
 ```typescript
-The syntax is *ngFor="let item of items".
+   *ngFor="let item of items"
 ```
 Let _item_ defines the variable that we are using hold the value we are indexed to and _items_ is the property in the controller
 that we are referencing.
@@ -129,6 +127,7 @@ We changed our usa component to have an _others_ property. This was a list of st
 We can update our template to render this list of state components. To do this, we will use *ngFor, which
 will iterate over a list of items and generate a new tag for each one. Here’s what our new template
 will look like:
+
 
 ```html
 <p>
@@ -149,12 +148,10 @@ Links
 
   
 ## Files
-Include in this directory is the final version of the exercise.
+Included in this directory is the final version of the exercise.
 Assuming you have typescript and angular cli installed, you should be able to just use npm update to use it.
 
-
-## Further study
-
+ 
 
 
 
