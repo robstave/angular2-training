@@ -214,7 +214,7 @@ Looks the same.
 
 Lets move the chickens from static data into the chicken list component.
 
-In the chicken-list.component.ts, lets create a _chickens_ property and fill it with some names.
+In the _chicken-list.component.ts_, lets create a _chickens_ property and fill it with some names.
 
 ```typescript 
 import { Component, OnInit } from '@angular/core';
@@ -238,7 +238,7 @@ export class ChickenListComponent implements OnInit {
 }
 ```
 
-We will use the ngFor directive that we had used earlier to loop through the chickens and
+We will use the _ngFor_ directive that we had used earlier to loop through the chickens property and
 add that to the chicken-list template.
 
 
@@ -254,9 +254,9 @@ add that to the chicken-list template.
   </div>
 ``` 
 
-The value of the _*ngFor_ is "let chicken of chickens".  We see the _let_ first. Recall that is like the
-_var_ but local, and in a loop. It references each item in the property chickens as a local variable.
-It is scoped as well and you will not be able to reference chicken outside that directive.
+The value of the _*ngFor_ is "let chicken of chickens".  We see the _let_ first. Recall that _let_ is similar to
+_var_ but has a much more local scope. It references each item in the property _chickens_ as a local variable.
+It is scoped to the directive and you will not be able to reference chicken outside that directive.
 
 
 ## Chicken Component
@@ -275,8 +275,8 @@ installing component
 
 We would like to pass in the value of the chicken into the chicken component so that each item can be rendered in the list.
 
-Now lets add an @input annotation to the chicken component. This is really the same steps that we took in session one.
-Import the input annotation so we can use the @input functionality.
+Now lets add an _@input_ annotation to the chicken component. These are really the same steps that we took in session one.
+Import the input annotation so we can use the _@input_ functionality.
 
 ```typescript
 import { Component, OnInit, 
@@ -301,8 +301,6 @@ export class ChickenComponent implements OnInit {
 
 Each time the Chicken component is created, the name property is set with the value that was passed in the directive.
 
-
-
 Modify the chicken-list template to use the new component directive _app-chicken_.
 We are using the square brackets again to note that we are passing in a reference to the chicken variable.
 
@@ -318,7 +316,7 @@ We are using the square brackets again to note that we are passing in a referenc
   </div>
 ``` 
   
-And finally, the chicken.html template.
+And finally, the _chicken.component.html_ template.
 
 ```
 <label>{{chicken}}</label>
