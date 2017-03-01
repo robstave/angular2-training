@@ -2,16 +2,16 @@
 
 
 We will finish off with a bootstrap radio button to sort the chickens by eggs or name.  Then
-we will take a quick look at some of the other ng directives like ng-if, ng-switch, ng-class and ng-style.
+we will take a quick look at some of the other ng directives like _ng-if_, _ng-switch_, _ng-class_ and _ng-style_.
  
 
-in our app.module.ts, we add the ButtonsModule as an import (in two places)
+in our app.module.ts, we add the [ButtonsModule](https://valor-software.com/ng2-bootstrap/#/buttons) as an import (in two places)
 
-The api for this is here:
-https://valor-software.com/ng2-bootstrap/#/buttons
-
+ 
 
 ```typescript
+//app.module.ts
+
 ...
 import {ButtonsModule} from 'ng2-bootstrap'; //<-added
 ...
@@ -36,15 +36,16 @@ export class AppModule { }
 
 ```
 
-Now Lets add the buttons to the chicken list for now.
+Now Lets add the buttons to the chicken list.
 The format is:
+
 ```html
 <div class="btn-group">
       <label class="btn btn-success" [(ngModel)]="sortChickensOrder" btnRadio="name" uncheckable>Name</label>
       <label class="btn btn-success" [(ngModel)]="sortChickensOrder" btnRadio="eggs" uncheckable>Eggs</label>
-    </div>
+</div>
 ```
-The Classes are there for formating.  The main thing to look at is the [(ngModel))]. That is our two
+The classes are there for formating.  The main thing to look at is the `[(ngModel))]`. That is our two
 way binding in action.  The Property _sortChickensOrder_ exists in the Chicken-list component. That is the
 model. If the model is changed, (that is the string value is changed from "eggs" to "name") then it gets
 passed into the radio button and vise versa.
@@ -56,9 +57,10 @@ Also, we changed the ngFor loop.
 ```
 So now we are getting the chickens from a function and not just a property.
 
-The full listing for chicken-list.component.html is:
+The full listing for _chicken-list.component.html_ is:
 
 ```html
+<!--chicken-list.component.html-->
 <div class="row">
 
   <div class="col-md-4">
@@ -94,6 +96,7 @@ The full listing for chicken-list.component.html is:
 We will add the radio button model to the component and use it to the return the list of chickens...sorted.
 
 ```typescript
+// chicken-list.component.ts
 ...
   sortChickensOrder: string = "name";
 ...
@@ -110,21 +113,17 @@ We will add the radio button model to the component and use it to the return the
   }
 ...
 ```
-More fat arrow methods.  Note that the IDE will be very helpful in building this. Play with it if you would like.
-The sort function for the name is different than the eggs. A boolean is required and simply using the > is not 
-enough in the function.
+More fat arrow methods. The sort function for the _name_ is different than the _eggs_. 
+Note that the IDE will be very helpful in building these sorts of functions.
 
 # Other Ng Directives
 
 ## NgIf
-NgIf is used to show/hide dom elements based on the condition that pass to the directive.
-The condition is evalutated as true or false.
+NgIf is used to show/hide dom elements based on the condition that is passed to the directive.
+The condition is evaluated as `true` or `false`.
 
 The nice thing here is that the condition is evaluated as truthy. 
 And is very forgiving.  Checking something like a.b.c will not crash if a or a.b is undefined.
-
-It is the same as ng-if in angular1.x.  Note there is no ng-show equivalent. (this was like ng-if, but did not
-remove the element from the DOM, only hid it).
 
 
 ```html
@@ -135,8 +134,8 @@ remove the element from the DOM, only hid it).
 
 ```
 
-## NgSwitch
-Similar to ngIf, but is used for more complex logic. Used in a means similar to a javascript switch.
+## ngSwitch
+Similar to ngIf, but is used for more complex logic. Used in a similar way to a javascript switch.
 
 The ngSwitchDefault is optional.  It will show if none of the previous statements are active.
 Mote than one ngSwitchCase can be active as well.
@@ -183,6 +182,8 @@ Lets highlight some thresholds.
 in the chicken.component.css we will add to css classes
 
 ```css
+/*chicken.component.css*/
+
 .bordered1 {
  background-color: lightgreen;
 }
@@ -197,6 +198,8 @@ In addition, hide the eggs label and count if there are no eggs.
  
 
 ```html
+<!-- chicken.component.html -->
+
 <div [ngClass] = "chicken.eggs > 4 ? 'bordered1' : 'bordered2' ">
 <div class="row">
     <div class="col-md-6">
@@ -242,4 +245,10 @@ And here is after with the three changes
 
 ![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop6snap.png "Coop")
 
+
+
+The final [snapshot](https://github.com/robstave/angular2-training/blob/master/session-three/examples/chickcoop3 "code") of
+the coop code is in the repo.
+
+A [Plnkr](https://plnkr.co/edit/YKx3rDoZ6lQHnsRPJlvp?p=preview) is available as well.
 

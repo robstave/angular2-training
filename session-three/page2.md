@@ -20,6 +20,7 @@ installing class
 Inspecting _chicken.model.ts_ we see:
 
 ```typescript
+//chicken.model.ts
 export class Chicken {
 }
 ```
@@ -27,6 +28,7 @@ export class Chicken {
 A little underwhelming.  No matter.  Lets populate this with some properties.
 
 ```typescript
+//chicken.model.ts
 export class Chicken {
     name: string;
     eggs: number;
@@ -54,6 +56,8 @@ We have three properties in the above class and are using the optional symbol ? 
 Lets initialize the chicken list with a few chickens below.
 
 ```typescript
+//chicken-list.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Chicken } from '../chicken/chicken.model';  //<--Added
 
@@ -93,6 +97,8 @@ is to change the data types.
 In _chicken.component.ts_, import the chicken model and change the property type
 
 ```typescript
+//chicken.component.ts
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Chicken } from './chicken.model';  //<--Added
 
@@ -115,6 +121,8 @@ export class ChickenComponent implements OnInit {
 We will render the chicken as a row with three columns.
 
 ```html
+<!-- chicken.component.html -->
+
 <div class="row">
     <div class="col-md-4">
         <label>Name:</label>{{chicken.name}}
@@ -174,6 +182,7 @@ The final version of the _app.component.html_ template is:
 
 
 ```html
+<!-- app.component.html -->
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -262,6 +271,8 @@ Edit the _chicken-list.component.ts_ to add the function to add a chicken:
  
  
 ```typescript
+//chicken-list.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Chicken } from '../chicken/chicken.model'; 
 
@@ -303,6 +314,8 @@ in _app.component.ts_
 
 
 ```typescript
+//app.component.ts
+
 import { Component, 
          ViewChild, AfterViewInit             //<--Added
 		 } from '@angular/core';
@@ -385,7 +398,7 @@ If we did it all correct. The add will work.
 * http://learnangular2.com/viewChild/
  
 
-At this point, we have a ![snapshot](https://github.com/robstave/angular2-training/blob/master/session-three/examples/chickcoop1 "code")
+At this point, we have a [snapshot](https://github.com/robstave/angular2-training/blob/master/session-three/examples/chickcoop1 "code")
  of the code saved in the repo.
 You should be able to run it with just _npm update_.
 

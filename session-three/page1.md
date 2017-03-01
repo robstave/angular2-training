@@ -110,6 +110,8 @@ You have containers, rows and columns. Well will hardcode the html and classes t
 The code, in _app.component.html_ is as follows.
 
 ```html
+<!--app.component.html-->
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -165,6 +167,7 @@ installing component
 Cut the list template code from the app template and paste into the _chicken-list.component.html_
 
 ```html
+<!--chicken-list.component.html -->
     <div class="row">
     <div class="col-md-12">
       <ul class="list-unstyled">
@@ -183,7 +186,9 @@ Cut the list template code from the app template and paste into the _chicken-lis
  ```
  
  And change your _app.component.html_ template to.
+
  ```html 
+ <!--app.component.html -->
   <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -217,6 +222,7 @@ Lets move the chickens from static data into the chicken list component.
 In the _chicken-list.component.ts_, lets create a _chickens_ property and fill it with some names.
 
 ```typescript 
+//chicken-list.component.ts
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -243,6 +249,8 @@ add that to the chicken-list template.
 
 
 ```html 
+<!--chicken-list.component.html -->
+
   <div class="row">
     <div class="col-md-12">
       <ul class="list-unstyled">
@@ -279,6 +287,8 @@ Now lets add an _@input_ annotation to the chicken component. These are really t
 Import the input annotation so we can use the _@input_ functionality.
 
 ```typescript
+// chicken.component.ts
+
 import { Component, OnInit, 
          Input  //<----Added
 	} from '@angular/core';
@@ -305,6 +315,8 @@ Modify the chicken-list template to use the new component directive _app-chicken
 We are using the square brackets again to note that we are passing in a reference to the chicken variable.
 
 ```html
+<!-- chicken-list.component.html-->
+
   <div class="row">
     <div class="col-md-12">
       <ul class="list-unstyled">

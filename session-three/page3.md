@@ -29,6 +29,7 @@ Plnkr: https://plnkr.co/edit/rbzvzrW00loySV30Ie1j
 see _app/app.subject.ts_
 
 ```typescript
+// _app/app.subject.ts_
 import { Component,  OnInit, Input, EventEmitter  } from '@angular/core';
 
 @Component({
@@ -98,12 +99,14 @@ Back to the Chickens!
 
 So lets emit an event from the chicken component indicating we would like to delete the chicken from the list.
 
-The list is managed in the chicken-list component, so when a chicken is deleted, we
+The list of chickens is managed in the chicken-list component, so when a chicken is deleted, we
 will emit that event up from the chicken component to the list.
 
 
 
 ```typescript
+//chicken.component.ts
+
 import { Component, OnInit, Input, 
          EventEmitter               //<--Added
 		 } from '@angular/core';
@@ -141,11 +144,11 @@ So we:
  * Created the EventEmitter in the constructor (there are lots of ways folks do this)
  * Emit the event when click the delete button.
  
-Modify the template for the button
 
-
+Now lets modify the _chicken.component.html_ template for the button
 
 ```html
+<!--chicken.component.html-->
 <div class="row">
     <div class="col-md-6">
         <label>Name:</label>{{chicken.name}}
@@ -160,9 +163,8 @@ Modify the template for the button
 <div class="row">
     <div class="col-md-12">
         <span>
-        <button (click)="deleteChicken(chicken.name)">Delete</button>
-    </span>
-
+           <button (click)="deleteChicken(chicken.name)">Delete</button>
+        </span>
     </div>
 </div>
 ```
@@ -173,9 +175,10 @@ Modify the template for the button
 
 Now lets modify the chicken list component for the output.
 We are listening for the delete event and handle it similar to the click event.
-The name of the chicken is in the event
+The name of the chicken is in the event value ($event).
 
 ```html
+<!--chicken-list.component.html-->
   <div class="row">
     <div class="col-md-12">
       <ul class="list-unstyled">
@@ -191,15 +194,15 @@ The name of the chicken is in the event
 
 * Bind the "deleteChicken" method (that resides in the chicken-list ) to the deleteEvent emitted from the chicken.
 
+ 
 
-
-
-
-
-Implement the deleteChickenFromList. Lets just filter the list if found.
-
-in chicken-list.component.ts
+Implement the `deleteChickenFromList()` in the chicken-list component. 
+Just filter the list to remove the chicken if the name is found.
+ 
 ```typescript
+
+ //chicken-list.component.ts
+  
   ...
   deleteChickenFromList(chickenName: string){  
       this.chickens = this.chickens.filter(
@@ -212,21 +215,17 @@ in chicken-list.component.ts
 For the actual delete function, we are really just filtering the list in the chicken component.
 Note we are using the fat arrow function.
 
-
-
 Clicking on the button, we should see the chicken being removed.
-
 
 
 ## Laying eggs
 We are going to add one more event.  Chicken laying an egg.
 There is no really new stuff here so it will be a quick walk though.
 
-
-
 In chicken.model.ts add two functions that manage eggs. Add and Collect.
 
 ```typescript
+//chicken.model.ts
     addEgg () {
         this.eggs++;
     }
@@ -237,9 +236,13 @@ In chicken.model.ts add two functions that manage eggs. Add and Collect.
     }
 ```
 
-modify the button span in chicken.component.html for a few more functions.
+Modify the button span in _chicken.component.html_ for a few more functions.
 
 ```html
+
+<!--chicken.component.html-->
+  ...
+
     <span class="pull-right">
         <button (click)="addEgg()">Lay eggs</button>
         <button (click)="collectEggs()">Collect</button>
@@ -248,9 +251,11 @@ modify the button span in chicken.component.html for a few more functions.
 ```
 
 
-Modify the chicken.component.ts to make changes to the model and emit events
+Modify the _chicken.component.ts_ to make changes to the model and emit events
 
 ```typescript
+//chicken.component.ts
+
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Chicken } from './chicken.model';   
 
@@ -296,6 +301,8 @@ export class ChickenComponent implements OnInit {
 Bind eggEvent to the eggEvent function in the chicken-list component
 
 ```html 
+<!--chicken-list.component.html-->
+
 <div class="row">
   <div class="col-md-12">
     <ul class="list-unstyled">
@@ -312,6 +319,8 @@ Bind eggEvent to the eggEvent function in the chicken-list component
 
 
 ```typescript
+//chicken-list.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Chicken } from '../chicken/chicken.model';  //<--Added
 
@@ -371,10 +380,13 @@ export class ChickenListComponent implements OnInit {
 
 ```
 
-And finally, display the data in the Chicken-list template
+And finally, display the data (coop Stats) in the Chicken-list template
 
 
 ```html
+
+<!--chicken-list.component.html-->
+
 <div class="row">
 
   <div class="col-md-4">
@@ -400,7 +412,7 @@ And finally, display the data in the Chicken-list template
 
 
 This is a pretty good stopping point. There is a snapshot in the repo at this point
-See chickencoop2.
+See [chickencoop2](https://github.com/robstave/angular2-training/blob/master/session-three/examples/chickcoop2 "code")
 
 Some interesting things to point out here.  
 In this case, it would appear that adding emitting events can make your interfaces pretty complex.
@@ -415,12 +427,12 @@ Thoughts?  Discussion time:
 
 ## Two way binding
 
-Angular 2 does not do two way binding directly, but if you can declare inputs and outputs...the two
+Angular 2 does not do two way binding directly, but if you can declare both inputs and outputs...the two
 together is roughly the same thing.
 
-Angular.io has the best example here and I will just refer to it.  In it, they have a component that manages
+Angular.io has the [best example here](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way) and I will just refer to it.  In it, they have a component that manages
 a font size.  The parent component has the property _fontSizePx_.
-The child component is..well..lets say its a "spinner" (a +/- kinda thing).
+The child component is..well..lets say its a "spinner" (a +/- kinda thing like discussed before).
 if the default font size is 18, we want to pass in "18" to be displayed, and as the values change we want to pass it back.
 
 The event emitted is (sizeChange) and the template just binds the value back to the property in the parent.
@@ -435,12 +447,10 @@ Angular2 has a syntax for this where you just combine the two into
 <my-sizer [(size)]="fontSizePx" ></my-sizer>
 ```
 Known as the "box of bananas" syntax.
+ 
+ * [Angular io example for Two way binding](https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way)
 
-Here is a good link. 
-
- * https://angular.io/docs/ts/latest/guide/template-syntax.html#!#two-way
-
-Where it really will come in handy is with ngModel in Forms. This will be discussed later
+ 
 
 
 

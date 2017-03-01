@@ -1,6 +1,6 @@
 # Session two - Typescript
 
-## Intro and types
+## [Intro and Types](page1.md) page 1
 
 * Built in Types
   * String, number, Boolean, Array, Enum
@@ -10,10 +10,7 @@
 * Fat Arrow
 * Optional and Default parameters
 
-[Intro and Types](page1.md)
-
-
-## Further
+## [Further](page2.md) page 2
 
 * Classes
 * Interfaces
@@ -22,4 +19,4 @@
 * Modules
 
 
-[Further](page2.md)
+
