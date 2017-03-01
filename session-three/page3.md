@@ -62,15 +62,11 @@ export class SubjectComponent {
 ```
 
 
-The parent sees the _clickEvent_ and binds accordingly/
+The parent sees the _clickEvent_ and binds accordingly.
 
 ```html
    <my-button name="red" (clickEvent)="incrCount('red', $event)"></my-button>
 ```
-
-
-
-<iframe style="width: 100%; height: 600px" src="http://embed.plnkr.co/rbzvzrW00loySV30Ie1j" frameborder="0" allowfullscren="allowfullscren"></iframe>
 
 
 
@@ -89,12 +85,18 @@ register with scope.$on.  This no longer exists in that form.  And, as a note, i
 only intended for components.  If you want to have subscription to events as a service, use Rxjs (will discuss later)
 
 Further reading:
- * https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html
- * https://toddmotto.com/component-events-event-emitter-output-angular-2
+ * [Event Emitter in Angular.io](https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html)
+ * [Todd Motto tutorial](https://toddmotto.com/component-events-event-emitter-output-angular-2)
+
+
+
+Back to the Chickens!
+---------------------
+
 
 ## Add Event Emitter to the Chicken 
 
-So lets emit an event from the chicken component to delete the chicken from the list.
+So lets emit an event from the chicken component indicating we would like to delete the chicken from the list.
 
 The list is managed in the chicken-list component, so when a chicken is deleted, we
 will emit that event up from the chicken component to the list.

@@ -2,8 +2,8 @@
 
 Another Webapp
 
-## Page 1
-[Page 1](page1.md)
+## [Page 1](page1.md)
+
 
 + Angular cli overview revisit
 + Bootstrap framework
@@ -13,8 +13,8 @@ Another Webapp
   + decompose to Components
   + ngFor list of Items
   
-## Page 2
-[Page 2](page2.md) 
+## [Page 2](page2.md) 
+
   
 + Component model
 + Optional fields in Contructor
@@ -24,14 +24,14 @@ Another Webapp
 + ViewChild
 + snapshot
   
-## Page 3
-[Page 3](page3.md) 
+## [Page 3](page3.md) 
 
++ Event Emitter Example in Plnkr
 + Delete (event emitter)
 + Action submit (add eggs, another emitter)
 
-## Page 4
-[Page 4](page4.md) 
+## [Page 4](page4.md)
+ 
 
 + Bootstrap radio button
 + Sorting in ngFor
