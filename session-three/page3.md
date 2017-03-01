@@ -1,22 +1,94 @@
 # Event Emitter
  
 Directives and Components communicate to parent components via Emitter Events.
-These are custom events much like click or mousedown.  They are declared as outputs of the 
-child component.  They basically implement the observer patter
+These are custom events, usually something like _click_ or _mousedown_.  They are declared as outputs of the 
+child component and basically implement the [observer](https://en.wikipedia.org/wiki/Observer_pattern) pattern.
+
+## Observer pattern
+
+The basic observer pattern acts a little like twitter.  You have something that you subscribe to, like a subject.
+When someone tweets, an event is broadcast on that subject, and it is sent to all the observers of that subject.
+
+A more webapp-like case might be a "spinner" component for a shopping cart.  A component with a text value and a +/-
+button for each item in the shopping list.  When you click on the button, or type in a value, we emit
+to the parent the new value.
+
+Angular1.x made use of this concept with the $scope.  You could communicate to other controllers (components)
+that share the $scope by doing a $scope.broadcast() or a $scope.emit().  You could subscribe to those events with $scope.on();
+Under the hood, this was used a lot as was how all the two way binding worked.  You did not have to know 
+much about this, although, occasionally, you had to bump the $scope a bit to see changes you make.
+
+Angular2 is more surgical. There is no scope, and you declare exactly what you are going to tell
+parent components if needed.
+
+## Small Plnkr example.
+
+Here is a really simple example demonstrating the Emitter in action. 
+Plnkr: https://plnkr.co/edit/rbzvzrW00loySV30Ie1j
+
+see _app/app.subject.ts_
+
+```typescript
+import { Component,  OnInit, Input, EventEmitter  } from '@angular/core';
+
+@Component({
+  selector: 'my-button',
+  
+  //This is needed to let angular know that clickEvent can be emitted from the component
+  outputs: ['clickEvent'],
+  template: `<button (click)="clickButton()">{{name}}</button>`
+})
+export class SubjectComponent {
+  
+  //Sets the name from the input
+   @Input() name: String;  
+  
+   count:number = 0;
+   
+   clickEvent: EventEmitter<number>;  
+  
+  //create the Event Emitter and save it
+  constructor() {
+    this.clickEvent = new EventEmitter(); 
+   }
+  
+  //when the button is clicked, emit the event (with the count as $event)
+   clickButton(name:string):void{
+     this.count++;
+     this.clickEvent.emit(this.count);     
+  }
+  
+}
+```
+
+
+The parent sees the _clickEvent_ and binds accordingly/
+
+```html
+   <my-button name="red" (clickEvent)="incrCount('red', $event)"></my-button>
+```
+
+
+
+<iframe style="width: 100%; height: 600px" src="http://embed.plnkr.co/rbzvzrW00loySV30Ie1j" frameborder="0" allowfullscren="allowfullscren"></iframe>
+
+
+
+ 
 
 The basic steps are:
 
 1. Specify outputs in the @Component configuration.
-2. Attach an EventEmitter to the output property.
-3. Emit an event from the EventEmitter, from your component.
+2. Create an [EventEmitter](https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html) and set it to the output property.
+3. Emit an event from the EventEmitter, when needed.
 
-The subscribing part is all done automatically through the @Output configuration.
+The subscribing part is all done automatically through the _@Component_ outputs configuration.
 
 This is in a way similar to Angular1.x events. In 1.x you could use the scope to either scope.$emit or scope.$broadcast and then
 register with scope.$on.  This no longer exists in that form.  And, as a note, it appears the the Event Emitter is really
 only intended for components.  If you want to have subscription to events as a service, use Rxjs (will discuss later)
 
-Links:
+Further reading:
  * https://angular.io/docs/ts/latest/api/core/index/EventEmitter-class.html
  * https://toddmotto.com/component-events-event-emitter-output-angular-2
 
