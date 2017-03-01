@@ -425,9 +425,9 @@ Note: If the JSBin seems hung, edit the code a bit.
 
 
 In addition, fat arrows to make use of _this_ better.  Javascript has some gotchas with _this_ 
-that are managed better with arrows.
+that are managed better with arrows.  I will defer to this article to explain it better.
 
-Take this example from [Freecodecamp](https://medium.freecodecamp.com/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881#.dzodrmkm6):
+Take [this example from Freecodecamp](https://medium.freecodecamp.com/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881#.dzodrmkm6):
 
 
 ```javascript
@@ -442,7 +442,9 @@ bunny.showName(); // Usagi
 ```
 [JSFiddle is here](https://jsfiddle.net/maasha/x7wz1686/)
 
-in this case...the alert says "bunny"
+In this case...the alert says "bunny".
+
+What if we were to put access to this in its own function?
 
 ```javascript
 
@@ -474,8 +476,10 @@ If you have seen enough javascript code, you will have come across a snippet lik
 ```
 var that = this;
 ```
-It looks like a hack...it is.
 
+It looks like a hack...[it is](http://stackoverflow.com/questions/4886632/what-does-var-that-this-mean-in-javascript)...and its the work around that gets around this.  Literally.
+ 
+Arrow functions (in ES6) get around the problem. _This_ refers to its current surrounding scope.
 
 ```javascript
 var bunny = {
@@ -494,7 +498,7 @@ bunny.showTasks();
 // Usagi wants to blow kisses
 ```
 
- Test it [here](https://jsfiddle.net/maasha/che8m4c1/): 
+Test it [here](https://jsfiddle.net/maasha/che8m4c1/): 
 
 > While in ES5 ‘this’ referred to the parent of the function, in ES6, arrow functions use lexical scoping — ‘this’ refers to it’s current surrounding scope and no further. Thus the inner function knew to bind to the inner function only, and not to the object’s method or the object itself.
 
@@ -513,13 +517,14 @@ Useful links:
 ## Optional and default parameters
 
 Functions can have optional parameters. This is similar in a way to how javascript works.  In javascript, nothing really stopped you from adding
-more of less parameters to a function call. You just had to deal with a lot of undefined values. Its basically similar, however, the 
-signature is checked in the ide.  The optional parameters are indicated with a ? and should follow required parameters.
+more of less parameters to a function call. You just had to deal with a lot of undefined values. 
+The optional parameters are indicated with a ? and should follow required parameters.
 
 
 
 ```typescript
 enum Color { Red, Blue, Green };
+
 function buildCar(make: string, color: Color, year: number, option1?: string, option2?: string): string {
     let str = "You have a " + year + " " + Color[color] + " " + make;
     if (option1) {
@@ -548,10 +553,10 @@ console.log(s3);
 "You have a 1994 Red Ford with leather seats"
 "You have a 1994 Red Ford with leather seats and cup holder"
 ```
-Play with it here: http://jsbin.com/zalobe/edit?js,console,output
+Play with it [here in JSBin:](http://jsbin.com/zalobe/edit?js,console,output)
 
 
-Default parameters are optional as well in the signature.
+Default parameters can be declared as well in the signature.  If so, they are optional.
 
  
 ```typescript
@@ -567,11 +572,13 @@ console.log(orderCoffee(true, true))
 "I want a regular coffee with cream "
 ```
 
-http://jsbin.com/neciwe/edit?js,console,output
+[JSBin](http://jsbin.com/neciwe/edit?js,console,output)
 
 
 
-Typescript has rest parameters as well. These are similar to how they are used in Java
+Typescript has [rest parameters](https://basarat.gitbooks.io/typescript/content/docs/rest-parameters.html) as well. 
+These are similar to how they are used in Java with the `...arguementName` notation.
+
 
 You can pass as many of the same type as you would like, or none at all. 
 The compiler will build an array of the arguments passed in with the name given after the ellipsis (...).
@@ -583,10 +590,9 @@ function buildName(firstName: string, ...restOfName: string[]) {
 
 let hisName = buildName("John", " Jacob", "Jingleheimer", "Schmidt");
 ```
-Try parsing this with the playground
-https://www.typescriptlang.org/play/
+Try parsing this with the [Typescript playground](https://www.typescriptlang.org/play/)
 
-or using tsc to transpile it.
+Just paste the above into the playground or use tsc to transpile it.
 
 ```typescript
 function buildName(firstName) {
@@ -599,10 +605,7 @@ function buildName(firstName) {
 var hisName = buildName("John", " Jacob", "Jingleheimer", "Schmidt");
 ```
 
-
-
-Further reading:
- * https://www.typescriptlang.org/docs/handbook/functions.html
+ [Page 2](page2.md)
  
  
 
