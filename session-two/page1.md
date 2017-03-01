@@ -594,6 +594,9 @@ Try parsing this with the [Typescript playground](https://www.typescriptlang.org
 
 Just paste the above into the playground or use tsc to transpile it.
 
+
+For reference...this is the old way!
+
 ```typescript
 function buildName(firstName) {
     var restOfName = [];
