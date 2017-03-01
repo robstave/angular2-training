@@ -6,13 +6,13 @@ What is it?
 > TypeScript is a compile-to-JavaScript language that brings compile-time type checks, 
 > classical object-oriented programming patterns, and powerful typing features to JavaScript.
 
-https://www.typescriptlang.org/
+From: [typescriptlang.org](https://www.typescriptlang.org/)
  
 
 
-There are actually plenty of languages out there that are supsets of Javascript.  There has got to be something that is missing?
+There are actually plenty of languages out there that are supersets of Javascript.  There has got to be something that is missing?
 
-Transpiled Languages Add Features
+[Transpiled Languages Add Features](https://scotch.io/tutorials/why-you-shouldnt-be-scared-of-typescript)
 
 > One substantial advantage to transpiled languages is that they can add features. 
 > This is one of TypeScript's main selling points, as it adds interfaces, abstract classes, algebraic data types, 
@@ -24,9 +24,9 @@ Transpiled Languages Add Features
 > transpilers to write to use JavaScript's newest features, since the relatively small number of 
 > people using browsers with reliable ES6 support is . . . Well, people like us.
 
-https://scotch.io/tutorials/why-you-shouldnt-be-scared-of-typescript
 
-So we get stronger type checking, which leads to less bugs, and more confidence in our refactorings.
+
+So we get stronger type checking, which leads to less bugs, and more confidence in our refactoring process.
 
 Other Links:
 
@@ -37,15 +37,15 @@ So why does angular2 use Typescript?
 Google was going to have its own Language "AtScript" to include the features they wanted on top of vanilla js.
 But they teamed with Microsoft and got what they wanted in the language.  
 
-A good link for background is here:
+Some good links for further reading are here:
 
-https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview
+ * [Why Typescript?](https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4) - Victor Savkin was a member of the Angular Core team at Google.
+ * [High level Overview from InfoQ](https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview)
 
- 
 # Types
 
 From personal experience, I found the lack of type checking in Javascript a bit unsettling at first.  Java has it, and the previous
-language I used at Nortel (Protel) was so strongly typed that if you gave three engineers the same task...they would probibly write
+language I used at Nortel (Protel) was so strongly typed that if you gave three engineers the same task...they would probably write
 the exact same code. It really does help prevent bugs in your code. Both by catching it as you are writing it in you IDE but also just
 in general readability.
 
@@ -208,7 +208,7 @@ Can be any value. Default if not specified.
 ``` 
 
 ### Void
-Using void means there’s no type expected. This is usually in functions with no return value:
+Using void means there is no type expected. This is usually in functions with no return value:
 
 ```typescript
  function doIt(name: string): void {
@@ -370,7 +370,7 @@ They utilize a => token  and are used mostly in anonymous functions to make thin
 more concise. They work like lambdas in other languages.
 
 In addition, fat arrows to make use of _this_ better.  Javascript has some gotchas with _this_ 
-that are managed managed better with arrows.
+that are managed better with arrows.
 
 ### Examples
 ```typescript
