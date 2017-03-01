@@ -12,7 +12,7 @@ From: [typescriptlang.org](https://www.typescriptlang.org/)
 
 There are actually plenty of languages out there that are supersets of Javascript.  There has got to be something that is missing?
 
-[Transpiled Languages Add Features](https://scotch.io/tutorials/why-you-shouldnt-be-scared-of-typescript)
+[Transpiled Languages Add Features](https://scotch.io/tutorials/why-you-shouldnt-be-scared-of-typescript):
 
 > One substantial advantage to transpiled languages is that they can add features. 
 > This is one of TypeScript's main selling points, as it adds interfaces, abstract classes, algebraic data types, 
@@ -25,19 +25,15 @@ There are actually plenty of languages out there that are supersets of Javascrip
 > people using browsers with reliable ES6 support is . . . Well, people like us.
 
 
-
 So we get stronger type checking, which leads to less bugs, and more confidence in our refactoring process.
-
-Other Links:
-
-*  https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4
 
 So why does angular2 use Typescript?
 
 Google was going to have its own Language "AtScript" to include the features they wanted on top of vanilla js.
-But they teamed with Microsoft and got what they wanted in the language.  
+But they teamed with Microsoft and got what they wanted in the language.  One of these would be the 
+decorators such as @Component that are extremely helpful for Angular.
 
-Some good links for further reading are here:
+Some good links for further reading:
 
  * [Why Typescript?](https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4) - Victor Savkin was a member of the Angular Core team at Google.
  * [High level Overview from InfoQ](https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview)
@@ -46,11 +42,8 @@ Some good links for further reading are here:
 
 From personal experience, I found the lack of type checking in Javascript a bit unsettling at first.  Java has it, and the previous
 language I used at Nortel (Protel) was so strongly typed that if you gave three engineers the same task...they would probably write
-the exact same code. It really does help prevent bugs in your code. Both by catching it as you are writing it in you IDE but also just
-in general readability.
+the exact same code. Strong typing (enforced by a capable IDE) really does help prevent bugs in your code by enforcing interfaces/types.
 
-But, the nice thing is it is like the cub scouts.  
-You can dress the full part, but you can also go to meetings in just the shirt and hat, or just the hat.
 
 ## Basic types
 
@@ -60,7 +53,7 @@ You can now declare types when you define your variables.
 var name: string
 ```
 
-we can use them in functions as well
+We can use them in functions as well
 
 ```typescript
 function sayHello(name: string): string {
@@ -71,18 +64,20 @@ function sayHello(name: string): string {
 If you use the results of this function as, say, a number. Typescript has the means to let you know otherwise.
 
 ## using TSC
-Create a directory.  Lets just make sure that we have what we need.
+TSC is our [typescript](http://www.typescriptlang.org/) compiler.  It was installed when we installed typescript in session one.
+
+Create a directory in bash to work in.  First, lets just make sure that we have what we need.
 
 ```bash
 $ tsc -v
 Version 2.1.5
 ```
+Ok...Lokks good.
 
-Cooking with gas.
-
-Create the file bad1.ts
+Create the file _bad1.ts_.
 
 ```typescript
+// bad1.ts
 function sayHello(name: string): string {
  return "Hello " + name;
 }
@@ -97,7 +92,7 @@ $ tsc *.ts
 bad1.ts(5,5): error TS2322: Type 'string' is not assignable to type 'number'.
 ```
 
-You can also open the folder in visual code and see the errors from your IDE.
+You can also open the folder in [Visual Studio Code](https://code.visualstudio.com/) and see the errors from your IDE.
 
 
 ## Built in Types
@@ -135,7 +130,7 @@ var scores:  number[] = [18, 21];
 ```
 
 ### Enums
-Enums are kinda more like ordered hashmaps. But for the most part, are numbers.
+Enums are more like ordered hashmaps. But for the most part, are numbers.
 
 
 ```typescript
@@ -144,8 +139,8 @@ var aColor: Color = Color.Green;
 
 ```
 
-for example...lets run:
-http://jsbin.com/tazufo/edit?js,console,output
+For example...lets run this [plnkr](http://jsbin.com/tazufo/2/edit?js,console,output)
+(note..you may need to edit the text a bit to force the Typescript to work)
 
 ```typescript
 enum Color {Red, Blue, Green, Orange, White, Purple};
@@ -163,14 +158,14 @@ if (aColor == bColor){
 }
 ```
 
+Results:
+
 ```bash
 "you see the color:2"
 "They do not match"
 ```
 
-Lets try another example.
-
-http://jsbin.com/nusowut/edit?js,console,output
+Lets try another [example](http://jsbin.com/nusowut/edit?js,console,output)
 
 
 ```typescript
@@ -200,7 +195,7 @@ gets
 
  
 ### Any
-Can be any value. Default if not specified.
+This Type can be any value. It is the default type if not specified.
 
 ```typescript
  var stuff: any = 33;
@@ -220,7 +215,8 @@ Using void means there is no type expected. This is usually in functions with no
 
 Typescript has two new varible types. _Let_ and _const_.
 
-Let gives us a block scoped variable. Javascript never had this. You might not have even known this unless you ran jslint on a large piece of code.
+Let gives us a block scoped variable. Javascript never had this. You might not have even known this unless you ran jslint on 
+some code that might have reused a variable in a loop. 
 
 > var Variables in JavaScript are function scoped. 
 > This is different from many other languages (C# / Java etc.) where the variables are block scoped. 
@@ -246,13 +242,10 @@ if (true) {
 console.log(foo); // 123
 ```
 
-Taken from 
-https://basarat.gitbooks.io/typescript/content/docs/let.html
+Taken from [Typescript Deep Dive - Let](https://basarat.gitbooks.io/typescript/content/docs/let.html)
 
-You will certainly see this in Angular2.
-
-
-Const is similar to let in that its blocked.  It also prevents re-assignment to a variable.
+ 
+[Const](https://basarat.gitbooks.io/typescript/content/docs/const.html) is similar to let in that its blocked.  It also prevents re-assignment to a variable.
 
 ```typescript
 const x2 : number = 34;
