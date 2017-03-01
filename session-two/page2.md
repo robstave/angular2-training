@@ -4,8 +4,7 @@ Javascript itself does not support directly a class object. There is an existing
 with the language. Its still all basically functions. Typescript does a good job however wrapping this up so that it 
 acts like an object.
 
-
-From: https://johnpapa.net/typescriptpost3/
+ 
 
 You can create a class and even add fields, properties, constructors, and functions (static, prototype, instance based). The basic syntax for a class is as follows:
 
@@ -24,15 +23,17 @@ class Car {
 ```
   
 This code creates a Car class that has a constructor that accepts a single parameter 
-engine that initializes the instance property with the same name. so we can write
+engine that initializes the instance property with the same name. 
+
+Now we can write:
 
 ```typescript
 var hondaAccord = new Car('V6');  
 ```
 
-The constructor method is created when the class is created and does the inital setup for the object.
+The constructor method is created when the class is created and does the initial setup for the object.
 Special note for Angular2. There is a difference between the constructor and in the onInit lifecycle
-function. Save things that are Truely just initializing the class for the constructor.
+function. Save things that are truely just initializing the class for the constructor.
  
 There can only be one constructor per class.
 
@@ -51,7 +52,7 @@ class Car {
 } 
 ```
 
-go to https://www.typescriptlang.org/play/ and paste in the code to see the emitted code in Javascript
+Go to https://www.typescriptlang.org/play/ and paste in the code to see the emitted code in Javascript.
 
 
 You can create static functions as well.  These are functions that are NOT available in the instantiated class.
@@ -79,13 +80,16 @@ var sam:Person = new Person("Sam", 21);
 console.log(Person.canLegallyVote(sam))
 ```
 
-http://jsbin.com/sididis/edit?js,console,output
 
+[JSBin](http://jsbin.com/sididis/edit?js,console,output)
+
+Note: you may need to edit the code to get it to recompile.
 
  
-Other good links
-  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
-  * http://www.typescriptlang.org/docs/handbook/classes.html
+Other good links:
+  * [Mozilla docs on Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+  * [Classes](http://www.typescriptlang.org/docs/handbook/classes.html)
+  * [Typescript Classes and Interfaces](https://johnpapa.net/typescriptpost3/)
 
 ## Inheritance
 Classes can implement Inheritance as well. 
@@ -171,10 +175,11 @@ With the back tick, you do not need to join the lines with all those +'s.
 
 # Decorators
 
+ From [Typescript.org](https://www.typescriptlang.org/docs/handbook/decorators.html)
 
 > With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members. Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members. Decorators are a stage 1 proposal for JavaScript and are available as an experimental feature of TypeScript.
 > To enable experimental support for decorators, you must enable the experimentalDecorators compiler option either on the command line or in your tsconfig.json:
-https://www.typescriptlang.org/docs/handbook/decorators.html
+
 
 Angular2 uses these features a lot.  Just think about all the @component and @Input things we saw earlier.
 
@@ -201,20 +206,21 @@ Lets look back at a tsconfig.json file that was created a while back in our angu
 }
 ```
 
-There it is.
-Hopefully this is something that we will not be using much in your everyday Typescript coding. Angular2 has added it for their tools and we just use the annotations.
+There it is. ` "experimentalDecorators": true`. We do not really need to dig any deeper than that.
+Angular2 has added it for their tools and we just use the ones they have defined.
 
 
 
 
 # Modules
 
-Angular2 makes extensive use of the import and export statements.  
+Angular2 makes extensive use of the _import_ and _export_ statements.  
+
 They are used to import functions, objects and other primitives that have been exported by other modules.
 
 Applications are a collection of modules. Each module containing a cohesive collection of functionality.
 
-Angular2 builds on top of that with @NgModule annotation to specify specific behaviours that relate to angular on top of that.
+Angular2 builds on top of that with @NgModule annotation to specify specific behaviors that relate to angular on top of that.
 
 A general link is here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 
@@ -223,8 +229,10 @@ A general link is here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/
 Here is a small example:
 In it..we will export a function and a constant.
 
-So we have chong.js
+So we have chong.js that exports (makes public a knock funciton and a const.)
+
 ```typescript
+//chong.js
 function knock() {
   return "Its Dave!  I got the stuff";
 }
@@ -233,8 +241,10 @@ const dave = "Dave is not here.";
 export { knock, dave };
 ```
 
-and cheech.js
+and cheech.js, that imports that data.
+
 ```typescript
+//cheech.js
 import { knock, dave } from './chong';
 
 console.log(knock()); 
@@ -252,7 +262,7 @@ Dave is not here.
 
 
 
-Excellent Link
+Excellent Links:
 
 * https://www.gitbook.com/book/basarat/typescript/details
 * http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/
