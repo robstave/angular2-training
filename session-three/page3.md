@@ -249,6 +249,7 @@ modify the button span in chicken.component.html for a few more functions.
 
 
 Modify the chicken.component.ts to make changes to the model and emit events
+
 ```typescript
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Chicken } from './chicken.model';   
@@ -289,7 +290,7 @@ export class ChickenComponent implements OnInit {
   }
 
 }
-
+```
 
 
 Bind eggEvent to the eggEvent function in the chicken-list component
