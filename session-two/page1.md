@@ -245,7 +245,8 @@ console.log(foo); // 123
 Taken from [Typescript Deep Dive - Let](https://basarat.gitbooks.io/typescript/content/docs/let.html)
 
  
-[Const](https://basarat.gitbooks.io/typescript/content/docs/const.html) is similar to let in that its blocked.  It also prevents re-assignment to a variable.
+[Const](https://basarat.gitbooks.io/typescript/content/docs/const.html) is similar to let in that its block scoped.  
+It also prevents re-assignment.
 
 ```typescript
 const x2 : number = 34;
@@ -259,9 +260,9 @@ bad2.ts(2,1): error TS2540: Cannot assign to 'x2' because it is a constant or a 
 
 
  
-A Revealing Example (pulled from stack exchange)
+## A Revealing Example (pulled from stack exchange)
 
-Mozilla Developer Network gives an example where var does not work as intended. 
+Here is a final example from Mozilla Developer Network that gives an example where var does not work as intended. 
  
 ```typescript
 var a = [];
@@ -274,19 +275,19 @@ var a = [];
 console.log(a.map( function(f) {return f();} ));
 // prints [0, 1, 2, 3, 4]
 
-// Start over, but change `let` to `var`.
+// Start over, but change `let` in the for loop to `var`.
 // prints [5, 5, 5, 5, 5]
 ```
 
-http://jsbin.com/gipadom/edit?js,console
+Try it yourself on [Plnkr](http://jsbin.com/gipadom/edit?js,console)
 
 
-var fails us because all loop iterations share the same function-scoped i variable, which has the value 5 after the loop finishes.
-shareimprove this answer
+`var` fails us because all loop iterations share the same function-scoped i variable, which has the value 5 after the loop finishes.
+ 
 	
  
-Other Links:
-* https://www.typescriptlang.org/docs/handbook/variable-declarations.html
+Further Reading:
+* [Variable Declarations in Typescripting Lang.org](https://www.typescriptlang.org/docs/handbook/variable-declarations.html
 
 
 # Functions
@@ -304,7 +305,7 @@ function add(x, y) {
 let myAdd = function(x, y) { return x+y; };
 ```
 
-function parameters can be annotated just like variables.  We saw a little of this earlier.
+Function parameters can be annotated just like variables.  We saw a little of this earlier.
 In this case we are specifying that the input is a string and that it returns a number.
 
 ```typescript
@@ -338,15 +339,17 @@ bad2.ts(7,5): error TS2322: Type 'number' is not assignable to type 'string'.
 
 
 
-You can additionally use further annotations
+You can additionally compound annotations, sort of like an interface.
 
 ```typescript
+//single type passed in 
 function greet(name: string) {
    console.log("Hello :"+name);
 }
 
 greet("Bob");
 
+//Object passed in.
 function greet2(person: {name:string, age:number}) {
    console.log("Hello :"+person.name+" age:"+person.age);
 }
@@ -360,10 +363,10 @@ greet2({name:"Bob", age:23});
 Better known as arrow functions, they are basically a shorthand for writing functions.
 
 They utilize a => token  and are used mostly in anonymous functions to make things
-more concise. They work like lambdas in other languages.
+more concise. They work like lambdas in other languages. 
+It does take a little getting used to.  
 
-In addition, fat arrows to make use of _this_ better.  Javascript has some gotchas with _this_ 
-that are managed better with arrows.
+
 
 ### Examples
 ```typescript
@@ -377,9 +380,9 @@ can be written as
 ```typescript
 var multiply = (x, y) => x*y;
 ```
+We have lost the _return_ keyword because when omitting {}, single line arrow functions perform an implicit return.
 
-
-Single parameters do not even require the parentheses
+Single parameters do not even require the parentheses. 
 
 ```typescript
 var embiggen = x => x*2;
@@ -416,21 +419,95 @@ console.log(users.map(function(user) { return user.age; }));
 console.log(users.map( user => user.age));
 ```
 
-Here is a JSBin to play with that has all the examples.
-https://jsbin.com/xafufay/edit?html,js,console,output
+Here is a [JSBin](https://jsbin.com/xafufay/edit?html,js,console,output) to play with that has all the examples.
+
+Note: If the JSBin seems hung, edit the code a bit. 
 
 
-(TODO: go a little deeper in _this_)
+In addition, fat arrows to make use of _this_ better.  Javascript has some gotchas with _this_ 
+that are managed better with arrows.
+
+Take this example from [Freecodecamp](https://medium.freecodecamp.com/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881#.dzodrmkm6):
+
+
+```javascript
+var bunny = {
+  name: 'Usagi',
+  showName: function() {
+    alert(this.name);
+  }
+};
+
+bunny.showName(); // Usagi
+```
+[JSFiddle is here](https://jsfiddle.net/maasha/x7wz1686/)
+
+in this case...the alert says "bunny"
+
+```javascript
+
+// Test it here: https://jsfiddle.net/maasha/z65c1znn/
+var bunny = {
+  name: 'Usagi',
+  tasks: ['transform', 'eat cake', 'blow kisses'],
+  showTasks: function() {
+    this.tasks.forEach(function(task) {
+      alert(this.name + " wants to " + task);
+    });
+  }
+};
+
+bunny.showTasks();
+// [object Window] wants to transform
+// [object Window] wants to eat cake
+// [object Window] wants to blow kisses
+
+// please note, in jsfiddle the [object Window] is named 'result' within inner functions of methods.
+```
+
+In [this](https://jsfiddle.net/maasha/z65c1znn/) case, the value of this is...well...the window.
+
+> Why does ‘this’ bind to the window object? Because ‘this’, always references the owner of the function it is in, for this case — since it is now out of scope — the window/global object.
+
+If you have seen enough javascript code, you will have come across a snippet like:
+
+```
+var that = this;
+```
+It looks like a hack...it is.
+
+
+```javascript
+var bunny = {
+  name: 'Usagi',
+  tasks: ['transform', 'eat cake', 'blow kisses'],
+  showTasks() {
+    this.tasks.forEach((task) => {
+      alert(this.name + " wants to " + task);
+    });  
+  }
+};
+
+bunny.showTasks();
+// Usagi wants to transform
+// Usagi wants to eat cake
+// Usagi wants to blow kisses
+```
+
+ Test it [here](https://jsfiddle.net/maasha/che8m4c1/): 
+
+> While in ES5 ‘this’ referred to the parent of the function, in ES6, arrow functions use lexical scoping — ‘this’ refers to it’s current surrounding scope and no further. Thus the inner function knew to bind to the inner function only, and not to the object’s method or the object itself.
+
+
+That was a pretty complicated concept.  Fear not, with Angular2, you will get used to the arrow functions real quick.
 
 Useful links:
 
-https://basarat.gitbooks.io/typescript/content/docs/arrow-functions.html
-http://javascriptplayground.com/blog/2014/04/real-life-es6-arrow-fn/
-https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/
-
-Concerning "This":
-http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/
-
+ * [Deep Dive arrow functions](https://basarat.gitbooks.io/typescript/content/docs/arrow-functions.html)
+ * [Arrow Function Examples](http://javascriptplayground.com/blog/2014/04/real-life-es6-arrow-fn/)
+ * [ES6 Arrow Functions: The New Fat & Concise Syntax in JavaScript](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/)
+ * [Javascript is Sexy - Understand this](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+ * [Arrow Functions and This](https://medium.freecodecamp.com/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881#.dzodrmkm6)
 
 
 ## Optional and default parameters
