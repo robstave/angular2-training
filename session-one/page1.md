@@ -5,7 +5,8 @@ Into to Angular2, Angular cli, node and npm.
 
 # Node and NPM
 
-Before doing much of anything, you will need to get Node. https://nodejs.org/en/
+Before doing much of anything, you will need to get [Node](https://nodejs.org/en/).
+
 It is an executable, so install as instructed.
 
 From [nodejs.org](https://nodejs.org/en/):
@@ -144,7 +145,7 @@ The --save-dev install the software and adds it as a project dependency in your 
 }
 ```
 
-Notice there is now a new directory as well. */Node_modules*.  This is where a the dependancies are stored.  Its HUGE.
+Notice there is now a new directory as well. */node_modules*.  This is where a the dependancies are stored.  Its HUGE.
 
 Now, think back on the -g command. If we installed the command as global, all of these would be in the global repo as well.
 At some point, there would be perhaps conflicts.  At best, if you had a lot of global commands, they might force each other to the update each other.
@@ -203,7 +204,7 @@ Looks great.  One last trick.
 
 ## Npm Update
 
-Kill the server and delete the _/node_modules directory_.  Gone. (keep the project.json though)
+Kill the server and delete the _/node_modules_ directory.  Gone. (keep the project.json though)
 
 now run:
 
@@ -211,16 +212,14 @@ now run:
 npm install
 ```
 
-Boom, your project is back. You should always be able recover this way. You always check in without the node_modules directory and you should be able to get back with nom update.
-If you have deleted your directory, you can really use install or update.
-
-If the directory is there and you have not touched it for a while, just use update.
-[A good description between install and update is here](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
+Boom, your project is back. You should always be able recover this way. 
+You always check in your code without the node_modules directory and you should be able to get the state of your
+project back with _npm update_ or _npm install_.  Both work, but its [good to know the difference](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
 
 
 ## Refs and links
 
-http://www.2ality.com/2016/01/locally-installed-npm-executables.html
+[Running locally installed npm executables](http://www.2ality.com/2016/01/locally-installed-npm-executables.html)
 
 
 [Next page](page2.md)

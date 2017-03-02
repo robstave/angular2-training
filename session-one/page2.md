@@ -31,11 +31,9 @@ manages CSS files and assets, pre and post processes and runs tasks like grunt, 
 
 Webpack will be explored in depth later.  For now, lets just say we have a cli to build our project.
 
-The website makes it look so easy.   
+The [Angular cli](https://cli.angular.io/)website makes it look so easy.   
 
-See [cli.angular.io](https://cli.angular.io/)
-or [github.com/angular/angular-cli](https://github.com/angular/angular-cli)
- 
+Its just:
 
 ```bash
 npm install -g angular-cli
