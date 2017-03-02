@@ -31,12 +31,12 @@ manages CSS files and assets, pre and post processes and runs tasks like grunt, 
 
 Webpack will be explored in depth later.  For now, lets just say we have a cli to build our project.
 
-The [Angular cli](https://cli.angular.io/)website makes it look so easy.   
+The [Angular cli](https://cli.angular.io/) website makes it look so easy.   
 
 Its just:
 
 ```bash
-npm install -g angular-cli
+npm install -g @angular/cli
 ```
 
 Again, this is global.
@@ -99,6 +99,19 @@ point your browser to the appropriate port.  Luckily, that is all included.
 
 ## Start the server
 
+What what?  Server?
+
+Yes, to run Angular (or anything more complicated that static html) will will need a server.  Thats the way web
+security works. Otherwise a simple web page could request data from anywhere in your filesystem.  But do not
+worry much, you do not need to install apache or anything like that. With Node.js, you can build things like a web services, 
+proxies and the like with just a few lines
+of code. 
+
+But you do not have to even worry about that, its all included with angular-cli.
+
+In addition, the web server included in angular-cli as a watcher. If you edit your code, it sees that, and 
+serves up the new code.
+
 The angular-cli command is used to kick off a server and watcher as well.
 
 
@@ -108,6 +121,9 @@ $ ng serve
 ** NG Live Development Server is running on http://localhost:4200. **
 Build successful - 1342ms.
 ```
+
+So...behind the scenes...its taking your project, transpiling it to javascript, packaging it to a few small chunks
+and serving that as the application.
 
 The application is now running on localhost port 4200.
 http://localhost:4200

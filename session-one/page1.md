@@ -212,10 +212,20 @@ now run:
 npm install
 ```
 
-Boom, your project is back. You should always be able recover this way. 
-You always check in your code without the node_modules directory and you should be able to get the state of your
+Boom, your project is back. You should always be able recover this way. This is because the versions of all
+the packages are in the package.json file.  If you look at the file, you see
+
+```
+  "hello-world-server": "^1.1.3"
+```
+There are versioning rules.  Generally, you will not have to mess with this much, but you can use things like ^, * and ~ 
+to say you only want major updates, minor updates or lock the version.  It is called [semantic versioning](https://docs.npmjs.com/getting-started/semantic-versioning).
+
+You always check in your code without the node_modules directory and you should always be able to get the state of your
 project back with _npm update_ or _npm install_.  Both work, but its [good to know the difference](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
 
+Note...a side effect of this that you only specifiy a few dependencies and NPM figures out the rest.  Sometimes you will need to
+run update a few times.
 
 ## Refs and links
 
