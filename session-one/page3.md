@@ -208,10 +208,13 @@ We would like the components to be nested into each other like so.
 ![Modules](https://github.com/robstave/angular2-training/blob/master/session-one/modules.png "Modules")
 
 
-Take advantage of name spacing as much as you can. In this case, angular-ci is prepending app in front of the components. This is the default prefix.
+Take advantage of name spacing as much as you can. In this case, angular-ci is prepending _app-_ in front of the components. 
+
+This is the default prefix.
+
 When angular-bootstrap was first introduced, their directives had matching names with standard items as well ("popup", "dropdown" and such).
 At some point this cause a mess of collisions and they renamed it all to uib-popup, uib-dropdown and so on.
-So to avoid this, you do want a unique prefix as well.  This is an option in the angular cli command. (see --prefix)
+So to avoid this, you do want a unique prefix as well.  Luckily, this is an option in the angular cli command. (see --prefix)
 
 If your curious, take a peek in angular-cli.json. You will see the prefix entry there.
 
@@ -300,10 +303,10 @@ installing component
 
 ## An exercise
 
-Edit the css and and html so that.
+We will edit the css and and html so that.
 
-   * usa is top component
-   * usa contains Texas and Pennsylvania
+   * Usa is the top component
+   * Usa contains Texas and Pennsylvania
    * Texas has a red border, penn has the blue.
    * Dallas is purple and within Texas
    
@@ -337,16 +340,13 @@ edit the @Component in _texas.component.ts_ as follows:
 })
 ```
 
-Here is a good point to introduce the Angular2 Style guide.
+Here is a good point to introduce the [Angular2 Style guide](https://angular.io/docs/ts/latest/guide/style-guide.html).
 
-https://angular.io/docs/ts/latest/guide/style-guide.html
+It has hints and and guidelines for all things angular2.  For example, [when do we use inline vs template urls?](https://angular.io/docs/ts/latest/guide/style-guide.html#!#05-04)
 
-It has hints and and guidelines for all things angular2.  For example, when do we use inline vs template urls?
+Many of the items are guides on how files should be named. Luckily, the angular-cli seems to take care of most of that.
 
-https://angular.io/docs/ts/latest/guide/style-guide.html#!#05-04
-
-Many of the items are guides how things are named. Luckily, the angular-cli seems to take care of most of that.
-.,
+A question we are at right now is how big does the template need to be before we break it out to its own file?
 According to the style guide, they are saying 3 lines of code is a good gauge. I think we are ok here though.
 
 

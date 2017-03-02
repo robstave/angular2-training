@@ -142,12 +142,12 @@ will look like:
 This is similar to the ng-for loop in angular1.
 
 
-Links
+Further Reading:
 
-  * https://toddmotto.com/passing-data-angular-2-components-input
+  * [Passing data into Angular 2+ components with @Input](https://toddmotto.com/passing-data-angular-2-components-input)
 
   
-## Files
+## Source Code
 Included in this directory is the final version of the exercise.
 Assuming you have typescript and angular cli installed, you should be able to just use npm update to use it.
 
