@@ -4,7 +4,7 @@
  
 ## Typescript
 
-First lets install typescript. Since we will be using this all over, and certainly be using the lastest and greatest version we can install as follows.
+First lets install typescript. Since we will be using this all over, and certainly be using the latest and greatest version we can install as follows.
 
 ```bash
 npm install -g typescript
@@ -20,13 +20,13 @@ npm update -g typescript
 ## Angular CLI
  
 This is a tool that is used to manage Angular2 projects. You can create your projects on the command line as well as do repetitive tasks
-like add components, pipes, servies and the like.  A tool like this is generally preferred to start out with.  It will also
+like add components, pipes, services and the like.  A tool like this is generally preferred to start out with.  It will also
 add test shells on the fly.
 
 Other tools like this are Yeoman, webpack, and any number of "seed" projects.  
 
 Ultimately, its all [webpack](https://web-design-weekly.com/2014/09/24/diving-webpack/) to some degree in the end.
-Its a bit similar to NPM in that it also manages dependancies and has a json configuration file.  But it also
+Its a bit similar to NPM in that it also manages dependencies and has a json configuration file.  But it also
 manages CSS files and assets, pre and post processes and runs tasks like grunt, or Ant.
 
 Webpack will be explored in depth later.  For now, lets just say we have a cli to build our project.
@@ -45,7 +45,7 @@ Again, this is global.
 
 Now we have the _NG_ cli command.
 
-Again, if you were so inclined, you could install this locally to lock into a particular version...but you probibly want this global.
+Again, if you were so inclined, you could install this locally to lock into a particular version...but you probably want this global.
 
 Use the cli to create the project.
 Create a new directory to work in.  It will create a subdirectory with your project.
@@ -101,7 +101,7 @@ point your browser to the appropriate port.  Luckily, that is all included.
 
 ## Start the server
 
-The angular-cli commmand is used to kick off a server and watcher as well.
+The angular-cli command is used to kick off a server and watcher as well.
 
 
 

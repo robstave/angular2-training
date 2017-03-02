@@ -23,7 +23,7 @@ using a common language (javascript) to tie it all together. Javascript is eithe
 
 Node includes [NPM](https://docs.npmjs.com/cli/) (NodeJS package manager). This is used to manage the various pieces of code needed to put together angular 2 projects.
 These are called packages, and there are a lot of javascript packages out there. Some are very simple, many are on Github, and all written by random folks.
-Even a small project can end up with megabytes of script in its repository with dependencies upon dependancies.  Don't worry
+Even a small project can end up with megabytes of script in its repository with dependencies upon dependencies.  Don't worry
 about it much for now...but be aware that its there.
 
 Think of npm as Maven for Javascript.
@@ -63,7 +63,7 @@ Npm will now walk you through a series of steps to create a _package.json_ file.
 }
 ```
 
-This is the basic configutation file for your NPM project.  It will be used to track package dependancies, scripts, versions and the like.
+This is the basic configuration file for your NPM project.  It will be used to track package dependancies, scripts, versions and the like.
 Other tools tend to build upon this concept and might add additional *.json files to your directory.
 
 Edit the _scripts_ property in package.json entry as so.
@@ -215,7 +215,7 @@ Boom, your project is back. You should always be able recover this way. You alwa
 If you have deleted your directory, you can really use install or update.
 
 If the directory is there and you have not touched it for a while, just use update.
-[A good explaination is here](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
+[A good description between install and update is here](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
 
 
 ## Refs and links

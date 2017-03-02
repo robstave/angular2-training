@@ -138,7 +138,7 @@ Read more:
   * https://medium.com/front-end-hacking/angular-2-a-quick-intro-about-template-syntax-121f9b160a64#.ai8sqmfub
   
 
-Lets modifiy our template to say.
+Lets modify our template to say.
 What we are doing here is adding more properties to be evaluated in the template for the view.
 
 ```html
@@ -147,7 +147,7 @@ What we are doing here is adding more properties to be evaluated in the template
 </h1>
 ```
 
-Our ng server should see the changes, recompile and our broser will refresh.
+Our ng server should see the changes, recompile and our browser will refresh.
 
 ```
  app works! - Go Angular -Its your birthday
@@ -313,7 +313,7 @@ Your results should look like this
 ## Inline templates and css.
 
 Lets mess with Texas.
-Rather than use the stylesUrls, we can add a styles propery to the @Component instead.  We can do this for the template as well.
+Rather than use the stylesUrls, we can add a styles property to the @Component instead.  We can do this for the template as well.
 
 edit the @Component in _texas.component.ts_ as follows:
 
