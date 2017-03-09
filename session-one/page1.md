@@ -5,7 +5,8 @@ Into to Angular2, Angular cli, node and npm.
 
 # Node and NPM
 
-Before doing much of anything, you will need to get Node. https://nodejs.org/en/
+Before doing much of anything, you will need to get [Node](https://nodejs.org/en/).
+
 It is an executable, so install as instructed.
 
 From [nodejs.org](https://nodejs.org/en/):
@@ -23,7 +24,7 @@ using a common language (javascript) to tie it all together. Javascript is eithe
 
 Node includes [NPM](https://docs.npmjs.com/cli/) (NodeJS package manager). This is used to manage the various pieces of code needed to put together angular 2 projects.
 These are called packages, and there are a lot of javascript packages out there. Some are very simple, many are on Github, and all written by random folks.
-Even a small project can end up with megabytes of script in its repository with dependencies upon dependancies.  Don't worry
+Even a small project can end up with megabytes of script in its repository with dependencies upon dependencies.  Don't worry
 about it much for now...but be aware that its there.
 
 Think of npm as Maven for Javascript.
@@ -63,7 +64,7 @@ Npm will now walk you through a series of steps to create a _package.json_ file.
 }
 ```
 
-This is the basic configutation file for your NPM project.  It will be used to track package dependancies, scripts, versions and the like.
+This is the basic configuration file for your NPM project.  It will be used to track package dependancies, scripts, versions and the like.
 Other tools tend to build upon this concept and might add additional *.json files to your directory.
 
 Edit the _scripts_ property in package.json entry as so.
@@ -144,7 +145,7 @@ The --save-dev install the software and adds it as a project dependency in your 
 }
 ```
 
-Notice there is now a new directory as well. */Node_modules*.  This is where a the dependancies are stored.  Its HUGE.
+Notice there is now a new directory as well. */node_modules*.  This is where a the dependancies are stored.  Its HUGE.
 
 Now, think back on the -g command. If we installed the command as global, all of these would be in the global repo as well.
 At some point, there would be perhaps conflicts.  At best, if you had a lot of global commands, they might force each other to the update each other.
@@ -203,7 +204,7 @@ Looks great.  One last trick.
 
 ## Npm Update
 
-Kill the server and delete the _/node_modules directory_.  Gone. (keep the project.json though)
+Kill the server and delete the _/node_modules_ directory.  Gone. (keep the project.json though)
 
 now run:
 
@@ -211,16 +212,24 @@ now run:
 npm install
 ```
 
-Boom, your project is back. You should always be able recover this way. You always check in without the node_modules directory and you should be able to get back with nom update.
-If you have deleted your directory, you can really use install or update.
+Boom, your project is back. You should always be able recover this way. This is because the versions of all
+the packages are in the package.json file.  If you look at the file, you see
 
-If the directory is there and you have not touched it for a while, just use update.
-[A good explaination is here](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
+```
+  "hello-world-server": "^1.1.3"
+```
+There are versioning rules.  Generally, you will not have to mess with this much, but you can use things like ^, * and ~ 
+to say you only want major updates, minor updates or lock the version.  It is called [semantic versioning](https://docs.npmjs.com/getting-started/semantic-versioning).
 
+You always check in your code without the node_modules directory and you should always be able to get the state of your
+project back with _npm update_ or _npm install_.  Both work, but its [good to know the difference](http://stackoverflow.com/questions/12478679/npm-install-vs-update-whats-the-difference)
+
+Note...a side effect of this that you only specifiy a few dependencies and NPM figures out the rest.  Sometimes you will need to
+run update a few times.
 
 ## Refs and links
 
-http://www.2ality.com/2016/01/locally-installed-npm-executables.html
+[Running locally installed npm executables](http://www.2ality.com/2016/01/locally-installed-npm-executables.html)
 
 
 [Next page](page2.md)

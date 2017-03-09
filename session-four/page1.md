@@ -175,7 +175,9 @@ Add the following to the template-fm.html template
 
 
 ------------------
+
 Things we will implement:
+
 
 * Bind to the user name, email, and phone
 * Required validation on all inputs
@@ -203,7 +205,9 @@ to the form and contains that data.
 Once associated, you use the control to access values and states.  For example, if the object myFormControl was associated with the
 name and the input was required you might see
 
+
 Name equals "fred"
+
 
 ```typescript
 myFormControl.value // is "fred"
@@ -211,7 +215,9 @@ myFormControl.dirty // is true
 myFormControl.valid // is true
 ```
 
+
 while if Name equals  ""
+
 
 ```typescript
 myFormControl.value // is ""

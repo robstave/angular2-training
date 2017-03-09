@@ -61,7 +61,7 @@ and the corresponding _state.component.ts_ template as well.
 ## One-time String initialization with @Input
 The input will be used as part of the directive to create a state.
 
-So..to pass it in, lets edit the USA template in usa.component.html
+So..to pass it in, lets edit the USA template in _usa.component.html_
 
 ```html
 <p>
@@ -72,14 +72,14 @@ So..to pass it in, lets edit the USA template in usa.component.html
 </p>
 ```
 
-We can now pass the name into the component.
+We can now pass a name of Florida into the state component.
 
 This is what is known as a one-time string initialization.
 
 We use one-time string initialization to pass a string constant into a child component, but only once during start up. 
+It is sending a string, so there really is no changes that can happen down the road.
 
-
-So now we see florida.
+So now when we run the app, we see Florida.
 
 ## Property binding
 
@@ -88,6 +88,7 @@ We can also bind component properties with the square brackets.
 Lets modify the usa component some more
 
 ```javascript
+// usa.component.ts
 @Component({
   selector: 'app-usa',
   templateUrl: './usa.component.html',
@@ -142,12 +143,12 @@ will look like:
 This is similar to the ng-for loop in angular1.
 
 
-Links
+Further Reading:
 
-  * https://toddmotto.com/passing-data-angular-2-components-input
+  * [Passing data into Angular 2+ components with @Input](https://toddmotto.com/passing-data-angular-2-components-input)
 
   
-## Files
+## Source Code
 Included in this directory is the final version of the exercise.
 Assuming you have typescript and angular cli installed, you should be able to just use npm update to use it.
 
