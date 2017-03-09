@@ -35,7 +35,7 @@ decorators such as @Component that are extremely helpful for Angular.
 
 Some good links for further reading:
 
- * [Why Typescript?](https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4) - Victor Savkin was a member of the Angular Core team at Google.
+ * [Why Typescript?](https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4) - Victor Savkin was a member of the Angular Core team at Google and explains the background.
  * [High level Overview from InfoQ](https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview)
 
 # Types
@@ -72,7 +72,7 @@ Create a directory in bash to work in.  First, lets just make sure that we have 
 $ tsc -v
 Version 2.1.5
 ```
-Ok...Lokks good.
+Ok...Looks good.
 
 Create the file _bad1.ts_.
 
@@ -287,7 +287,7 @@ Try it yourself on [Plnkr](http://jsbin.com/gipadom/edit?js,console)
 	
  
 Further Reading:
-* [Variable Declarations in Typescripting Lang.org](https://www.typescriptlang.org/docs/handbook/variable-declarations.html
+* [Variable Declarations in Typescripting Lang.org](https://www.typescriptlang.org/docs/handbook/variable-declarations.html)
 
 
 # Functions
@@ -388,7 +388,7 @@ Single parameters do not even require the parentheses.
 var embiggen = x => x*2;
 ```
 
-But zero parameters do;
+But zero parameters do, for obvious reasons.
 
 ```typescript
 var highFive = () => 5;
@@ -477,7 +477,7 @@ If you have seen enough javascript code, you will have come across a snippet lik
 var that = this;
 ```
 
-It looks like a hack...[it is](http://stackoverflow.com/questions/4886632/what-does-var-that-this-mean-in-javascript)...and its the work around that gets around this.  Literally.
+It looks like a hack...[it is](http://stackoverflow.com/questions/4886632/what-does-var-that-this-mean-in-javascript)...and that is the work around that gets around this.  Literally.
  
 Arrow functions (in ES6) get around the problem. _This_ refers to its current surrounding scope.
 

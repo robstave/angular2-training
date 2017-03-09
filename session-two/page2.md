@@ -261,8 +261,8 @@ Dave is not here.
 ```
 
 
+-------------
+Excellent followup reading:
 
-Excellent Links:
-
-* https://www.gitbook.com/book/basarat/typescript/details
-* http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/
+* [TypeScript Deep Diveh](ttps://www.gitbook.com/book/basarat/typescript/details)
+* [Learn Typescript in 30 minutes](http://tutorialzine.com/2016/07/learn-typescript-in-30-minutes/)
