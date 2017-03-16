@@ -27,12 +27,18 @@ ng serve
 
 ## Install ng2-bootstrap and bootstrap
 
-[Angular Bootstrap](https://valor-software.com/ng2-bootstrap/#/) is a package that helps us use the neat stuff that bootstrap has too offer.  Its not 
-just a CSS library. There are some moving parts that require javascript to work. 
+There are two similar packages out there that we can use to add bootstrap functionality.
+These are not just CSS libraries. There are some moving parts that require javascript to work. 
 We want to abstract out as much of that as possible and make that functionality
-work in the "Angular Way".  This package is written by the angular folks, so it should be pretty solid.
+work in the "Angular Way".
+
+[ng2-Bootstrap](https://valor-software.com/ng2-bootstrap/#/)   Made by Valor software.  Came out first
+and has lots of features. 
+  
+[ng-bootstrap](https://ng-bootstrap.github.io/#/home) - This package is written by the angular folks, so it should be pretty solid. The names are a bit similar though and can be confusing.
 
 
+Lets pick ng2 for now.
 
 Install ng2-bootstrap locally from npm
 
@@ -40,7 +46,7 @@ Install ng2-bootstrap locally from npm
 npm install ng2-bootstrap bootstrap --save
 ```
 
-So we have the bootstrap packages installed.  HOwever, there are a few loose ends that we need to address for 
+So we have the bootstrap packages installed.  However, there are a few loose ends that we need to address for 
 the angular-cli project to play well with it. Luckily, the [project web page](https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/ng-cli.md) has angular-cli specific notes.
 
 
@@ -71,14 +77,16 @@ Open angular-cli.json and insert a new entry into the styles array
 ```
 
 
-This points our angular-cli project to the bootstrap css. In angular1.x (or any JQuery project) you would have just added
+This points our angular-cli project to the bootstrap css. In angular1.x, (or any JQuery project) you would have just added
 this as a link in the index.htm.
 
-It is done here because part of what angular-cli does is package up and serve the code.  It will, ultimately, still end up 
-in index.html, but that is done behind the scenes.
+It is done here because the angular-cli.json is part of what angular-cli needs to package up and serve the code.  
+
+It will still, _ultimately_,  end up in index.html, but that is done behind the scenes.
 
 
-Finally, add the alert to the app component template. Open _src/app/app.component.html_ and add
+Finally, lets test it out by adding the alert to the app component template. 
+Open _src/app/app.component.html_ and add:
 
 ```html
 <alert type="success">hello</alert>
@@ -86,14 +94,13 @@ Finally, add the alert to the app component template. Open _src/app/app.componen
 This is how an alert is used.
 
 
-Now kick off _ng serve_ if it is not going and open the browser to localhost:4200. You see the bootstrap alert.
-
+Now kick off _ng serve_  and open the browser to localhost:4200. You see the bootstrap alert.
 
 
 # Chicken coop project
 Everybody does the todo list.  We will riff off of that and do a project that is a chicken coop.
 
-Here is a super rough sketch. There will be three components.  The main app, a chicken list and a chicken component.
+Here is a super rough sketch. There will be _three_ components.  The main app, a chicken list and a chicken component.
 
 ![Coop](https://github.com/robstave/angular2-training/blob/master/session-three/images/coop.png "Coop")
 

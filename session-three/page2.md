@@ -25,7 +25,7 @@ export class Chicken {
 }
 ```
 
-A little underwhelming.  No matter.  Lets populate this with some properties.
+A little underwhelming.  No matter.  Lets populate this with some properties. Recall from session 2 that _?_ indicates an optional field in the signature.
 
 ```typescript
 //chicken.model.ts
@@ -51,7 +51,7 @@ export class Chicken {
 }
 ```
 
-We have three properties in the above class and are using the optional symbol ? in the signature as well to indicate optional parameters.
+We have three properties in the above class and are using the optional symbol _?_ in the signature as well to indicate optional parameters.
 
 Lets initialize the chicken list with a few chickens below.
 
@@ -160,8 +160,13 @@ The event name in this case is actually the native DOM event _click_.
 There are many events you can choose from, although, not all DOM elements have all events, and sometimes not all
 angular directives support the ones that could be there.  
 
-In this case, a click event will call addChicken with local variables _newname_ and _newbreed_. These are local variables that will need 
+In this case, a click event will call the _addChicken_ function with local variables _newname_ and _newbreed_. These are local variables that will need 
 to be declared.
+
+```html
+<input type="text" class="form-control" id="name_id" 
+       name="name_id"  #newname>
+```	
 
 On the input for name, we add _#newname_.  We use the hash _#_ to tell Angular to assign the tag to a local variable in the view.
 
@@ -170,16 +175,9 @@ $scope or in the template and be able to go between the template and controller 
 
 Convenient, but slow. In Angular2, local variables declared with the hashtag are not visible in the component.
 
-
-But we can two way bind variables to the controller if we have to.  More on that later
-
-```html
-<input type="text" class="form-control" id="name_id" 
-       name="name_id"  #newname>
-```					 
+But we can two way bind variables to the controller if we have to.  More on that later.				 
 
 The final version of the _app.component.html_ template is:
-
 
 ```html
 <!-- app.component.html -->
@@ -393,9 +391,9 @@ So, to overview these changes:
 
 If we did it all correct. The add will work.
 
-
-* https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html
-* http://learnangular2.com/viewChild/
+For further reading:
+* [View Child in angular io](https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html)
+* [Learn Angular - View Child](http://learnangular2.com/viewChild/)
  
 
 At this point, we have a [snapshot](https://github.com/robstave/angular2-training/blob/master/session-three/examples/chickcoop1 "code")
