@@ -1,7 +1,7 @@
 # Forms
 
-Angular2 has pretty extensive framework support for forms. It defines a flexible and full API to handles the binding, validation,
-error handling and change tracking.  This is a good thing because most of our application is really just forms.
+Angular2 has extensive framework support for forms. It provides a flexible and full API to handle binding, validation,
+error handling and change tracking. 
 
 Angular 1 dealt with forms using the ng-model. This provided a two-way binding that made it very
 easy to bind the view model to the controller.  The problem was that the controller scope is very tightly
@@ -38,14 +38,14 @@ Reactive Forms Features
 + More component code and less HTML markup
 + Reactive transformations can be made possible such as
   + Handling a event based on a debounce time
-  + Hanlding events when the components are distinct until changed
+  + Handling events when the components are distinct until changed
   + Adding elements dynamically
 + Easier Unit testing
 
 My two cents:
 As long as you can get a consistent look and feel, you can choose either.  Most of the documentation out there seems to
 riff off of the template based forms.  You can mix and match within an application so if a form outgrows its
-maintainability, just upgrade to reactive.  Ajax-like forms should strive to be reactive.  You just cant use both
+maintainability, just upgrade to reactive.  Ajax-like forms should strive to be reactive.  You just can't use both
 strategies in the same form.
 
 Also, of all the code that has gone through alpha and beta changes, this is one of the high churners.  So there are lots of
@@ -115,7 +115,7 @@ Open angular-cli.json and insert a new entry into the styles array
 
 Edit the app.component.html to use the tab directive as so.
 
-```typescript
+```html
 <div class="container">
   <h1>Forms </h1>
 
@@ -175,7 +175,9 @@ Add the following to the template-fm.html template
 
 
 ------------------
-Things we willl implement:
+
+Things we will implement:
+
 
 * Bind to the user name, email, and phone
 * Required validation on all inputs
@@ -203,7 +205,9 @@ to the form and contains that data.
 Once associated, you use the control to access values and states.  For example, if the object myFormControl was associated with the
 name and the input was required you might see
 
-Name: "fred"
+
+Name equals "fred"
+
 
 ```typescript
 myFormControl.value // is "fred"
@@ -211,8 +215,9 @@ myFormControl.dirty // is true
 myFormControl.valid // is true
 ```
 
-while
-Name: ""
+
+while if Name equals  ""
+
 
 ```typescript
 myFormControl.value // is ""
@@ -223,10 +228,10 @@ myFormControl.valid // is false
 FormGroup is just a collection of Form Controls.
 They both implement the _AbstractControl_ interface so things like valid can be checked across all Controls in the Group.
 
-Here are the docs for the items:
+Here are links to the angular docs for the above items items:
 	
- * https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html
- * https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html
+ * [FormControl](https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html)
+ * [Form Group](https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html)
 	
 
 # Template form
@@ -374,7 +379,7 @@ Just replace the form code with the following, and we will step through whats go
 
         <div *ngIf="phone.dirty">
           <div *ngIf="f.hasError('required', 'phone')" class="help-block">Phone is required</div>
-          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Forma is requiredt</div>
+          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Format is required</div>
 
         </div>
       </div>
@@ -416,12 +421,12 @@ Lets look at all the code in the phone input at once.
 
         <div *ngIf="phone.dirty">
           <div *ngIf="f.hasError('required', 'phone')" class="help-block">Phone is required</div>
-          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Forma is requiredt</div>
+          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Format is required</div>
         </div>
       </div>
  ```
 
-First, we expose the formControl to a local acess with _#phone=phone_.  You could probably access everything through #f, but this
+First, we expose the formControl to a local access with _#phone=phone_.  You could probably access everything through #f, but this
 does make things a little easier.  There are really lots of ways to do this, but this is about as "templatey" as it gets.
 
 Now that we have access to the formControl with #phone, we can use it to decorate the form item with css.
@@ -441,7 +446,7 @@ This is bootstrap specific and adds a wrapper class to the input if there is an 
 
 This will add the messages below. We do not want a full red form when we start out, so we check "dirty" first.
 Once something is in progress, then we can display an error.  It there is "Any" error, phone.valid will evaluate
-to false, but we can search for inividual error keys and use messages to associate to them. In this case, Im accessing
+to false, but we can search for individual error keys and use messages to associate to them. In this case, Im accessing
 the message from the group, but you could get it with the control as well.
 
 Once done, it will look as follows.
@@ -452,7 +457,7 @@ a wrapper that did the form control stuff and helped in the template code.  This
 on the lookout for code as it comes up.
 
 ## Submit button
-Dont forget to disable the submit button.
+Don't forget to disable the submit button.
  
 ```html
  <button type="submit" class="btn btn-primary" [disabled]="!f.valid" >Sign up</button> 
@@ -483,7 +488,7 @@ export interface User {
 }
 ```
 
-change the component to ues the interface.
+change the component to uses the interface.
 Set an initialization value and a setDefault function
 on the user property.
 
@@ -565,7 +570,7 @@ now change ngModel to bind to the individual properties
 
         <div *ngIf="phone.dirty">
           <div *ngIf="f.hasError('required', 'phone')" class="help-block">Phone is required</div>
-          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Forma is requiredt</div>
+          <div *ngIf="f.hasError('pattern', 'phone')" class="help-block">Valid Format is required</div>
 
         </div>
       </div>
