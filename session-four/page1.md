@@ -10,11 +10,36 @@ easy to bind the view model to the controller.  The problem however is that the 
 coupled to the view, making testing difficult.  There are means to test it, but it requires that you have
 access to the DOM and scope, and rendered templates. This pretty much means its going to be an end to end test.  
 
-The angular 1.x forms included a decent set of directives like _required_, _minlength_, and even regex valdiation are directives that are spliced
+The angular 1.x forms included a decent set of directives like _required_, _minlength_, and even regex validiation are directives that are spliced
 into the form. You can set all kinds of rules that make it impossible for the user to submit data without
 having to write any real code.
 
-However, as things get more complicated, you end up allowing data to get through to the controler "for consideration" where
+```typescript
+            <input type="number"  name="hours" id="hours" 
+                   class="form-control" 
+                   ng-model="dvm.data.hours" 
+                   min='0'  max='999999'
+                   ng-maxlength="100" required>
+                    
+           <div ng-messages="forms.messageForm.hours.$error" 
+                ng-if="forms.messageForm.hours.$dirty" 
+                class="help-block">
+                           <div ng-message="required">
+                             Hours is required
+                           </div>
+                            <div ng-message="min">
+                             Positive number
+                           </div>
+                           <div ng-message="max">
+                             Number too large
+                           </div>
+```
+
+In this example, there is an input with a range set from 0 to 999999 and up to 100 digits.  Later, messages can be displayed (and
+submits disabled) based on the state of a model. Values like $error are determined in the form logic and not the component.
+
+
+As things get more complicated, you end up allowing data to get through to the controller "for consideration" where
 additional checking can be done and liberal sprinkling of "isOk()" checks are placed back into the form.
 
 What you end up with is something akin to a Rube Goldberg machine.  Very stateful, pretty untestable.
@@ -77,7 +102,8 @@ tutorials that are outdated.  They usually mention what release they are relevan
 
 ## Start the Project
 
-Lets kick off the project like we did other times.  Using angular-cli and bootstrap.two
+Lets kick off the project like we did other times.  Using _angular-cli_ to generate the code and including bootstrap and ng2-bootstrap libraries.
+
 We will create a component to handle each type of form
 
 ```bash
@@ -101,7 +127,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { BsDropdownModule } from 'ng2-bootstrap/dropdown';
 import { ButtonsModule } from 'ng2-bootstrap/buttons';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { TemplateFmComponent } from './template-fm/template-fm.component';
@@ -118,7 +144,7 @@ import { ReactiveFmComponent } from './reactive-fm/reactive-fm.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    DropdownModule.forRoot(),
+    BsDropdownModule.forRoot(),
     ButtonsModule.forRoot(),
     TabsModule.forRoot()
   ],
@@ -144,7 +170,7 @@ Now, lets set up the main view to have a tab for each form type.
 Edit the app.component.html to use the _tab_ directive as so.
 
 _app.component.html_
-```typescript
+```html
 <div class="container">
   <h1>Forms </h1>
 
@@ -179,6 +205,8 @@ at three inputs and a submit.
 
 Add the following to the template-fm.html template
 
+
+_template-fm.html_
 ```html
 <div class="row">
   <div class="md-col-12">
@@ -215,7 +243,7 @@ Things we willl implement:
 
 ## FormControl and FormGroup
 	
-Two of the main objects you will work with are the FormControl and the FormGroup.
+Two of the main objects you will work with are the _FormControl_ and the _FormGroup_.
 These are used to manage the data and handle its values, states and validity.  Think of it as the form interface
 or form model.  We did mention that there was a template form and a reactive form, but in both cases, the form Control
 and form group is used.
@@ -250,9 +278,9 @@ myFormControl.valid // is false
 ```
 
 FormGroup is just a collection of Form Controls.
-They both implement the _AbstractControl_ interface so things like valid can be checked across all Controls in the Group.
+They both implement the _AbstractControl_ interface so things like _valid_ can be checked across all Controls in the Group.
 
-Here are the docs for the items:
+Here are the angular docs for the items:
 	
  * https://angular.io/docs/ts/latest/api/forms/index/FormControl-class.html
  * https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html
@@ -288,6 +316,7 @@ With these two steps, we have all we need for angular to build the Form control 
 Modify the template-fm.html template form code as follows.
 	   
 
+_template-fm.html_
 ```html
 <div class="row">
   <div class="md-col-12">
@@ -325,13 +354,14 @@ Note the {{f.value | json }}, this uses a pipe (previously a filter) to take the
 If you run the code at this point, you will see a data structure with our values displayed at the bottom. They will
 change as you type.
 
-Note however..that at this point, there is nothing going on in the controller.
+Note however..that at this point, there is no data being sent to the component.
 
 ![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form1.png "Form")
 
 
 We can pass on the data to the component through an onSubmit function.
-In template-fm.component.ts add:
+
+In _template-fm.component.ts_ add:
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -355,12 +385,14 @@ export class TemplateFmComponent implements OnInit {
 }
 ```
 
-Once you click submit, you will see the values.
+Once you click _submit_, you will see the values.
 
 
 Now lets add some css/ngIf templating code to make validation work.
 
 Just replace the form code with the following, and we will step through whats going on.
+
+_template-fm.html_
 
 ```html
 <div class="row">
@@ -450,7 +482,7 @@ Lets look at all the code in the phone input at once.
       </div>
  ```
 
-First, we expose the formControl to a local acess with _#phone=phone_.  You could probably access everything through #f, but this
+First, we expose the formControl to a local acess with _#phone=ngModel_.  You could probably access everything through #f, but this
 does make things a little easier.  There are really lots of ways to do this, but this is about as "templatey" as it gets.
 
 Now that we have access to the formControl with #phone, we can use it to decorate the form item with css.
@@ -459,7 +491,7 @@ The first class is :
 ```html
 <div class="form-group" [ngClass]="{ 'has-error' : (phone.invalid  && !phone.pristine) }">
 ```
-This is bootstrap specific and adds a wrapper class to the input if there is an error.
+'has-error' is bootstrap specific and adds a wrapper class to the input if there is an error.
 
 ```html
         <div *ngIf="phone.dirty">
@@ -551,8 +583,10 @@ export class TemplateFmComponent implements OnInit {
 }
 ```
 
-now change ngModel to bind to the individual properties
+Now change ngModel to bind to the individual properties. We are using the [] notation, so we will only read from user property. Changes
+in the form however will not be reflected immediately as a change of state in _user_.
 
+_template-fm.ts_
 ```html
 <div class="row">
   <div class="md-col-12">
@@ -618,7 +652,7 @@ now change ngModel to bind to the individual properties
 </div>
 ```
 
-note we have a little code at the bottom to inspect both the form model and the component model.
+Nte we have a little code at the bottom to inspect both the form model and the component model.
 
 When we start the app we see the defaults are filled from the component user property
 
@@ -634,7 +668,7 @@ If we click on the default button, the user and the form are set to the new valu
 ![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form6.png "Form"
 
 
-We could also write onSubmit to take the data as it and put it into user.  Exercise for the user.
+We could also write onSubmit to take the data as it and put it into user.  _Exercise for the user._
 
 The Interface approach is not needed, but seems to be a common pattern and would be super useful in our IDE.
 
@@ -647,20 +681,23 @@ This is mostly what you want to use.
 You have the option for [(ngModel)] as well.
 In this case, changes to the form will make changes in the user property as well.
 
-Not the best idea as you are now managing two sets of data. One in the form and now one in your component.
-There are valid uses for this Im sure, but none come to mind immediately. Perhaps to sync things
+Not the best idea as you are now managing two sets of data. 
+
+- The form group in the form pointed to by #f
+- The now two way property _user_
+
+
+There are valid uses for this I'm sure, but none come to mind immediately. Perhaps to sync things
 on the side or sync things that are not really inputs  (like a table in the form with a highlight).
 
-In all of these cases, you should consider an onChange or onClick binding instead
-
-
-
+In all of these cases, you should consider passing the value to the component via onClick or onChange rather
+that the two way binding.
 
 Other links
 
 Here is a good link that goes a little further into the template side.
 
-https://toddmotto.com/angular-2-forms-template-driven
+[Angular2 Template Forms](https://toddmotto.com/angular-2-forms-template-driven)
 
 
 [page 2](page2.md)
