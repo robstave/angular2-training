@@ -1,20 +1,39 @@
 # Forms
 
-Angular2 has pretty extensive framework support for forms. It defines a flexible and full API to handles the binding, validation,
-error handling and change tracking.  This is a good thing because most of our application is really just forms.
+Angular2 has pretty extensive framework support for forms. It defines a flexible and full API that handles the binding, validation,
+error handling and change tracking.  Great features since most of our application is really just a lot of forms anyways.
 
-Angular 1 dealt with forms using the ng-model. This provided a two-way binding that made it very
-easy to bind the view model to the controller.  The problem was that the controller scope is very tightly
-coupled to the view making testing difficult.  There are means to test it, but it requires the DOM, the 
-scope and is pretty much an end to end test.
+## Angular
 
-Angular2 provides two strategies for forms.  Template driven and reactive (model driven).  
+Angular 1 dealt with forms using the ng-model. This provided a two-way binding strategy that made it very
+easy to bind the view model to the controller.  The problem however is that the controller scope becomes tightly
+coupled to the view, making testing difficult.  There are means to test it, but it requires that you have
+access to the DOM and scope, and rendered templates. This pretty much means its going to be an end to end test.  
 
-Template driven is, in a way, similar to Angular1. There is an _ngModel_ and two way
-binding is still allowed. For many simple forms, this is easy enough to roll with.  
+The angular 1.x forms included a decent set of directives like _required_, _minlength_, and even regex valdiation are directives that are spliced
+into the form. You can set all kinds of rules that make it impossible for the user to submit data without
+having to write any real code.
 
-Reactive forms move out the complex validation from the template and into the model domain. This could be in the 
-template, but could really be anywhere. 
+However, as things get more complicated, you end up allowing data to get through to the controler "for consideration" where
+additional checking can be done and liberal sprinkling of "isOk()" checks are placed back into the form.
+
+What you end up with is something akin to a Rube Goldberg machine.  Very stateful, pretty untestable.
+
+## Angular 2
+
+Angular2 provides two strategies for forms.  _Template driven_ and _reactive_ (model driven).  
+
+Template driven is, in a way, similar to the way Angular1 is implemented. 
+
+There is an _ngModel_ and two way binding is still allowed. For many simple forms, this is easy enough to roll with.
+Much of the validation is still handed off to the 
+form template like the _required_ and _minlength_ of old. You have better access to the model however
+and less need to add _isOk()_ all over the place.
+
+
+Reactive forms move out the complex validation from the template and into the model domain. 
+To write testcases here, you do not need to have to have access to the rendered form. 
+The component can be tested directly without logic searching the dom and placing data in dom objects.
 
 
 Digging around on the interwebs, I found [this](http://stackoverflow.com/questions/39142616/angular2-forms-api-template-driven-or-reactive) on stacktrace.
@@ -23,30 +42,35 @@ Digging around on the interwebs, I found [this](http://stackoverflow.com/questio
 Template Driven Forms Features
 
 + Easy to use
-+ Suitable for simple scenarios and fails for complex scenarios
++ Suitable for simple scenarios but fails for complex scenarios
 + Similar to angular 1
 + Two way data binding(using [(NgModel)] syntax)
 + Minimal component code
-+ Automatic track of the form and its data(handled by Angular)
-+ Unit testing is another challenge
++ Automatic tracking of the form and its data (handled by Angular and its form utilities)
++ Unit testing is more complex.
 
 Reactive Forms Features
 
-+ More flexible, but needs a lot of practice.
-+ Handles any complex scenarios.
-+ No data binding is done(Immutable data model preferred by most developers)
++ More flexible, but has a steeper learning curve.
++ Handles complex scenarios.
++ No data binding is done (Immutable data model preferred by most developers)
 + More component code and less HTML markup
-+ Reactive transformations can be made possible such as
++ Reactive transformations are possible such as
   + Handling a event based on a debounce time
-  + Hanlding events when the components are distinct until changed
+  + Handling events when the components are distinct until changed
   + Adding elements dynamically
 + Easier Unit testing
 
 My two cents:
 As long as you can get a consistent look and feel, you can choose either.  Most of the documentation out there seems to
 riff off of the template based forms.  You can mix and match within an application so if a form outgrows its
-maintainability, just upgrade to reactive.  Ajax-like forms should strive to be reactive.  You just cant use both
+maintainability, just upgrade to reactive.  Ajax-like forms should strive to be reactive.  You just can't use both
 strategies in the same form.
+
+The moment your form starts to take on a "State" however...like for example a retail form where you chose a country/state
+and then have a tree of possibilities for visualization and validation, you are going to want to split that up.
+Let the view of the form be based only on the state of the data and let the valdiation happen on the events as they
+come in rather than a sum-total mishmash.
 
 Also, of all the code that has gone through alpha and beta changes, this is one of the high churners.  So there are lots of
 tutorials that are outdated.  They usually mention what release they are relevant too.
@@ -66,7 +90,9 @@ npm install ng2-bootstrap bootstrap --save
 
 ```
 
-Modify the app.module.ts to include  some bootstrap components
+Modify the app.module.ts to include  some bootstrap components:
+
+_app.module.ts_
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -102,8 +128,9 @@ import { ReactiveFmComponent } from './reactive-fm/reactive-fm.component';
 export class AppModule { }
 ```
 
-Open angular-cli.json and insert a new entry into the styles array
+Open angular-cli.json and add bootstrapcss to the styles array.
 
+_angular-cli.json_
 ```typescript
       "styles": [
         "styles.css",
@@ -112,9 +139,11 @@ Open angular-cli.json and insert a new entry into the styles array
 ```
 
 
+Now, lets set up the main view to have a tab for each form type.
 
-Edit the app.component.html to use the tab directive as so.
+Edit the app.component.html to use the _tab_ directive as so.
 
+_app.component.html_
 ```typescript
 <div class="container">
   <h1>Forms </h1>
