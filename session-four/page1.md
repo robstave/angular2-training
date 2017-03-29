@@ -298,7 +298,7 @@ change as you type.
 
 Note however..that at this point, there is nothing going on in the controller.
 
-![Form](https://github.com/robstave/angular2-training/blob/master/session-form/images/form1.png "Form")
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form1.png "Form")
 
 
 We can pass on the data to the component through an onSubmit function.
@@ -445,7 +445,7 @@ to false, but we can search for inividual error keys and use messages to associa
 the message from the group, but you could get it with the control as well.
 
 Once done, it will look as follows.
-![Form](https://github.com/robstave/angular2-training/blob/master/session-form/images/form2.png "Form")
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form2.png "Form")
 
 Angular1 had a great package called ng-messages that handled some of this really well. It was kinda like
 a wrapper that did the form control stuff and helped in the template code.  This does not exist in angular2, but be
@@ -594,15 +594,15 @@ note we have a little code at the bottom to inspect both the form model and the 
 When we start the app we see the defaults are filled from the component user property
 
 
-![Form](https://github.com/robstave/angular2-training/blob/master/session-form/images/form3.png "Form")
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form3.png "Form")
 
 If we change fields, the form changes, but the user does not in the component
 
-![Form](https://github.com/robstave/angular2-training/blob/master/session-form/images/form5.png "Form")
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form5.png "Form")
 
 If we click on the default button, the user and the form are set to the new value.
 
-![Form](https://github.com/robstave/angular2-training/blob/master/session-form/images/form6.png "Form"
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form6.png "Form"
 
 
 We could also write onSubmit to take the data as it and put it into user.  Exercise for the user.
