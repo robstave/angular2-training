@@ -683,7 +683,7 @@ In this case, changes to the form will make changes in the user property as well
 
 Not the best idea as you are now managing two sets of data. 
 
-- The form group in the form pointed to by #f
+- #f in the form (which is one way) 
 - The now two way property _user_
 
 

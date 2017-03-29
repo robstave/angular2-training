@@ -1,11 +1,11 @@
 # Reactive Forms
 
-From this point on we will be using the reactive-fm component to write examples.
+From this point on we will be using the reactive-fm component for our examples.
 
 First, we need to include the reactive forms module into our project.
 You can have both, but you can only use one strategy per form.
 
-In app.module.ts
+_app.module.ts_
 
 ```typescript
 ...
@@ -51,7 +51,7 @@ or
 
 Its a template form.  Behind the scenes, all the little angular2 gnomes are working hard and managing that ngModel
 
-if you have imported FormsModule and ReactiveFormsModule:
+If you have imported FormsModule and ReactiveFormsModule:
 
 ```
 import { FormsModule } from '@angular/forms';
@@ -69,10 +69,12 @@ Then these are still template forms
  <form [formGroup]="userForm">
  ```
  
+
+## Example
  
 Lets start out with our base form.  Paste into reactive-fm.html
 
-
+_reactive-fm.html_
 ```html
 <div class="row">
   <div class="md-col-12">
@@ -97,13 +99,13 @@ Lets start out with our base form.  Paste into reactive-fm.html
 ```
 
 There is nothing in here yet..just a form. 
-Also, to confuse things, there is a "form-control" class in the bootstrap. This is really only bootstrap for now, so ignore that.
+Also, to confuse things, there is a _form-control_ class in the bootstrap. This is really only bootstrap for now, so ignore that.
 
  
 
 ## Form Builder
 
-Since the Form groups and controls are not automatically generated, they are specified in the controller.
+Since the Form groups and controls are not automatically generated, they are specified in the component.
 This can be done with the objects themselves:
 
 ```typescript
@@ -121,6 +123,7 @@ This can be imported into our component and injected as needed.
 
 Populate the reactive-fm.component.ts with the following.
 
+_reactive-fm.component.ts_
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -198,9 +201,10 @@ At this point, we could unit test out component just fine. We will do that in a 
  
 ```
 
-TODO...explain
+So what we have done, for the most part is declare the form control first in the component.  Its Independant and we do not
+even have to have the html sitting around to test things.
 
-TODO: do a console in the submit
+When we build the form, we then bind the inputs to the alread defined form controls.
 
 Lets redo this  similar to the first form
 
@@ -254,10 +258,16 @@ Lets redo this  similar to the first form
 </div>
 ```
  
- 
- 
- 
- now lets add some validators
+We still have the error messages, but it is not really a two way thing.
+Changes in input are passed to the formControl where they are validated, and the result is passed back in:
+
+```typescript
+[formGroup]="userForm"
+```
+
+ ## Adding Validators
+
+ Lets add some validators
  
  ```bash
  $ ng generate service shared/validation
@@ -305,13 +315,16 @@ export class ValidationService {
 ```
 
 
- 
+Here we have 3 validators.
 
- 
- 
- ----
- 
- ```typescript
++ Check if the use is named nate
++ Regex check for eamil
++ Regex check for phone number
+
+
+To use then, we just pass them in the formm builder.
+
+```typescript
    constructor(private formBuilder: FormBuilder) {
 
 
@@ -321,9 +334,10 @@ export class ValidationService {
       'phone': ['', [Validators.required, ValidationService.phoneValidator]]
     });
    }
-```html
+```
    
-   ----
+
+The results are reflected in the Form Group.
    
 ```html   
 <div class="row">
@@ -375,13 +389,13 @@ export class ValidationService {
 </div>
 ```
  
- The shared validator came from [this example](https://coryrylan.com/blog/angular-form-builder-and-validation-management)
- some of the things seem depricated, but the is a component that quickly finds the message to output from 
- an invalid message.  Worth a look if this template looks a little lengthy.
- 
+You can quickly build a library of messages as well so that you are not always pasting in error messages.
+An example of that is [this example](https://coryrylan.com/blog/angular-form-builder-and-validation-management).
   
-  Other links
-  https://scotch.io/tutorials/using-angular-2s-model-driven-forms-with-formgroup-and-formcontrol
+ 
+Further Reading:
+
+  [Scotch.io](https://scotch.io/tutorials/using-angular-2s-model-driven-forms-with-formgroup-and-formcontrol)
   
  
   
