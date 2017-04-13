@@ -104,15 +104,15 @@ _reactive-fm.html_
 
 There is nothing in here yet, just an html form.
 
-Also, to confuse things, there is a _form-control_ class in the bootstrap. This is really only bootstrap for now, so ignore that.
+Also, to confuse things, there is a bootstrap class called _form-control_. This is really only bootstrap for now, so ignore that.
 
  
 
 ## Form Builder
 
-Since the Form groups and controls are not automatically generated, they are specified in the component.
-This can be done with the objects themselves:
+With the _reactive_ approach, form groups and controls are are specified first in the component.
 
+Here is an example.
 ```typescript
 this.myGroup = new FormGroup({
     name: new FormControl('Fred'),
@@ -121,10 +121,10 @@ this.myGroup = new FormGroup({
   });
 ```
   
-Or we can use the [Form Builder](https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html)
+Or we can use a helper called the [Form Builder](https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html)
 
-The form builder helps us build up the data structure a little easier.
-This can be imported into our component and injected as needed.
+For example, lets inject the helper into our component and use to generate our
+form control.
 
 Populate the reactive-fm.component.ts with the following.
 
@@ -133,7 +133,6 @@ _reactive-fm.component.ts_
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import {User} from './user.interface'
 
 @Component({
   selector: 'app-reactive-fm',
@@ -160,11 +159,11 @@ export class ReactiveFmComponent implements OnInit {
 }
 ```
 
-The first thing here is that we are importing the FormBuilder and injecting it into the component in the constructor.
+The first thing here is that we are importing the FormBuilder and injecting it into the component in the constructor.  Then later we use the helper.
 
 The syntax here is an array of values.  They could be :
 
-```json
+```typescript
       'aaa': 'aValue'  // just a value
       'email': ['', Validators.required],  //init as empty string and add a validator
       'phone': ['', [Validators.required, Validators.minValue(3)] //init as empty string and add 2 validators
@@ -174,7 +173,7 @@ With our case, we are starting with the packaged Validators and the same code.
 
 At this point, we could unit test out component just fine. We will do that in a further section
 
-
+_reactive-fm.component.html_
 ```html
 <div class="row">
   <div class="md-col-12">
@@ -263,8 +262,8 @@ Lets redo this  similar to the first form.
 </div>
 ```
  
-We still have the error messages, but it is not really a two way thing.
-Changes in input are passed to the formControl where they are validated, and the result is passed back in:
+Validation occurs in the form group as the values that were bound to the controls are modified.
+The result is accessable in the formGroup with was enabled with the following line:
 
 ```typescript
 [formGroup]="userForm"
@@ -289,7 +288,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ValidationService {
 
-  constructor() { }
+  
 
   static nateValidator(control) {
     if (control.value !== "nate") {
@@ -316,6 +315,8 @@ export class ValidationService {
     }
   }
 
+  constructor() { }
+
 }
 ```
 
@@ -327,9 +328,14 @@ Here we have 3 validators.
 + Regex check for phone number
 
 
-To use then, we just pass them in the formm builder.
+To use then, we just pass them in the form builder.
 
 ```typescript
+
+import { ValidationService } from '../shared/validation.service';
+
+...
+
    constructor(private formBuilder: FormBuilder) {
 
 
