@@ -37,12 +37,13 @@ then bound to the template via [formControl] and [formGroup] rather than having 
 
 
 
-This allows us a much higher degree of flexibility. We can even have things that are not
-in the form at all to start with in the case of something like a dynamically created form.   
+This allows us a much higher degree of flexibility. 
+The logic is pure javascript and does not depend on html or a template to do any validation.
+ 
 
 So how exactly do you specify Template vs Reactive?
 
-if you have imported FormsModule...that is:
+If you have imported FormsModule...that is:
 
 ```
 import { FormsModule } from '@angular/forms';
@@ -58,28 +59,16 @@ or
 <form  #f="ngForm">
 ```
 
-Its a template form.  Behind the scenes, all the little angular2 gnomes are working hard and managing that ngModel
+Then it is a template form.  Behind the scenes, all the little angular2 gnomes are working hard and managing that ngModel.
 
-If you have imported FormsModule and ReactiveFormsModule:
+
+On the other hand, if you have imported _ReactiveFormsModule_:
 
 ```
-import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
 ```
-
-Then these are still template forms
-```html
- <form>
-```
-
-or
-
-```html
- <form #f="ngForm">
-```
-
- and this is a reactive form.
+ 
+ then  this is a reactive form.
 ```html
  <form [formGroup]="userForm">
  ```
@@ -222,7 +211,7 @@ even have to have the html sitting around to test things.
 
 When we build the form, we then bind the inputs to the alread defined form controls.
 
-Lets redo this  similar to the first form
+Lets redo this  similar to the first form.
 
 ---
 
@@ -406,7 +395,7 @@ The results are reflected in the Form Group.
 ```
  
 You can quickly build a library of messages as well so that you are not always pasting in error messages.
-An example of that is [this example](https://coryrylan.com/blog/angular-form-builder-and-validation-management).
+An example can be found [here](https://coryrylan.com/blog/angular-form-builder-and-validation-management).
   
  
 Further Reading:
