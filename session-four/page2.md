@@ -28,10 +28,10 @@ a little different.
 There are still FormGroups and FormControls, but they are defined in the component and 
 then bound to the template via [formControl] and [formGroup] rather than having the template define the form controls. 
 
-**Template renders group and controls from form**
+**Template form renders group and controls from form elements in the dom**
 ![Template](https://github.com/robstave/angular2-training/blob/master/session-four/images/renders.png "Template")
 
-**Reactive declares group and controls in component and binds to form**
+**Reactive form requires declared group and controls in the component and binds to form elements in the dom**
 ![Reactive](https://github.com/robstave/angular2-training/blob/master/session-four/images/bound.png "reactive")
 
 
