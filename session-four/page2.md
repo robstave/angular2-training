@@ -28,6 +28,12 @@ a little different.
 There are still FormGroups and FormControls, but they are defined in the component and 
 then bound to the template via [formControl] and [formGroup] rather than having the template define the form controls. 
 
+
+![Template](https://github.com/robstave/angular2-training/blob/master/session-four/images/bound.png "Bound")
+
+
+![Reactive](https://github.com/robstave/angular2-training/blob/master/session-four/images/renders.png "Reactive")
+
 This allows us a much higher degree of flexibility. We can even have things that are not
 in the form at all to start with in the case of something like a dynamically created form.   
 
@@ -62,8 +68,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 Then these are still template forms
 ```html
  <form>
+```
+
+or
+
+```html
  <form #f="ngForm">
 ```
+
  and this is a reactive form.
 ```html
  <form [formGroup]="userForm">
@@ -98,7 +110,8 @@ _reactive-fm.html_
 </div>
 ```
 
-There is nothing in here yet..just a form. 
+There is nothing in here yet, just an html form.
+
 Also, to confuse things, there is a _form-control_ class in the bootstrap. This is really only bootstrap for now, so ignore that.
 
  

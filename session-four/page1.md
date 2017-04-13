@@ -665,7 +665,7 @@ If we change fields, the form changes, but the user does not in the component
 
 If we click on the default button, the user and the form are set to the new value.
 
-![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form6.png "Form"
+![Form](https://github.com/robstave/angular2-training/blob/master/session-four/images/form6.png "Form")
 
 
 We could also write onSubmit to take the data as it and put it into user.  _Exercise for the user._
