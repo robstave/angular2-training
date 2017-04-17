@@ -172,9 +172,9 @@ RxJS provides a [very deep toolbox](https://gist.github.com/btroncone/d6cf141d6f
 
 Further Reading:
 
- * (Observables and RXJS)[https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/]
- * (Angular 2 — Introduction to new HTTP Module)[https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt]
- * (Taking advantage of Observables in Angular2)[https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html]
+ * [Observables and RXJS](https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/)
+ * [Angular 2 — Introduction to new HTTP Module](https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt)
+ * [Taking advantage of Observables in Angular2](https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html)
 
 If you have a few evenings to spare, its totally worth it to do this self guided workshop.
  
@@ -191,9 +191,10 @@ and then perhaps tear [this Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/) 
 
 # Http
 
+Now that we have done the nickle tour of observables and RxJS, lets dive into an HTTP example.
+
 The [Http](https://angular.io/docs/ts/latest/guide/server-communication.html) code in angular is split out to a separate module and needs to be imported into your application. It is no
-longer a part of the core. All projects generated with angular-cli however still include it, so there is nothing
-particularly special we need to add here.
+longer a part of the core. All projects generated with angular-cli however still include it, so there is nothing particularly special we need to add here.
 
 
 ## Simple Http Request
