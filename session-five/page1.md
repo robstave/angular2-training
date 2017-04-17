@@ -1,42 +1,49 @@
 # Observables and Http
 
-Javascript has several ways of handling Asynchronous problems.
+Javascript has several ways of handling asynchronous issues.
 The basic problem that a web browser is trying to solve is how to 
 orchestrate all the data that it polls from the web into a single
 presentation that could be as powerful as the answer to the meaning 
-of life or as meaningless as a Monty Python tribute to the movie, 'The Meaning of Life'.
+of life, or as meaningless as a Monty Python tribute to the movie, 'The Meaning of Life'.
 
-The most common problem is handling HTTP requests/responses.
-You don't really want to wait for the response. Its better to have a callback
-to handle your processing when things are ready. You also need to correlate the requests and the responses.
-If you have even tried your hand at node programming,  it becomes apparent that its pretty easy to find yourself in what is aptly called [Callback Hell](http://callbackhell.com/).
+The most common task is handling HTTP requests/responses asynchronously.
+
+You can't just wait for each response one at a time. Its better to have a callback
+to handle your processing when things are ready. You also need to correlate the requests and the responses. But what about the cases where you need three calls to the database
+so you can build the next two requests and so on.
+
+If you have even tried your hand at node programming,  it becomes apparent by they 
+call the usual approach to these problems as [Callback Hell](http://callbackhell.com/).
 
 Good programming practices only do so much and the way you fundamentally approach the problem
 sometimes just lends itself to a better way of doing things.
 
 [Promises](https://www.promisejs.org/) are good. They pretty much handle what you
-were doing with all those pesky error cases and the like. They seemed to be the new
-hotness and as its own package $q then wereused with $http in angular1.x.
+were doing with all those pesky error cases and the like. They were used pretty extensively
+in angular1.5 with $q and $http packages.
 
 I started in angular1.2 and had used [ngResource](https://docs.angularjs.org/api/ngResource) which
-kinda implemented some of what promises provided, but were really just a wrapper with success and error callbacks. No
-cancel capability.  It works ok for the straightforward cases.
+kinda implemented some of what promises provided, but were really just a wrapper with success and error callbacks. No cancel capability.  It works ok for the straightforward cases.
 
-Observables are the new new hotness and are preferred by Angular2.  Things like debounce and filtering out similar requests make it a good choice if you are considering
+Observables are the new hotness and is preferred by Angular2 folks.  Things like debounce and filtering out similar requests make it a good choice if you are considering
 any kind of ajaxy-responsive coolness like lookahead text boxes.  
 
 ## Reactive Programming
 So what is reactive programming?
 
-
 > Reactive programming is programming with asynchronous data streams.
 
-Everything is a stream.  Lots of map, reduce stuff.  Think the Observer pattern, the Iterator pattern and general funcitonal programming
+Everything is a stream.  Lots of map, reduce stuff.  Think the Observer pattern, the Iterator pattern and general functional programming
 all rolled into one.  
+
+The approach to solving the problem is not so much writing instructions
+on how you would tell somebody to run around a workshop and put something together. Instead, think
+of it more like a group of workers on an assembly line, each responsible for 
+a single task like combining data, transforming it, filtering it and so on.
 
 A great reference is [here](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 
-Most angular2 tutorials do not dive all that deeply into the details up front.  They pretty much explain how it works and
+Alas, most angular2 tutorials do not dive all that deeply into the details up front.  They pretty much explain how observables work and
 then wrap it around some HTTP code and say "See...neat!".  Truth is, 90% of what we do will look like:
 
 ```typescript
@@ -49,10 +56,13 @@ then wrap it around some HTTP code and say "See...neat!".  Truth is, 90% of what
 
 We will cover the basics, but I will try and leave as many good links as possible for you to dive deeper.
 
+## RxJS
+
 The main library behind all of this is [RxJS](http://reactivex.io/). This stands for Reactive eXetensions for JavaScript.
 Specifically, RxJS version 5. So keep that in mind when looking at examples on the web as it is
-a bit of a rewrite as well.
+a bit of a rewrite as well and some examples might be kinda old.
 
+From the [RxJS](http://reactivex.io/) site:
 > RxJS is a library for composing asynchronous and event-based programs by using observable sequences. 
 > It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects) and operators 
 > inspired by Array#extras (map, filter, reduce, every, etc) to allow handling asynchronous events as collections.
@@ -62,17 +72,17 @@ a bit of a rewrite as well.
 > ReactiveX combines the Observer pattern with the Iterator pattern and functional programming with collections to fill the need for an ideal way of 
 > managing sequences of events.
 
-From the [RxJS](http://reactivex.io/) site.
-
  
-You can create streams (which implement Observable) and then subscribe to those streams to react to them.
-When you subscribe, you provide three functions: onNext, onError and onComplete.
+With RxJS, you can create streams (which implement Observable) and then subscribe to those streams to react to them.
+When you subscribe, you provide three functions: **onNext**, **onError** and **onComplete**.
 
 You are using [pure](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.162sbqdgo)
-functions, which means your not changing the data and there are no side effects
-(doesn't matter if you do it on a tuesday or 4 times in a row).  Just like a regular math function.
+functions, which means your not changing the data and there are no side effects.  Just like a regular math function.
 
-Finally, they are lazy.  You can set up a stream, but nothing happens unless you subcribe.
+For example, Y = X + 1 is pure...it does not mess with X.  Z = Y*3 is as well.  If X starts out as 3, then Y=4 and Z=8.  But X is still
+3 when we are done.  X++ would not be pure because the value of X has changed.
+
+Finally, streams are lazy.  You can set up a stream, but nothing happens unless you subscribe.
  
 Here is a super simple example:
 (note, Im using jsBin for this)
@@ -128,7 +138,7 @@ We have added a new operator _Take_.  This limits our stream to x items...then s
 
 Now we see the _onCompleted_ event.
 
-We can do a [map](http://reactivex.io/documentation/operators/map.html) as well.
+We can do a [map](http://reactivex.io/documentation/operators/map.html) as well. Maps transform data.  Lets transform numbers to words.
 
 ```typescript
 const source = Rx.Observable
@@ -140,7 +150,7 @@ source.subscribe(val => console.log(val),
                 () => console.log("onCompleted"))
 ```				
 		
-We can transform the values with a map function.
+We see the results:
 
 ```		
 "Beans"
@@ -152,26 +162,19 @@ We can transform the values with a map function.
 "onCompleted"
 ```
 
-  See [JSBin](http://jsbin.com/fapamuc/edit?html,js,console,output)
+See [JSBin](http://jsbin.com/fapamuc/edit?html,js,console,output)
 
+[Here](http://embed.plnkr.co/ZRxNQfB0DEuUNNlhlScU/preview) is another plunker that is done in angular2 that is similar to the above exercise.  Its basically the same exercise, but you can see it in the context of Angular.
 
+## Further Reading
 
-Here is an excellent list of the operations you can use.
+RxJS provides a [very deep toolbox](https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35#file-rxjs_operators_by_example-md) of operations that you can work with.  
 
-https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35#file-rxjs_operators_by_example-md
+Further Reading:
 
-See Also:
-
- * https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/
- * https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
- * https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html
-
-Other cool plunkers:
-
- * http://embed.plnkr.co/ZRxNQfB0DEuUNNlhlScU/preview
- 
-
-## On your own
+ * (Observables and RXJS)[https://codecraft.tv/courses/ng2/reactive-programming-with-rxjs/observables-and-rxjs/]
+ * (Angular 2 — Introduction to new HTTP Module)[https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt]
+ * (Taking advantage of Observables in Angular2)[https://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html]
 
 If you have a few evenings to spare, its totally worth it to do this self guided workshop.
  
@@ -189,7 +192,7 @@ and then perhaps tear [this Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/) 
 # Http
 
 The [Http](https://angular.io/docs/ts/latest/guide/server-communication.html) code in angular is split out to a separate module and needs to be imported into your application. It is no
-longer a part of of the core. All projects generated with angular-cli however still include it, so there is nothing
+longer a part of the core. All projects generated with angular-cli however still include it, so there is nothing
 particularly special we need to add here.
 
 
@@ -578,7 +581,7 @@ Also, switchMap cancels out old calls.  Finally we make the call.
 
 * What about the subscribe?*
 
-You could subcribe to the results and put the results in this.items.
+You could subscribe to the results and put the results in this.items.
 Or...Let angular handle it.
 
 Notice the async pipe. Thats doing the subscribe for you.
