@@ -191,7 +191,11 @@ and then perhaps tear [this Plunkr apart](http://jsfiddle.net/staltz/8jFJH/48/) 
 
 # Http
 
-Now that we have done the nickle tour of observables and RxJS, lets dive into an HTTP example.
+Now that we have done the nickle tour of observables and RxJS, lets dive into TWO HTTP examples.
+
+The first is a simple page that gets data from a remote server and the second is a look ahead text box.
+
+## Http module in NG2
 
 The [Http](https://angular.io/docs/ts/latest/guide/server-communication.html) code in angular is split out to a separate module and needs to be imported into your application. It is no
 longer a part of the core. All projects generated with angular-cli however still include it, so there is nothing particularly special we need to add here.
@@ -224,6 +228,7 @@ ng serve
 
 We will start out just laying out the entire code in one swoop.
 
+_app.module.tx_
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -250,7 +255,6 @@ export class AppModule { }
 ```
 
 There is nothing that you need to change here, angular-cli took care of that.
-
 
 
 Point the _app.component.html_ template to our new component.
@@ -369,16 +373,14 @@ Or
  this.http.request(usersUrl).map(response => response.json()).subscribe(result => { this.data = result })
 ```
 
-Depending on if you want to subscribe to a stream of Responses that you convert or a stream of json data.
- 
-
-## Http.request
-
-The interface for the http.request is explained in the source code.  One thing to get used to in the 
-npm world is browsing the source code
+Depending on if you want to subscribe to a stream of responses or a stream of json data.
 
 
-Lets check out the code
+## Http.request api
+
+The interface for the http.request is explained in the source code.  One thing to get used to in the npm/angular world is browsing the source code.  If you have an ide like Visual code, you should be able to click into the http call directly.
+
+Lets check out the code:
 
 ```typescript
   /**
@@ -411,8 +413,10 @@ In our case, we just passed the url string, however there are several ways to us
 Also, we never really specified "GET", but there it is in the code as a default.
 
 
-If you wanted something else, you would need to pass it in the options. For example if you wanted to specify PUT, you would need 
+If you wanted a different operation, you would need to pass it in the options. For example if you wanted to specify PUT, you would need 
 to add that [RequestMethod](https://angular.io/docs/ts/latest/api/http/index/RequestMethod-enum.html) in the args.
+
+Here is the interface for the RequestOptionsArg.
 
 ```typescript
 interface RequestOptionsArgs {
@@ -428,7 +432,6 @@ interface RequestOptionsArgs {
 
 
 ## request parameters
-
 
 The Http.request method takes an object that implements [RequestOptionsArgs](https://angular.io/docs/ts/latest/api/http/index/RequestOptionsArgs-interface.html)
 as a second parameter.
@@ -460,13 +463,14 @@ The search field of that object can be used to set a string or a URLSearchParams
 
 So we see that we are adding the parameters to the url just fine.
 Of course...we are getting a 304.  
-This is not a biggee. It means that server is telling you, hey its still the same value as last time. Take a picture it will last longer.
 
+This is not a biggee. It means that the server is telling you, hey its still the same value as last time. Take a picture it will last longer.
 
 Kinda annoying.  Its not a very complicated server and the code is not complicated.
 
-We could create an incr timestamp and that would make the  url of every request unique.
-Maybe we can solve it with a header?
+We could create an incr timestamp and that would make the url of every request unique.
+
+Lets see if we can solve it with a header?
 
 (Im making lemonade from lemons with this exercise)
   
@@ -512,9 +516,8 @@ gets a little more verbose when the requests are more than plain text.
 
 Still, we see our headers, so we learned something. Move on.
 
-*Protip* Do not use _password_ for your _session-token_
+**Protip:** Do not use _password_ for your _session-token_
  
-  
 
 ### Other Header strategies
 
@@ -526,21 +529,21 @@ so a better strategy will be to extend HTTP in some way.
 
 Some links that dive deeper are:
 
- * http://stackoverflow.com/questions/34464108/angular2-set-headers-for-every-request
- * https://github.com/auth0/angular2-jwt
- * http://stackoverflow.com/questions/39675806/how-to-extend-angular-2-http-class-in-angular-2-final
+ * [Set Headers for every Request in Angular](http://stackoverflow.com/questions/34464108/angular2-set-headers-for-every-request)
+ * [Extending http class in angular2](http://stackoverflow.com/questions/39675806/how-to-extend-angular-2-http-class-in-angular-2-final)
   
 
 # Second example
 
-A second example is included in this session code directory.
-It demonstrates a ajax lookahead strategy using Observables and the wikipedia api.
+A second example demonstrates a ajax lookahead strategy using Observables and the wikipedia api.
 
-[Plunkr](http://embed.plnkr.co/GNi2FVAofVEzSUQ8kEYY/) 
+It is included in this session code directory, however, its probibly easier to follow the  
+[Plunkr](http://embed.plnkr.co/GNi2FVAofVEzSUQ8kEYY/).
 
 
-The takeaway code here is the service that gets the data and the input whose
-action spurs the lookup.
+The takeaway code snippets here are: 
+ * the service that gets the data and 
+ * the input whose action spurs the lookup.
 
 ```typescript
   public search(term: string) {
@@ -554,10 +557,8 @@ action spurs the lookup.
   }
 ```
 
-The service sets the search parms and calls the API.  The response comes back as JSONP which
-means json with padding.  Basically a way around cross domain browser checks.
-
-http://stackoverflow.com/questions/3839966/can-anyone-explain-what-jsonp-is-in-layman-terms
+The service sets the search parms and calls the API.  The response comes back as [JSONP](http://stackoverflow.com/questions/3839966/can-anyone-explain-what-jsonp-is-in-layman-terms) which
+means json with padding.  Basically, a way around those pesky cross domain browser checks.
 
 The data returned is an array and we pull out the [1] piece of data with out search results.
 
@@ -570,20 +571,16 @@ The data returned is an array and we pull out the [1] piece of data with out sea
                  .switchMap(term => this.wikiService.search(term));
 ```
 
+As you can see above, we are using a few more of those tools in the RxJS toolbox.
+
+* Debounce time adds a debounce to the input stream. We do not want to take action until 400 ms after a key is pressed.
+* _distinctUntilChanged_ filters out repeats in the input stream
+* Switchmap cancels out old calls (short answer). [Long answer is better described here](https://medium.com/@w.dave.w/becoming-more-reactive-with-rxjs-flatmap-and-switchmap-ccd3fb7b67fa)
 
 
-todo  expain
-expain switchmap
-=======
-In this part, we are using the form Control and listening to changes.
-If there is a  change, we debounce 400 ms...and we ignore repeats with _distinctUntilChanged_.
-Also, switchMap cancels out old calls.  Finally we make the call.
-
-
-* What about the subscribe?*
-
-You could subscribe to the results and put the results in this.items.
-Or...Let angular handle it.
+Finally, notice that there is no subscribe here.  If we do not subscribe, how do we 
+get the data?  In this case, the code is doing something a little different, but common
+in Angular code.
 
 Notice the async pipe. Thats doing the subscribe for you.
 
@@ -600,13 +597,8 @@ Notice the async pipe. Thats doing the subscribe for you.
 
 Related links:
 
-https://jaxenter.com/reactive-programming-http-and-angular-2-124560.html
-
-https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt
-
-https://angular.io/docs/ts/latest/guide/server-communication.html  map
-
-
-http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/
-
-https://www.learnrxjs.io/operators/transformation/switchmap.html
+* [Reactive programming, HTTP and Angular 2](https://jaxenter.com/reactive-programming-http-and-angular-2-124560.html)
+* [Intro to Http Module](https://medium.com/google-developer-experts/angular-2-introduction-to-new-http-module-1278499db2a0#.sw9e772vt)
+* [HTTP Client in Angular.io](https://angular.io/docs/ts/latest/guide/server-communication.html) 
+* [Groking RxJs](http://blog.danlew.net/2014/09/22/grokking-rxjava-part-2/)
+* [Learn RxJS - Switchmap](https://www.learnrxjs.io/operators/transformation/switchmap.html)
