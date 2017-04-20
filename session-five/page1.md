@@ -84,6 +84,7 @@ When you subscribe, you provide three functions: **onNext**, **onError** and **o
      function(){/*do onCompleted Stuff*/}) );
 ```
 
+You can then chain all sorts of operations within the stream to do things like create observables, filter, transform, combine and so on. There is a [pretty big list](http://reactivex.io/documentation/operators.html) of operators to choose from.
 
 
 You are using [pure](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.162sbqdgo)
@@ -119,7 +120,10 @@ In this example, we create the stream with the Rx.Observable and add the operato
 
 It just keeps going and going. 
 
-You can see that it does not stop.  You will not see the _onCompleted_ event.  Lets limit the stream with a stopping point.
+
+### RxJs Take
+
+You can see that it does not stop.  You will not see the _onCompleted_ event.  Lets limit the stream with a stopping point.  We will use [take](http://reactivex.io/documentation/operators/take.html).
 
 
 ```typescript
@@ -132,7 +136,7 @@ var subscription = source.subscribe(
 ```
 see [JSBin](http://jsbin.com/tizoduy/edit?html,js,console)
 
-We have added a new operator _Take_.  This limits our stream to x items...then stops the stream
+We have added a new operator _Take_.  This limits our stream to x items...then stops the stream.
 
   
 ```
@@ -146,6 +150,8 @@ We have added a new operator _Take_.  This limits our stream to x items...then s
 ```
 
 Now we see the _onCompleted_ event.
+
+### Map
 
 We can do a [map](http://reactivex.io/documentation/operators/map.html) as well. Maps transform data.  Lets transform numbers to words.
 
@@ -174,6 +180,41 @@ We see the results:
 See [JSBin](http://jsbin.com/fapamuc/edit?html,js,console,output)
 
 [Here](http://embed.plnkr.co/ZRxNQfB0DEuUNNlhlScU/preview) is another plunker that is done in angular2 that is similar to the above exercise.  Its basically the same exercise, but you can see it in the context of Angular.
+
+###  Zip
+
+Here is an operation that makes total sense for anybody that has done async programming.
+You have to wait for the results of a pair of calls....and they can really come in any order.
+
+You need to match them up and output the results together.
+
+You can use [zip](http://reactivex.io/documentation/operators/zip.html) for this.
+
+```typescript
+var sourceOne = Rx.Observable.fromArray([1,2,3]);
+var sourceTwo = Rx.Observable.fromArray([10,20,30]);
+
+const example = Rx.Observable
+  .zip(
+    sourceOne,
+    sourceTwo 
+  );
+const subscribe = example.subscribe(val => console.log(val));
+```
+
+In this case we have two observables.  One is outputing `1 -> 2 -> 3` and the other is outputing `10 -> 20 -> 30`
+
+Zip subscribes to both the streams and outputs and array of the values the moment they
+all match up.
+
+```
+[1, 10]
+[2, 20]
+[3, 30]
+```
+The [JSBin is here](http://jsbin.com/vusocuy/edit?html,js,console)
+
+
 
 ## Further Reading
 
