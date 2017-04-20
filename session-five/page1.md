@@ -76,13 +76,28 @@ From the [RxJS](http://reactivex.io/) site:
 With RxJS, you can create streams (which implement Observable) and then subscribe to those streams to react to them.
 When you subscribe, you provide three functions: **onNext**, **onError** and **onComplete**.
 
+
+```typescript
+  var subscription = source.subscribe(
+     function(x){/*do onNext Stuff*/}),
+     function(e){/*do onError Stuff*/}),
+     function(){/*do onCompleted Stuff*/}) );
+```
+
+
+
 You are using [pure](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.162sbqdgo)
 functions, which means your not changing the data and there are no side effects.  Just like a regular math function.
 
-For example, Y = X + 1 is pure...it does not mess with X.  Z = Y*3 is as well.  If X starts out as 3, then Y=4 and Z=8.  But X is still
-3 when we are done.  X++ would not be pure because the value of X has changed.
+For example, `Y=X+1` is pure...it does not mess with X.  `Z=Y*3` is as well.  
+
+If X starts out as 3, then Y=4 and Z=8.  But X is still 3 when we are done.  
+
+A function like `X=X+1` would not be pure because the value of X has changed.
 
 Finally, streams are lazy.  You can set up a stream, but nothing happens unless you subscribe.
+
+### Example with Interval
  
 Here is a super simple example:
 (note, Im using jsBin for this)
@@ -97,18 +112,12 @@ var subscription = source.subscribe(
   () => console.log('onCompleted'));
 ```
 
-In addition, we can register a catch callback directly on the observable.
-
-```typescript
-observable.catch((error) => {
-  // handle error
-});
-```
  
- see [JSBin](http://jsbin.com/yunoka/edit?html,js,console)
+ see [JSBin for above example](http://jsbin.com/yunoka/edit?html,js,console)
 
-In this example, we create the stream with the Rx.Observable and add the operator [Interval](http://reactivex.io/documentation/operators/interval.html) which emits a number starting at 0 every 500ms.
-it just keeps going and going. 
+In this example, we create the stream with the Rx.Observable and add the operator [Interval](http://reactivex.io/documentation/operators/interval.html) which emits a number starting at 0 every 500ms.  Its the hello world of Observables.
+
+It just keeps going and going. 
 
 You can see that it does not stop.  You will not see the _onCompleted_ event.  Lets limit the stream with a stopping point.
 
