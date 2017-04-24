@@ -4,6 +4,8 @@ Now that we have done the nickle tour of observables and RxJS, lets dive into tw
 
 The first is a simple page that gets data from a remote server and the second is a look ahead text box.
 
+This tutorial assumes you know a little about http headers.
+
 ## Http module in NG2
 
 The [Http](https://angular.io/docs/ts/latest/guide/server-communication.html) code in Angular is now split out to a separate module and needs to be imported into your application. It is no longer a part of the core. 
@@ -187,7 +189,7 @@ Depending on if you want to subscribe to a stream of responses or a stream of js
 
 ## Http.request api
 
-The interface for the http.request is explained in the source code.  One thing to get used to in the npm/angular world is browsing the source code.  If you have an ide like Visual code, you should be able to click into the http call directly.
+The interface for the http.request is explained in the source code.  One thing to get used to in the npm/angular world is browsing the source code.  If you have an IDE like [Visual Code](https://code.visualstudio.com/), you should be able to click into the http call directly.
 
 Lets check out the code:
 
@@ -242,10 +244,19 @@ interface RequestOptionsArgs {
 
 ## request parameters
 
+Urls can have parameters in the address.  This is when you use something like.
+
+```
+http://stuff.com/api/users?name=fred&age=33
+```
+
+
 The Http.request method takes an object that implements [RequestOptionsArgs](https://angular.io/docs/ts/latest/api/http/index/RequestOptionsArgs-interface.html)
 as a second parameter.
 
 The search field of that object can be used to set a string or a URLSearchParams object.
+
+Lets get silly and add a few paramters, just to see them being built.
 
 ```typescript
     let params: URLSearchParams = new URLSearchParams(); //<--- Added
