@@ -2,9 +2,9 @@
 
 Now that we have done the nickle tour of observables and RxJS, lets dive into two HTTP examples.
 
-The first is a simple page that gets data from a remote server and the second is a look ahead text box.
+The first example is a simple page that gets data from a remote server. In it we will see that subcribe one liner in action.  In addition we will learn about the HTTP api and use it to send some parameters and header information. This tutorial assumes you know a little about http headers, at least what they are.
 
-This tutorial assumes you know a little about http headers.
+The second is a look ahead text box.  In that, we will play with the observables a bit more and show how to debounce input and filter out duplicates to make the rest calls a bit more intelligent.
 
 ## Http module in NG2
 
@@ -18,6 +18,7 @@ This example is somewhat similar to the one in NG book to start with.
 
 It makes use of a fake REST api called [jsonplaceholder](https://jsonplaceholder.typicode.com/). We can use this 
 as the rest endpoint for a series of live tests.  You can also download the code and run it locally.
+
 It basically is a simple node server serving up json from a file.
 
 Start out with the usual project and create a component called simpleComponent
@@ -38,6 +39,8 @@ ng serve
 ```
 
 We will start out just laying out the entire code in one swoop.
+
+Take a peek at app.module...but there is nothing we should have to change here.
 
 _app.module.ts_
 ```typescript
@@ -99,7 +102,7 @@ Here is the code for _simple-component.component.ts_
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 
 @Component({
   selector: 'app-simple-component',
@@ -114,31 +117,31 @@ export class SimpleComponentComponent implements OnInit {
   constructor(private http: Http) {
     this.http = http;
   }
-  
+
   onError = function (e) {
-    console.log("error", e);
+    console.log('error', e);
   }
 
-  //called unconditionally
+  // called unconditionally
   onComplete = function (url) {
-    console.log("Completed:" + url);
+    console.log('Completed:' + url);
   }
 
   makeRequest(id: number): void {
 
-    //clear data and loading
-    this.data = "";
+    // clear data and loading
+    this.data = null;
     this.loading = false;
 
-    let usersUrl = "http://jsonplaceholder.typicode.com/users"
+    let usersUrl = 'http://jsonplaceholder.typicode.com/users';
     if (id) {
-      usersUrl = usersUrl + "/" + id;
+      usersUrl = usersUrl + '/' + id;
     }
 
-    //start loading
+    // start loading
     this.loading = true;
 
-    //build request and subscribe to results.
+    // build request and subscribe to results.
 
     this.http.request(usersUrl)
       .subscribe((res: Response) => {
@@ -147,9 +150,11 @@ export class SimpleComponentComponent implements OnInit {
       },
       (error) => this.onError(error),
       () => this.onComplete(usersUrl)
-      
+
       );
   }
+
+
 
   ngOnInit() {
   }
@@ -217,9 +222,15 @@ Lets check out the code:
 
 In our case, we just passed the url string, however there are several ways to use this interface.
 
- * String url
- * Url and options
- * Request
+ * String url -  `this.http.request('http://www.whatever.com')`
+   - Always a get
+
+ * Url and options -  `this.http.request('http://www.whatever.com', options)`
+   - you could add request method to options here
+      say `options.method = RequestMethod.Post `
+
+ * Request -  `this.http.request(myRequestObject)`
+   - Everything in the object
 
 Also, we never really specified "GET", but there it is in the code as a default.
 
@@ -233,7 +244,8 @@ Here is the interface for the RequestOptionsArg.
 interface RequestOptionsArgs {
   url : string
   method : string|RequestMethod
-  search : string|URLSearchParams
+  search : string|URLSearchParams  //depricated
+  params : string|URLSearchParams
   headers : Headers
   body : any
   withCredentials : boolean
@@ -259,25 +271,51 @@ The search field of that object can be used to set a string or a URLSearchParams
 Lets get silly and add a few paramters, just to see them being built.
 
 ```typescript
-    let params: URLSearchParams = new URLSearchParams(); //<--- Added
-    params.set('food', "spam");//<--- Added
-    params.set('bakedBeans', "off");//<--- Added
+  makeRequestForElvis(): void {
 
-    //start loading
+    // clear data and loading
+    this.data = '';
+    this.loading = false;
+
+    const params: URLSearchParams = new URLSearchParams();
+    params.set('website', 'elvis.io');
+
+
+    const usersUrl = 'http://jsonplaceholder.typicode.com/users';
+
+    // start loading
     this.loading = true;
 
-    //build request and subscribe to results.
+    // build request and subscribe to results.
 
-    this.http.request(usersUrl, { search: params }) //<--- Added
+    this.http.request(usersUrl, { params: params })
       .subscribe((res: Response) => {
         this.data = res.json();
         this.loading = false;
       },
       (error) => this.onError(error),
       () => this.onComplete(usersUrl)
+
       );
   }
 ```
+
+
+In _simple-component.component.html_ we add a button
+
+```html
+<h2>Basic Request</h2>
+
+<button type="button" (click)="makeRequest(1)">Get user1</button>
+<button type="button" (click)="makeRequest(2)">Get user2</button>
+<button type="button" (click)="makeRequest()">Get All</button>
+<button type="button" (click)="makeRequestForElvis()">Get Elvis</button>
+
+
+<div *ngIf="loading">loading...</div>
+<pre *ngIf="data">{{data | json}}</pre>
+```
+
 
 ![Simple2](https://github.com/robstave/angular2-training/blob/master/session-five/images/simple2.png "Simple")
 
@@ -299,12 +337,20 @@ Lets see if we can solve it with a header?
 
 You can build headers into your Request object, or just pass them into that options arguement.
 
-Lets say we wanted to pass a "Session-token" as well.  One way to do this is as follows.
+Lets say we wanted to pass a few things in the header
+ - "Session-token" as a means to authenticate
+ - "Cache-Control" to "no-store" to fix that 304!!!
+
+ You could just make the modifications like this:
 
 ```typescript
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('food', "spam");
-    params.set('bakedBeans', "off");
+//dont forget to add to imports
+import { Http, Response, URLSearchParams, Headers } from '@angular/http';
+
+....
+
+  const params: URLSearchParams = new URLSearchParams();
+    params.set('website', 'elvis.io');
 
 
     let headers: Headers = new Headers(); //<--- Added
@@ -341,11 +387,9 @@ Still, we see our headers, so we learned something. Move on.
 
 ### Other Header strategies
 
-HTTP is extendible and is certainly a strategy we will be employing.  In any large project you will
-find yourself adding things like session tokens to the header on a regular basis.
+HTTP is extendible and is certainly a strategy we will be employing.  In any large project you will find yourself adding things like session tokens to the header on a regular basis.
 
-Angular1 had trick of just setting values in http._default.  Typescript does not really jive with this
-so a better strategy will be to extend HTTP in some way.  
+Angular1 had trick of just setting values in http._default.  Typescript does not really jive with this so a better strategy will be to extend HTTP in some way.  
 
 Some links that dive deeper are:
 
