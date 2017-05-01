@@ -40,8 +40,8 @@ number of complex scenarios including parallel views, route guarding services an
 
 Some good in depth articles are:
   * [An Introduction to the Futuristic New Router in AngularJS](https://www.sitepoint.com/introduction-futuristic-new-router-angularjs/) - Written 2015, but an excellent description of the problem space.
-  * [Angular 2 Router](https://vsavkin.com/angular-2-router-d9e30599f9ea#.5i7b9m80p) - Victor Savkin wrote it.  Great Blog.
-  * [Angular.io Router](https://angular.io/docs/ts/latest/guide/router.html) The Docs
+  * [Angular 2 Router](https://vsavkin.com/angular-2-router-d9e30599f9ea#.5i7b9m80p) - Victor Savkin wrote the the routing.  Great Blog.
+  * [Angular.io Router](https://angular.io/docs/ts/latest/guide/router.html) The Angular documentation.
 
 # Angular 2 Router
 
@@ -55,7 +55,7 @@ The three main items you need for basic routing are:
  
 ## Project
 
-We will create a small app to demonstrate routing that has 3 routes:  Home, about and users.
+We will create a small app to demonstrate routing with an app that has 3 routes:  **Home**, **about** and **users**.
 Start out the project with _angular-cli_. 
 
 ```bash
@@ -63,10 +63,10 @@ ng new simple-routes
 cd simple-routes
 ```
 
-Inspecting *app.module.ts* we see the http and forms are there...but no router. We will need to add this.
+Inspecting *app.module.ts* we see the http and forms are there, but no router. We will need to add this.
 
-_Router support was removed from angular-cli, so we will be doing this ourselves.
-This may change, but the router was still under so much development that they removed it for the time being_
+Router support was removed from angular-cli, so we will be doing this ourselves.
+This may change, but the router was still under so much development that they removed it for the time being.
 
 Our project will have a home, about and users so lets create those components.
 

@@ -153,7 +153,7 @@ Angular1.x relied on dependancy injection as well and had a similar approach.
 
 Useful Links:
 
- * https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html
+ * [Thoughtram on DI in Angular 2](https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html)
 
 
 
