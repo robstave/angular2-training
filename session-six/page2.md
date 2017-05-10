@@ -12,7 +12,7 @@ rather large.
 > 
 > Some developers skip the Routing Module (e.g., AppRoutingModule) when the configuration is simple and merge the routing configuration directly into the companion module (e.g., AppModule).
 
-So do we need to do this?  It sounds like its up to you, but if you have more that a simple app, its probibly not a bad idea.
+So do we need to do this?  It sounds like its up to you, but if you have more that a simple app, its probably not a bad idea.
 
 
 They do a refactor in the [Tour of Heros example](https://angular.io/docs/ts/latest/tutorial/toh-pt5.html), lets try that here.
@@ -46,7 +46,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
-Since we are exporting the RouterModule, we should be able to acccess it in other feature modules down the road.
+Since we are exporting the RouterModule, we should be able to access it in other feature modules down the road.
 Plus, this is imported into app.module.ts, so we can remove the imports from the main module and they still
 will be availible.
 
@@ -195,12 +195,13 @@ data as needed.
 In *app.modules.ts* we add
 
 ```typescript
-import { AppRoutingModule }     from './app-routing.module';
+import { UserDataService } from './services/user-data.service';
+
 ...
  providers: [ UserDataService ],
 ```
 
-So at this point, the service is availible for all the components.
+So at this point, the service is available for all the components.
 
 
 
