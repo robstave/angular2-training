@@ -108,14 +108,14 @@ For example:
 GET	/posts?userId=1
 ```
 
-We would like to add this functionality, but we have already copy/pasted that html code once. Lets refactor that while we are on a role.
+We would like to add this functionality, but we have already copy/pasted that html code once and there is no need to repeat ourselves. Plus, it would be nice to have the REST calls in their own service.  Lets refactor that as well.
 
 
 We will create the service to hold all the http stuff.  The steps will [look similar to the tour of heros](https://angular.io/docs/ts/latest/tutorial/toh-pt4.html)
 
 ```bash
 mkdir services
-ng generate services/userData
+ng generate service services/userData
 ```
 
 
@@ -136,7 +136,7 @@ Services in Angular are provided by [Dependancy Injection](https://angular.io/do
 The dependency comes from another source and can be declared on the fly. Behind that decorator is more code than we care to look at.
 
 Think about it, we will be needing the HTTP module, but we could be depending on any number of other services.
-Rather than declare that out, we will let angular figure it out.
+Rather than declare everything, we will let angular figure it out.
 
 > The consumer of an injected service does not know how to create that service. It shouldn't care. It's the dependency injection's job to create and cache that service.
 >
@@ -153,7 +153,7 @@ Angular1.x relied on dependancy injection as well and had a similar approach.
 
 Useful Links:
 
- * [Thoughtram on DI in Angular 2](https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html)
+* [Thoughtram on DI in Angular 2](https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html)
 
 
 
