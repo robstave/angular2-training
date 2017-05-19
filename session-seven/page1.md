@@ -306,19 +306,16 @@ describe('TestService', () => {
             expect(results[3]).toBe('bio');
         });
 
-
-
-    });
-});
-
-```
-
-
-```javascript
         it('should check even', () => {
 
             expect(myUtils.isEven(22)).toBe(true);
             expect(myUtils.isEven(23)).toBe(false)
 
         });
+
+    });
+});
+
 ```
+
+ 
