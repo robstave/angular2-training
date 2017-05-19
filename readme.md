@@ -93,10 +93,7 @@ and if anybody on the web finds them useful, let me know.
 
  
 
-## Session Seven - IDE debugging/Testing
+## [Session Seven](session-seven/readme.md) - Testing
  
 
-
-## Other?
-
-? Pipes, Bootstraping
+ 
