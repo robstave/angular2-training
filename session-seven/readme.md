@@ -8,10 +8,13 @@
 + protractor
 
 + Initial testcases added by project
+  + Overview of testcase
+  + Other Asserts
   + Adding tests
 + Testing a Typescript class
 
 ## Adding and testing a service
+[Intro](page2.md)
 
 + Adding a service and premade tests
 
