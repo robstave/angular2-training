@@ -1,14 +1,14 @@
 
 # Testing
 
-Angular CLI provides a framework for testing your code as part of the inital project.  Right out of the box, you have the tools you need to create Jasmine/Karma testcase and run End to End (e2e) testcases with protractor.
+Angular CLI provides a framework for testing your code as part of the initial project.  Right out of the box, you have the tools you need to create Jasmine/Karma testcase and run End to End (e2e) testcases with protractor.
 
 
 * [Karma](https://karma-runner.github.io/1.0/index.html) is the testcase runner. This is the framework that builds and runs tests within your project. It allows you to run the code against a real browser from a CLI.
 
-* [Jasmine](https://jasmine.github.io/) is the library that you use to write your testcases.  It is really just javascript and is set up so you can write testcases pertty naturally. This goes hand in hand with Karma.
+* [Jasmine](https://jasmine.github.io/) is the library that you use to write your testcases.  It is really just javascript and is set up so you can write testcases pretty naturally. This goes hand in hand with Karma.
 
-* [Protractor](http://www.protractortest.org/#/) is the framework that allows us to write end to end testcase for our angular app. It taske care of what is needed to automate testcases in an actual browser.
+* [Protractor](http://www.protractortest.org/#/) is the framework that allows us to write end to end testcase for our angular app. It takes care of what is needed to automate testcases in an actual browser.
 
  
 Testing is usually a two pronged approach with Karma/Jasmine doing the unit testcases and Protractor handling the integration parts of the application.  In both cases, the testing is done against a live browser.
@@ -86,7 +86,7 @@ Basically a lot of callbacks really.
 
 Jasmine testcases start with something like:
 
- `describe( "do somethign", {//your test})`
+ `describe( "do something", {//your test})`
 
 Where we name the test and define the code that will be executed.
 
@@ -105,9 +105,10 @@ and inside that is our testing code where we might do something like:
 `expect(x).toBe("4")`
 
 
+### Deeper Dive
+
 In this case, we are using Angular, so there are few more steps 
 that we are dealing with.   Lets dive a little deeper in the test.
-
 
 
 
@@ -120,7 +121,11 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
 ```
 
-Now the Before each:
+First we have the beforeEach.  This is code that would be run before each testcase.
+This is basically setting up the component so that it can 
+be created.
+
+Note the "async".  This makes sure that all async calls are done before moving on.
 
 ```javascript
   beforeEach(async(() => {
@@ -131,10 +136,7 @@ Now the Before each:
     }).compileComponents();
   }));
 ```
-So the above code will be executed each time we run a testcase.
-This is basically setting up the component so that it can 
-be created.
-
+ 
 
 For the first testcase, we create the component in our testbed
 and verify that it exists.
@@ -146,7 +148,9 @@ and verify that it exists.
   }));
 ```
 
-Next lets look for the Property title in the component.
+Next lets look for the Property title in the component.  Properties on the component are just 
+properties like any other Javascript object.
+
 ```javascript
   it(`should have as title 'app works!'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -155,8 +159,8 @@ Next lets look for the Property title in the component.
   }));
 ```
 
-Finally, lets dig around the dom and see that `{{title}}` was compiled correctly.  Note that the template needs to be compiled first so
-we transform `<h1>{{title}}</h1>` to `<h1>App Works!</h1>`
+Finally, lets dig around the dom and see that `{{title}}` was compiled correctly.  
+Note that the template needs to be compiled first so we transform `<h1>{{title}}</h1>` to `<h1>App Works!</h1>`
 
 ```javascript
   it('should render title in a h1 tag', async(() => {
@@ -319,3 +323,7 @@ describe('TestService', () => {
 ```
 
  
+ Just rerun the testcases and now we have learned to test a simple class.
+
+
+ Next we will add a service and mock it out.
