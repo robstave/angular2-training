@@ -6,7 +6,7 @@ Angular CLI provides a framework for testing your code as part of the initial pr
 
 * [Karma](https://karma-runner.github.io/1.0/index.html) is the testcase runner. This is the framework that builds and runs tests within your project. It allows you to run the code against a real browser from a CLI.
 
-* [Jasmine](https://jasmine.github.io/) is the library that you use to write your testcases.  It is really just javascript and is set up so you can write testcases pretty naturally. This goes hand in hand with Karma.
+* [Jasmine](https://jasmine.github.io/) is the library that you use to write your testcases.  It is really just javascript and is set up so you can write testcases pretty naturally. This goes hand in hand with Karma. For refernce, an [excellent reference](https://jasmine.github.io/2.0/introduction.html) is the jasmine intro on github.
 
 * [Protractor](http://www.protractortest.org/#/) is the framework that allows us to write end to end testcase for our angular app. It takes care of what is needed to automate testcases in an actual browser.
 
@@ -105,7 +105,63 @@ and inside that is our testing code where we might do something like:
 `expect(x).toBe("4")`
 
 
-### Deeper Dive
+You can combine and nest things as well.  You can next Describes as much as you want and use them
+to group tests so you can do something like:
+
+
+```javascript
+describe('My Testing Group', () => {
+    beforeEach(async(() => {
+      //Do some common before stuff
+    }));
+
+    it('should initialize', async(() => {
+      //check initial stuff
+    }));
+
+    describe('Sub Group 1', () => {
+        beforeEach(async(() => {
+          //Do some common before sub group 1
+        }));
+
+       it(`test1'`, async(() => {
+         //test
+       }));
+
+       it(`test2'`, async(() => {
+         //test
+       }));
+    });
+
+    describe('Sub Group 2', () => {
+        beforeEach(async(() => {
+          //Do some common before sub group 2
+        }));
+
+       it(`test3'`, async(() => {
+         //test
+       }));
+
+       it(`test4'`, async(() => {
+         //test
+       }));
+    });
+
+}});
+});
+
+```
+
+
+## Available Asserts
+
+There are a ton of asserts available for your testcases. And if they are not there, you can always write your own!
+
+Some examples are [In a file called asserts.spec.ts](./asserts.spec.ts)
+
+However, the best resource that can not be beat is the [Jasmine introduction page](https://jasmine.github.io/2.0/introduction.html)
+
+## Deeper Dive
 
 In this case, we are using Angular, so there are few more steps 
 that we are dealing with.   Lets dive a little deeper in the test.

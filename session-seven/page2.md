@@ -137,9 +137,9 @@ First off, just like app.module, we need to set a provider.
 Sadly, this is probibly the hardest part of writing a testcase.
 Wiring up all the dependancies. Every time you add a dependancy to the 
 component, you need to add it to the testcase.  This can get pretty
-aweful.  Lets add the dependancy first to see how to resolve the problem.
+aweful.  
 
-
+Lets add the dependancy first to see how to resolve the problem.
 
 
 

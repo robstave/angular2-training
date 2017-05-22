@@ -7,12 +7,18 @@
 + Jasmine/karma
 + protractor
 
-## Simple Testcases
-
++ Initial testcases added by project
+  + Adding tests
 + Testing a Typescript class
-+ Testing a Service
+
+## Adding and testing a service
+
++ Adding a service and premade tests
+
++ Testing the service
   + Injecting the service
-+ Testing a component
+
++ Replace with 
 
 [End to End Testing](page2.md)
 
