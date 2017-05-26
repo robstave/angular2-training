@@ -17,13 +17,16 @@
 [Intro](page2.md)
 
 + Adding a service and premade tests
-
 + Testing the service
   + Injecting the service
-
 + Replace with 
 
-[End to End Testing](page2.md)
+[End to End Testing](page3.md)
+
++ Explore the default test
++ Running e2e tests
++ Add tests for work done in our project
++ Summary
 
  
 

@@ -8,10 +8,14 @@ Angular CLI provides a framework for testing your code as part of the initial pr
 
 * [Jasmine](https://jasmine.github.io/) is the library that you use to write your testcases.  It is really just javascript and is set up so you can write testcases pretty naturally. This goes hand in hand with Karma. For refernce, an [excellent reference](https://jasmine.github.io/2.0/introduction.html) is the jasmine intro on github.
 
-* [Protractor](http://www.protractortest.org/#/) is the framework that allows us to write end to end testcase for our angular app. It takes care of what is needed to automate testcases in an actual browser.
+* [Protractor](http://www.protractortest.org/#/) is the framework that allows us to write end to end testcases for our angular app. It takes care of what is needed to automate testcases in an actual browser. This is where we do the integration testcases.
 
  
-Testing is usually a two pronged approach with Karma/Jasmine doing the unit testcases and Protractor handling the integration parts of the application.  In both cases, the testing is done against a live browser.
+Testing is usually a two pronged approach with Karma/Jasmine doing the unit testcases and Protractor handling the integration parts of the application.  
+
+In both cases, the testing is done against a live browser.
+
+An [Excellent Resource](https://angular.io/docs/ts/latest/testing/) are the angular.io docs.  We will be doing a fast overview.
 
 ## Example
 
