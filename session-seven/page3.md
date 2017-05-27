@@ -1,4 +1,4 @@
-# End to testing
+# End to End testing
 
 Angular CLI provides the scaffolding needed for us to do integration testcases with a testing library called [Protractor](http://www.protractortest.org/#/).
 
