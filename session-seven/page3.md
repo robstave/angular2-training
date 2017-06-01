@@ -67,9 +67,23 @@ Running the end to end testcases is basically the same as the unit ones.
 
 ```
 ng e2e
+
+[00:18:51] I/file_manager - creating folder C:\Users\Stave\interlegis\ang2\session7\e2e\e2e1\node_modules\protractor\node_modules\webdriver-manager\selenium
+[00:18:52] I/update - chromedriver: unzipping chromedriver_2.29.zip
+[00:18:53] I/launcher - Running 1 instances of WebDriver
+[00:18:53] I/direct - Using ChromeDriver directly...
+Spec started
+
+  e2e1 App
+    √ should display message saying app works
+
+Executed 1 of 1 spec SUCCESS in 1 sec.
+[00:18:59] I/launcher - 0 instance(s) of WebDriver still running
+[00:18:59] I/launcher - chrome #01 passed
+
 ```
 
-And we should pass.  In this case you see the browser up and everything.
+And we should pass.  In this case you see the browser fire up and everything.
 
 
 ## Adding stuff
@@ -130,8 +144,9 @@ Add to _app.e2e-spec.ts_
 
 ```
 
-So we are using the page object to get the element text...and checking that
-it is correct.  Notice that we did not have to wait for anything to render. It just worked.  
+So we are using the page object to get the element text and checking that it is correct.  
+
+Notice that we did not have to wait for anything to render. It just worked.  
 
 
 Lets do that again, but with the button.  We already have written everything we need the page object.  Lets click the button and see that it happened.

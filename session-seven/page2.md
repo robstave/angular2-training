@@ -60,7 +60,9 @@ export class AppModule { }
 
 
 
-Add it into the app service
+Add it into the app component
+
+_app.component.ts_
 
 ```javascript
 import { Component } from '@angular/core';
@@ -93,7 +95,7 @@ export class AppComponent {
 And display it!!
 
 
-app.component.html
+_app.component.html_
 
 ```javascript
 <h1>
@@ -282,6 +284,9 @@ describe('AppComponent', () => {
 
 });
 ```
+Run the tests again.
+
+[Page3](page3.md)
 
 
 

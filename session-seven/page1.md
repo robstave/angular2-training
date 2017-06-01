@@ -311,8 +311,13 @@ One example of a testcase could be:
 
 ```
 
+Go ahead and add it to the _app.component.spec.ts_
 
 ## Simple testcase
+
+Here is a simple testcase.  Just a util class and spec.
+
+_utils.ts_
 
 ```javascript
 
@@ -340,6 +345,7 @@ export class MyUtils {
 ```
 
 
+_utils.spec.ts_
 
 ```javascript
 import { MyUtils } from './utils';
