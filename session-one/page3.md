@@ -197,10 +197,14 @@ template of another.
 Lets create four components to just demonstrate a simple organization of components.
 
 ```html
-<app-usa></app-usa>
-<app-texas></app-texas>
-<app-dallas></app-dallas>
-<app-pennsylvania></app-pennsylvania>
+<app-root>
+  <app-usa>
+    <app-texas>
+      <app-dallas></app-dallas>
+    </app-texas>
+    <app-pennsylvania></app-pennsylvania>
+  </app-usa>
+</app-root>
 ```
 
 We would like the components to be nested into each other like so.
