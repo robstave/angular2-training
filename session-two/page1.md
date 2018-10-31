@@ -70,7 +70,7 @@ Create a directory in bash to work in.  First, lets just make sure that we have 
 
 ```bash
 $ tsc -v
-Version 2.1.5
+Version 3.1.4
 ```
 Ok...Looks good.
 
@@ -92,7 +92,18 @@ $ tsc *.ts
 bad1.ts(5,5): error TS2322: Type 'string' is not assignable to type 'number'.
 ```
 
+As you can see, typescript failed as it was expecting a string.
+
+Fix it and run again
+You will notice that there is now a Javascript file.
+TSC has transpiled to Javascript.
+
 You can also open the folder in [Visual Studio Code](https://code.visualstudio.com/) and see the errors from your IDE.
+
+We will  not be using TSC....but this illustrates the relationship between Javascript and typescript.
+
+
+
 
 
 ## Built in Types
@@ -191,6 +202,11 @@ gets
 "9 is:Purple"
 "10 is:undefined"
 ```
+
+Try this:  Paste the code into the TYpescript playground and see how it transpiles
+then see if this makes sense
+
+https://jsbin.com/qijelic/1/edit?html,js,output
 
 
  
