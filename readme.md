@@ -1,6 +1,8 @@
-# Angular2 Training
+# Angular Training
 
-Training documentation, links and code repository for getting our team up to speed on Angular2, Typescript and any other related topics.
+Note, this was written when Angular2 was starting.  It is in the process of upgrading to Angular 7
+
+Training documentation, links and code repository for getting our team up to speed on Angular, Typescript and any other related topics.
 This is meant for internal training to be done within a webex with 30-45 minutes a session.  I would like them to be standalone as well
 and if anybody on the web finds them useful, let me know. 
 

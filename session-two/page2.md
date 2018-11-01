@@ -1,27 +1,26 @@
 # Classes
 
-Javascript itself does not support directly a class object. There is an existing prototype- based inheritance strategy that works 
-with the language. Its still all basically functions. Typescript does a good job however wrapping this up so that it 
-acts like an object.
+Javascript itself does not directly support a class object. There is an existing prototype-based inheritance strategy that works
+with the language, but it is still all basically functions. Typescript does a good job however wrapping this up so that it
+acts like an object in your IDE.
 
- 
+You can create a class and add things like fields, properties, constructors, and functions (static, prototype, instance based). 
 
-You can create a class and even add fields, properties, constructors, and functions (static, prototype, instance based). The basic syntax for a class is as follows:
+The basic syntax for a class is as follows:
 
-  
 ```typescript
 class Car {  
     // Property (public by default)
     engine: string;
 
-    // Constructor 
+    // Constructor
     // (accepts a value so you can initialize engine)
     constructor(engine: string) {
         this.engine = engine;
     }
 }  
 ```
-  
+
 This code creates a Car class that has a constructor that accepts a single parameter 
 engine that initializes the instance property with the same name. 
 
@@ -53,6 +52,24 @@ class Car {
 ```
 
 Go to https://www.typescriptlang.org/play/ and paste in the code to see the emitted code in Javascript.
+
+It will look something like this:
+
+```
+var Car = /** @class */ (function () {
+    function Car(engine) {
+        this.engine = engine;
+    }
+    Car.prototype.start = function () {
+        return "Started " + this.engine;
+    };
+    return Car;
+}());
+```
+
+Perhaps go to JSBin and see what happens when you run the above with some consoles to see what it produces.
+
+See [JSBin](https://jsbin.com/lehoto/edit?html,js,console,output)
 
 
 You can create static functions as well.  These are functions that are NOT available in the instantiated class.
@@ -92,7 +109,8 @@ Other good links:
   * [Typescript Classes and Interfaces](https://johnpapa.net/typescriptpost3/)
 
 ## Inheritance
-Classes can implement Inheritance as well. 
+
+Typescript allows for Inheritance as well. 
 Check this out on https://www.typescriptlang.org/play/ It certainly is not something you want to try in javascript.
 
 ```typescript
@@ -103,7 +121,7 @@ class Auto {
     }
 } 
 
-class ManlyTruck extends Auto {  
+class TexasTruck extends Auto {  
     bigTires: bool;
     constructor(engine: string, bigTires: bool) {
         super(engine);
@@ -129,26 +147,45 @@ class Person implements IPerson {
 } 
 ```
 
+What would you expect to see if you tried the above code in the Typescript playground?
+
 # Generics
-Typescript allows for Generics as well. This is a way that you can reuse code and enforce it for specified types what would 
-be defined a little later down the line.  Rather than have to specify a type like _String_ or _number_ , you could get the flexibility.
+
+Typescript has Generics as well. This allows you to reuse code and enforce type checking without having to immediately specify the type.  
+Rather than have to specify a type like _String_ or _number_ , you could get the flexibility.
 of _any_ yet have your type checked by using a _type variable_.
 
-The simplest example you will run across is Array<Person>  which really is the same as Array[].  You could however extend this 
-concept to functions to call hello<string>("bob")  or hello<number>(22) without having to create functions with any in the interface or
-other harder to implement logic.
+A simple example might be something like: `Array<Person>`  which really is the same as `Array[]`. We just have a little extra type checking.  Typescript can infer more about the data.
 
+Here is an example how it might be used in a function.  The T is called a type arguement.
+
+```
+function pickFirst<T>(data: T[]) : T {
+  return data[0]
+}
+```
+
+See it in actin here:  https://stackblitz.com/edit/typescript-nnjr9g?file=index.ts
 
 Im gonna just say read this:
 https://www.typescriptlang.org/docs/handbook/generics.html
 
 
 # Template Strings
-These are certainly things that you will need to use in Angular2.
-Template strings are used in the component and you can leverage some of the new features 
+
+These are certainly things that you will need to use in Angular.
+Template strings are used in the component and you can leverage some of the new TS features
 that basically eliminate the need for all those +'s.
 
+```
+var x = ` one
+two
+three `;
+
+```
+
 ## Variables in Strings
+
 ```typescript
 var firstName = "Bob";
 var lastName = "Smith";
@@ -157,6 +194,7 @@ var lastName = "Smith";
 var greeting = `My name is  ${firstName} ${lastName}`;
 console.log(greeting);
 ```
+
 Note these are backticks and not a single qoute.
 
 ## Multilines
@@ -209,9 +247,6 @@ Lets look back at a tsconfig.json file that was created a while back in our angu
 There it is. ` "experimentalDecorators": true`. We do not really need to dig any deeper than that.
 Angular2 has added it for their tools and we just use the ones they have defined.
 
-
-
-
 # Modules
 
 Angular2 makes extensive use of the _import_ and _export_ statements.  
@@ -232,7 +267,7 @@ In it..we will export a function and a constant.
 So we have chong.js that exports (makes public a knock funciton and a const.)
 
 ```typescript
-//chong.js
+//chong.ts
 function knock() {
   return "Its Dave!  I got the stuff";
 }
@@ -244,11 +279,11 @@ export { knock, dave };
 and cheech.js, that imports that data.
 
 ```typescript
-//cheech.js
+//cheech.ts
 import { knock, dave } from './chong';
 
-console.log(knock()); 
-console.log(dave);   
+console.log(knock());
+console.log(dave);
 ```
 
 Now lets compile and run it.
@@ -259,7 +294,6 @@ $ node cheech.js
 Its Dave!  I got the stuff
 Dave is not here.
 ```
-
 
 -------------
 Excellent followup reading:
