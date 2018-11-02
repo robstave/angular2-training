@@ -31,7 +31,7 @@ var hondaAccord = new Car('V6');
 ```
 
 The constructor method is created when the class is created and does the initial setup for the object.
-Special note for Angular2. There is a difference between the constructor and in the onInit lifecycle
+Special note for Angular. There is a difference between the constructor and in the onInit lifecycle
 function. Save things that are truely just initializing the class for the constructor.
  
 There can only be one constructor per class.
@@ -165,10 +165,9 @@ function pickFirst<T>(data: T[]) : T {
 }
 ```
 
-See it in actin here:  https://stackblitz.com/edit/typescript-nnjr9g?file=index.ts
+See it in action here: [JSBIN Example](https://stackblitz.com/edit/typescript-nnjr9g?file=index.ts)
 
-Im gonna just say read this:
-https://www.typescriptlang.org/docs/handbook/generics.html
+TYpescriptlang [Has a section on Generics](https://www.typescriptlang.org/docs/handbook/generics.html)
 
 
 # Template Strings
@@ -219,7 +218,7 @@ With the back tick, you do not need to join the lines with all those +'s.
 > To enable experimental support for decorators, you must enable the experimentalDecorators compiler option either on the command line or in your tsconfig.json:
 
 
-Angular2 uses these features a lot.  Just think about all the @component and @Input things we saw earlier.
+Angular uses these features a lot.  Just think about all the @component and @Input things we saw earlier.
 
 Lets look back at a tsconfig.json file that was created a while back in our angular cli session.
 
@@ -245,17 +244,17 @@ Lets look back at a tsconfig.json file that was created a while back in our angu
 ```
 
 There it is. ` "experimentalDecorators": true`. We do not really need to dig any deeper than that.
-Angular2 has added it for their tools and we just use the ones they have defined.
+Angular has added it for their tools and we just use the ones they have defined.
 
 # Modules
 
-Angular2 makes extensive use of the _import_ and _export_ statements.  
+Angular makes extensive use of the _import_ and _export_ statements.  
 
 They are used to import functions, objects and other primitives that have been exported by other modules.
 
 Applications are a collection of modules. Each module containing a cohesive collection of functionality.
 
-Angular2 builds on top of that with @NgModule annotation to specify specific behaviors that relate to angular on top of that.
+Angular builds on top of that with @NgModule annotation to specify specific behaviors that relate to angular on top of that.
 
 A general link is here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 
@@ -294,6 +293,17 @@ $ node cheech.js
 Its Dave!  I got the stuff
 Dave is not here.
 ```
+
+## DefinitelyTyped
+
+Can Existing Javascript script libraries be made compatible with Typesript? *Yes*
+
+[DefinatelyTyped](https://definitelytyped.org/) provides a repository for popular javascript lbraries. These are effectly typescript wrappers that 
+define the types to be used for your IDE. 
+
+
+[Lodsh Example](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/lodash)
+
 
 -------------
 Excellent followup reading:

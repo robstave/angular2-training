@@ -8,9 +8,15 @@ What is it?
 
 From: [typescriptlang.org](https://www.typescriptlang.org/)
  
+Javascript byt itself is weakly-typed language, which means that you do not have to declare the variable types.  They can be just about
+anything.  There are actually a number of languages that are supersets of Javascript.  
 
+- Coffeescript
+- Dart
+- Typescript
+- ClojureScript
 
-There are actually plenty of languages out there that are supersets of Javascript.  There has got to be something that is missing?
+Javascript (or as some folks call it: Vanilla JS) apparently has several shortcomings to warrant all of that attention.
 
 [Transpiled Languages Add Features](https://scotch.io/tutorials/why-you-shouldnt-be-scared-of-typescript):
 
@@ -27,10 +33,13 @@ There are actually plenty of languages out there that are supersets of Javascrip
 
 So we get stronger type checking, which leads to less bugs, and more confidence in our refactoring process.
 
-So why does angular2 use Typescript?
+As the language evolves, many of the features that we we see in Typescript will merge into JS. ES6 already supports things
+like classes, arrow functions and the like.
+
+*So why does Angular use Typescript?*
 
 Google was going to have its own Language "AtScript" to include the features they wanted on top of vanilla js.
-But they teamed with Microsoft and got what they wanted in the language.  One of these would be the 
+But they teamed with Microsoft and got what they wanted in the language.  One of these would be the
 decorators such as @Component that are extremely helpful for Angular.
 
 Some good links for further reading:
@@ -38,11 +47,12 @@ Some good links for further reading:
  * [Why Typescript?](https://vsavkin.com/writing-angular-2-in-typescript-1fa77c78d8e8#.ie24yt6w4) - Victor Savkin was a member of the Angular Core team at Google and explains the background.
  * [High level Overview from InfoQ](https://www.infoq.com/articles/Angular2-TypeScript-High-Level-Overview)
 
+
+
 # Types
 
-From personal experience, I found the lack of type checking in Javascript a bit unsettling at first.  Java has it, and the previous
-language I used at Nortel (Protel) was so strongly typed that if you gave three engineers the same task...they would probably write
-the exact same code. Strong typing (enforced by a capable IDE) really does help prevent bugs in your code by enforcing interfaces/types.
+From personal experience, I found the lack of type checking in Javascript a bit unsettling at first.  Any designer switching from a strongly typed 
+language will struggle a bit with it at first. Strong typing (enforced by a capable IDE) really does help prevent bugs in your code by enforcing interfaces/types.  Type checking in a debugger is a waste of valueable time.
 
 
 ## Basic types
@@ -101,9 +111,6 @@ TSC has transpiled to Javascript.
 You can also open the folder in [Visual Studio Code](https://code.visualstudio.com/) and see the errors from your IDE.
 
 We will  not be using TSC....but this illustrates the relationship between Javascript and typescript.
-
-
-
 
 
 ## Built in Types
@@ -231,12 +238,12 @@ Using void means there is no type expected. This is usually in functions with no
 
 Typescript has two new varible types. _Let_ and _const_.
 
-Let gives us a block scoped variable. Javascript never had this. You might not have even known this unless you ran jslint on 
+_Let_ gives us a block scoped variable. Javascript never had this. _Var_ was [Hoisted](https://www.geeksforgeeks.org/scoping-hoisting-javascript/) and technically declared at the top of the functional scope. You might not have even known this unless you ran jslint on 
 some code that might have reused a variable in a loop. 
 
 > var Variables in JavaScript are function scoped. 
 > This is different from many other languages (C# / Java etc.) where the variables are block scoped. 
-> If you bring a block scoped mindset to JavaScript, you would expect the following to print 123, instead it will print 456:
+> If you bring a _block-scoped_ mindset to JavaScript, you would expect the following to print 123, instead it will print 456:
 
 ```typescript
 var foo = 123;
@@ -245,7 +252,6 @@ if (true) {
 }
 console.log(foo); // 456
 ```
-
 
 > This is because { does not create a new variable scope. The variable foo is the same inside the if block as it is outside the if block. This is a common source of errors in JavaScript programming. This is why TypeScript (and ES6) introduces the let keyword to allow you to define variables with true block scope. That is if you use let instead of var you get a true unique element disconnected from what you might have defined outside the scope. 
 > The same example is demonstrated with let:
@@ -300,7 +306,6 @@ Try it yourself on [Plnkr](http://jsbin.com/gipadom/edit?js,console)
 
 `var` fails us because all loop iterations share the same function-scoped i variable, which has the value 5 after the loop finishes.
  
-	
  
 Further Reading:
 * [Variable Declarations in Typescripting Lang.org](https://www.typescriptlang.org/docs/handbook/variable-declarations.html)
@@ -460,7 +465,7 @@ bunny.showName(); // Usagi
 
 In this case...the alert says "bunny".
 
-What if we were to put access to this in its own function?
+What if we were to put access to _this_ in its own function?
 
 ```javascript
 
@@ -519,7 +524,7 @@ Test it [here](https://jsfiddle.net/maasha/che8m4c1/):
 > While in ES5 ‘this’ referred to the parent of the function, in ES6, arrow functions use lexical scoping — ‘this’ refers to it’s current surrounding scope and no further. Thus the inner function knew to bind to the inner function only, and not to the object’s method or the object itself.
 
 
-That was a pretty complicated concept.  Fear not, with Angular2, you will get used to the arrow functions real quick.
+That was a pretty complicated concept.  Fear not, with Angular, you will get used to the arrow functions real quick.
 
 Useful links:
 
@@ -529,13 +534,16 @@ Useful links:
  * [Javascript is Sexy - Understand this](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
  * [Arrow Functions and This](https://medium.freecodecamp.com/learn-es6-the-dope-way-part-ii-arrow-functions-and-the-this-keyword-381ac7a32881#.dzodrmkm6)
 
+In Addition, you can lose yourself with the related topic of Closures.  This is outside the scope of this intro, but feel free to browse.
+ 
+ * [Closures](https://medium.freecodecamp.org/what-is-variable-hoisting-differentiating-between-var-let-and-const-in-es6-f1a70bb43d)
+
 
 ## Optional and default parameters
 
 Functions can have optional parameters. This is similar in a way to how javascript works.  In javascript, nothing really stopped you from adding
 more of less parameters to a function call. You just had to deal with a lot of undefined values. 
 The optional parameters are indicated with a ? and should follow required parameters.
-
 
 
 ```typescript
@@ -569,8 +577,8 @@ console.log(s3);
 "You have a 1994 Red Ford with leather seats"
 "You have a 1994 Red Ford with leather seats and cup holder"
 ```
-Play with it [here in JSBin:](http://jsbin.com/zalobe/edit?js,console,output)
 
+Play with it [here in JSBin:](http://jsbin.com/zalobe/edit?js,console,output)
 
 Default parameters can be declared as well in the signature.  If so, they are optional.
 
@@ -625,7 +633,3 @@ var hisName = buildName("John", " Jacob", "Jingleheimer", "Schmidt");
 ```
 
  [Page 2](page2.md)
- 
- 
-
-  
